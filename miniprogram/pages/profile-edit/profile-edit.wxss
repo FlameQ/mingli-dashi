@@ -1,13 +1,13 @@
 .page { min-height: 100vh; background: #1A1A2E; padding: 32rpx 24rpx; padding-bottom: 120rpx; }
-.form-section { background: #252540; border-radius: 24rpx; padding: 32rpx 24rpx; }
+.form-section { background: rgba(37, 37, 64, 0.7); border-radius: 24rpx; padding: 32rpx 24rpx; }
 .form-item { margin-bottom: 32rpx; }
 .form-item:last-child { margin-bottom: 0; }
 .form-label { display: block; font-size: 26rpx; color: #A0A0B8; margin-bottom: 12rpx; }
-.input-field { background: #2D2D44; border: 2rpx solid #3A3A55; border-radius: 12rpx; padding: 20rpx; font-size: 28rpx; color: #F0EDE0; }
+.input-field { background: rgba(45, 45, 68, 0.6); border: 2rpx solid rgba(58,58,85,0.5); border-radius: 12rpx; padding: 20rpx; font-size: 28rpx; color: #F0EDE0; }
 .placeholder { color: #666680; }
 .radio-group { display: flex; gap: 40rpx; }
 .radio-label { font-size: 28rpx; color: #F0EDE0; display: flex; align-items: center; gap: 8rpx; }
-.picker-field { background: #2D2D44; border: 2rpx solid #3A3A55; border-radius: 12rpx; padding: 20rpx; font-size: 28rpx; color: #F0EDE0; display: flex; justify-content: space-between; }
+.picker-field { background: rgba(45, 45, 68, 0.6); border: 2rpx solid rgba(58,58,85,0.5); border-radius: 12rpx; padding: 20rpx; font-size: 28rpx; color: #F0EDE0; display: flex; justify-content: space-between; }
 .btn-save { margin-top: 48rpx; background: linear-gradient(135deg, #88ADA6, #6B9490); text-align: center; padding: 24rpx; border-radius: 48rpx; font-size: 32rpx; font-weight: bold; color: #1A1A2E; box-shadow: 0 0 20rpx rgba(136,173,166,0.15); }
-.btn-delete { margin-top: 24rpx; text-align: center; padding: 20rpx; border-radius: 48rpx; font-size: 28rpx; color: #A0A0B8; border: 2rpx solid #3A3A55; }
+.btn-delete { margin-top: 24rpx; text-align: center; padding: 20rpx; border-radius: 48rpx; font-size: 28rpx; color: #A0A0B8; border: 2rpx solid rgba(58,58,85,0.5); }
 .btn-hover { opacity: 0.85; transform: scale(0.98); }

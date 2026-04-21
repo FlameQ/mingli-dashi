@@ -1,9 +1,12 @@
 .result-scroll {
   margin: 24rpx;
-  background: #252540;
-  border-radius: 16rpx;
+  background: rgba(37, 37, 64, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24rpx;
   overflow: hidden;
-  border: 1rpx solid #3A3A55;
+  border: 1rpx solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.3), inset 0 1rpx 0 rgba(255, 255, 255, 0.04);
 }
 
 .scroll-header {
@@ -17,7 +20,7 @@
 .header-line {
   width: 60rpx;
   height: 2rpx;
-  background: linear-gradient(90deg, transparent, #3A3A55, transparent);
+  background: linear-gradient(90deg, transparent, rgba(136, 173, 166, 0.3), transparent);
   margin: 12rpx 0;
 }
 
@@ -36,7 +39,7 @@
 .scroll-footer {
   padding: 24rpx 32rpx;
   text-align: center;
-  border-top: 1rpx solid #3A3A55;
+  border-top: 1rpx solid rgba(255, 255, 255, 0.04);
 }
 
 .disclaimer {

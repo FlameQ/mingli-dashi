@@ -5,15 +5,18 @@
   justify-content: center;
   width: 340rpx;
   padding: 32rpx 24rpx;
-  background: #252540;
+  background: rgba(37, 37, 64, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: 24rpx;
-  border: 1rpx solid #3A3A55;
+  border: 1rpx solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.2), inset 0 1rpx 0 rgba(255, 255, 255, 0.03);
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .module-card-hover {
   transform: scale(0.97);
-  border-color: #88ADA6;
+  border-color: rgba(136, 173, 166, 0.3);
 }
 
 .card-icon-wrap {

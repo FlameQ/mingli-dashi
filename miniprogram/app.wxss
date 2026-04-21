@@ -30,10 +30,13 @@ view, text, image, navigator {
 }
 
 .card {
-  background: #252540;
+  background: rgba(37, 37, 64, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: 24rpx;
   padding: 32rpx;
-  border: 1rpx solid #3A3A55;
+  border: 1rpx solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.2), inset 0 1rpx 0 rgba(255, 255, 255, 0.04);
 }
 
 .btn-primary {
@@ -45,6 +48,7 @@ view, text, image, navigator {
   font-size: 30rpx;
   font-weight: bold;
   text-align: center;
+  box-shadow: 0 4rpx 16rpx rgba(136, 173, 166, 0.2);
 }
 
 .btn-primary::after {
@@ -54,7 +58,7 @@ view, text, image, navigator {
 .btn-secondary {
   background: transparent;
   color: #88ADA6;
-  border: 2rpx solid #88ADA6;
+  border: 2rpx solid rgba(136, 173, 166, 0.4);
   border-radius: 32rpx;
   padding: 20rpx 48rpx;
   font-size: 30rpx;
@@ -63,8 +67,8 @@ view, text, image, navigator {
 }
 
 .input-field {
-  background: #2D2D44;
-  border: 2rpx solid #3A3A55;
+  background: rgba(45, 45, 68, 0.6);
+  border: 2rpx solid rgba(255, 255, 255, 0.06);
   border-radius: 16rpx;
   padding: 20rpx 24rpx;
   font-size: 30rpx;
@@ -87,5 +91,5 @@ view, text, image, navigator {
   font-size: 22rpx;
   padding: 32rpx 0;
   margin-top: 24rpx;
-  border-top: 1rpx solid #3A3A55;
+  border-top: 1rpx solid rgba(255, 255, 255, 0.04);
 }

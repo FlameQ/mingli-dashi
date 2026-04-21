@@ -1,3 +1,4 @@
+const app = getApp()
 const dateUtil = require('../../utils/date-util')
 
 Page({
@@ -13,18 +14,43 @@ Page({
       { id: 'buddhism', icon: '禅', title: '佛学大师', desc: '高僧开示 · 智慧人生', url: '/package-buddhism/pages/chat/chat' }
     ],
     dailyInfo: {},
-    greeting: ''
+    greeting: '',
+    profiles: [],
+    activeProfileId: '',
+    hasProfiles: false
   },
 
   onLoad() {
     this.generateDailyInfo()
     this.setGreeting()
+    this.loadProfiles()
   },
 
   onShow() {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({ selected: 0 })
     }
+    this.loadProfiles()
+  },
+
+  loadProfiles() {
+    const profiles = app.getProfiles() || []
+    const activeId = app.globalData.activeProfileId
+    this.setData({
+      profiles,
+      activeProfileId: activeId,
+      hasProfiles: profiles.length > 0
+    })
+  },
+
+  onProfileTap(e) {
+    const id = e.currentTarget.dataset.id
+    app.setActiveProfile(id)
+    this.setData({ activeProfileId: id })
+  },
+
+  onAddProfile() {
+    wx.navigateTo({ url: '/pages/profile-edit/profile-edit' })
   },
 
   setGreeting() {

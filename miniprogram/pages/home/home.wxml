@@ -9,7 +9,7 @@
   </view>
 
   <!-- Today's Almanac -->
-  <view class="daily-card animate-fade-in">
+  <view class="daily-card">
     <view class="daily-header">
       <text class="daily-label">今日黄历</text>
       <text class="daily-date">{{dailyInfo.date}}</text>
@@ -31,6 +31,36 @@
     </view>
   </view>
 
+  <!-- Profile Selector -->
+  <view class="profile-section" wx:if="{{hasProfiles}}">
+    <scroll-view class="profile-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="profile-list">
+        <view class="profile-chip {{activeProfileId === item.id ? 'profile-chip-active' : ''}}"
+              wx:for="{{profiles}}" wx:key="id"
+              data-id="{{item.id}}" bindtap="onProfileTap">
+          <view class="profile-chip-avatar">
+            <text class="profile-chip-initial">{{item.name[0]}}</text>
+          </view>
+          <view class="profile-chip-info-wrap">
+            <text class="profile-chip-name">{{item.name}}</text>
+            <text class="profile-chip-detail">{{item.zodiac}} · {{item.gender}}</text>
+          </view>
+        </view>
+        <view class="profile-chip profile-chip-add" bindtap="onAddProfile">
+          <text class="profile-chip-plus">+</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- Quick Add Profile Prompt -->
+  <view class="profile-prompt" wx:else bindtap="onAddProfile">
+    <view class="profile-prompt-inner">
+      <text class="profile-prompt-icon">+</text>
+      <text class="profile-prompt-text">添加人物档案，快速开始占卜</text>
+    </view>
+  </view>
+
   <!-- Module Grid -->
   <view class="section-header">
     <view class="section-line"></view>
@@ -42,8 +72,10 @@
     <view class="module-card" wx:for="{{modules}}" wx:key="id"
           data-url="{{item.url}}" bindtap="onModuleTap"
           hover-class="module-card-hover">
-      <view class="card-icon-wrap">
-        <text class="card-icon-char">{{item.icon}}</text>
+      <view class="card-icon-wrap icon-{{item.id}}">
+        <view class="icon-deco-a deco-{{item.id}}"></view>
+        <view class="icon-deco-b deco-{{item.id}}"></view>
+        <text class="card-icon-char char-{{item.id}}">{{item.icon}}</text>
       </view>
       <text class="card-title">{{item.title}}</text>
       <text class="card-desc">{{item.desc}}</text>
