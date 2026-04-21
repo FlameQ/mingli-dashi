@@ -1,13 +1,13 @@
-.page { min-height: 100vh; background: #F7F3EC; padding: 32rpx 24rpx; padding-bottom: 120rpx; }
-.form-section { background: #FFFCF5; border-radius: 24rpx; padding: 32rpx 24rpx; }
+.page { min-height: 100vh; background: #F4F1EC; padding: 32rpx 24rpx; padding-bottom: 120rpx; }
+.form-section { background: #FFFFFF; border-radius: 24rpx; padding: 32rpx 24rpx; }
 .form-item { margin-bottom: 32rpx; }
 .form-item:last-child { margin-bottom: 0; }
-.form-label { display: block; font-size: 26rpx; color: #7A7A7A; margin-bottom: 12rpx; }
-.input-field { background: #F0EBE1; border: 2rpx solid rgba(58,58,85,0.5); border-radius: 12rpx; padding: 20rpx; font-size: 28rpx; color: #2D2D2D; }
-.placeholder { color: #AAAAAA; }
+.form-label { display: block; font-size: 26rpx; color: #888888; margin-bottom: 12rpx; }
+.input-field { background: #F8F6F2; border: 2rpx solid rgba(58,58,85,0.5); border-radius: 12rpx; padding: 20rpx; font-size: 28rpx; color: #2D2D2D; }
+.placeholder { color: #BBBBBB; }
 .radio-group { display: flex; gap: 40rpx; }
 .radio-label { font-size: 28rpx; color: #2D2D2D; display: flex; align-items: center; gap: 8rpx; }
-.picker-field { background: #F0EBE1; border: 2rpx solid rgba(58,58,85,0.5); border-radius: 12rpx; padding: 20rpx; font-size: 28rpx; color: #2D2D2D; display: flex; justify-content: space-between; }
-.btn-save { margin-top: 48rpx; background: linear-gradient(135deg, #4A7C8A, #6B9490); text-align: center; padding: 24rpx; border-radius: 48rpx; font-size: 32rpx; font-weight: bold; color: #F7F3EC; box-shadow: 0 0 20rpx rgba(74,124,138,0.15); }
-.btn-delete { margin-top: 24rpx; text-align: center; padding: 20rpx; border-radius: 48rpx; font-size: 28rpx; color: #7A7A7A; border: 2rpx solid rgba(58,58,85,0.5); }
+.picker-field { background: #F8F6F2; border: 2rpx solid rgba(58,58,85,0.5); border-radius: 12rpx; padding: 20rpx; font-size: 28rpx; color: #2D2D2D; display: flex; justify-content: space-between; }
+.btn-save { margin-top: 48rpx; background: linear-gradient(135deg, #3D6B5E, #6B9490); text-align: center; padding: 24rpx; border-radius: 48rpx; font-size: 32rpx; font-weight: bold; color: #F4F1EC; box-shadow: 0 0 20rpx rgba(61,107,94,0.15); }
+.btn-delete { margin-top: 24rpx; text-align: center; padding: 20rpx; border-radius: 48rpx; font-size: 28rpx; color: #888888; border: 2rpx solid rgba(58,58,85,0.5); }
 .btn-hover { opacity: 0.85; transform: scale(0.98); }

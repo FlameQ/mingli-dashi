@@ -1,4 +1,4 @@
-const baziCalc = require('../../utils/bazi-calculator')
+const baziCalc = require('../../../utils/bazi-calculator')
 const app = getApp()
 
 Page({

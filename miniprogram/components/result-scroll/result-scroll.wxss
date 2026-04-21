@@ -1,9 +1,9 @@
 .result-scroll {
   margin: 24rpx;
-  background: #FFFCF5;
+  background: #FFFFFF;
   border-radius: 24rpx;
   overflow: hidden;
-  border: 1rpx solid #E5DFD3;
+  border: 1rpx solid #E5E0D8;
   box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
 }
 
@@ -18,7 +18,7 @@
 .header-line {
   width: 60rpx;
   height: 2rpx;
-  background: linear-gradient(90deg, transparent, #D0C8B8, transparent);
+  background: linear-gradient(90deg, transparent, #D5CFC5, transparent);
   margin: 12rpx 0;
 }
 
@@ -37,10 +37,10 @@
 .scroll-footer {
   padding: 24rpx 32rpx;
   text-align: center;
-  border-top: 1rpx solid #E5DFD3;
+  border-top: 1rpx solid #E5E0D8;
 }
 
 .disclaimer {
   font-size: 22rpx;
-  color: #AAAAAA;
+  color: #BBBBBB;
 }

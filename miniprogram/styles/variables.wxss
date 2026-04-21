@@ -1,39 +1,39 @@
 /* ========================================
-   命理大师 - 宣纸水墨主题
-   Rice Paper & Ink Theme
+   命理大师 - 文人书房主题
+   Scholar's Study Theme
    ======================================== */
 
 page {
-  --bg-page: #F7F3EC;
-  --bg-card: #FFFCF5;
-  --bg-card-alt: #F5F0E8;
-  --bg-input: #F0EBE1;
-  --bg-surface: #FBF8F1;
+  --bg-page: #F4F1EC;
+  --bg-card: #FFFFFF;
+  --bg-card-alt: #F8F6F2;
+  --bg-input: #F8F6F2;
+  --bg-surface: #FAFAF8;
 
-  /* 品牌色 - 青瓷 Jade */
-  --color-primary: #4A7C8A;
-  --color-primary-light: #6A9CA8;
-  --color-secondary: #B8952A;
-  --color-secondary-light: #CCAA44;
+  /* 品牌色 - 青玉 Jade */
+  --color-primary: #3D6B5E;
+  --color-primary-light: #5A8E7D;
+  --color-secondary: #C4965A;
+  --color-secondary-light: #D4A86C;
 
   /* 文本色 */
   --text-primary: #2D2D2D;
-  --text-secondary: #7A7A7A;
-  --text-placeholder: #AAAAAA;
+  --text-secondary: #888888;
+  --text-placeholder: #BBBBBB;
 
   /* 功能色 */
-  --color-accent: #4A7C8A;
-  --color-warning: #B8952A;
-  --color-success: #5B8A72;
-  --color-border: #E5DFD3;
-  --color-border-dark: #D0C8B8;
+  --color-accent: #3D6B5E;
+  --color-warning: #C4965A;
+  --color-success: #3D6B5E;
+  --color-border: #E5E0D8;
+  --color-border-dark: #D5CFC5;
 
   /* 渐变 */
-  --gradient-warm: linear-gradient(135deg, #F7F3EC 0%, #FFFCF5 50%, #F5F0E8 100%);
-  --gradient-card: linear-gradient(135deg, #FFFCF5 0%, #FBF8F1 100%);
-  --gradient-hero: linear-gradient(180deg, #F5F0E8 0%, #F7F3EC 100%);
-  --gradient-primary: linear-gradient(135deg, #4A7C8A 0%, #3A6472 100%);
-  --gradient-secondary: linear-gradient(135deg, #B8952A 0%, #9A7D22 100%);
+  --gradient-warm: linear-gradient(135deg, #F4F1EC 0%, #FFFFFF 50%, #F8F6F2 100%);
+  --gradient-card: linear-gradient(135deg, #FFFFFF 0%, #FAFAF8 100%);
+  --gradient-hero: linear-gradient(180deg, #F0EDE6 0%, #F4F1EC 100%);
+  --gradient-primary: linear-gradient(135deg, #3D6B5E 0%, #2D5549 100%);
+  --gradient-secondary: linear-gradient(135deg, #C4965A 0%, #A87D44 100%);
 
   /* 圆角 */
   --radius-sm: 8rpx;
@@ -57,8 +57,8 @@ page {
   --font-xxl: 48rpx;
 
   /* 阴影 */
-  --shadow-sm: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
   --shadow-md: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
-  --shadow-glow: 0 0 20rpx rgba(74, 124, 138, 0.1);
+  --shadow-glow: 0 0 20rpx rgba(61, 107, 94, 0.1);
 }

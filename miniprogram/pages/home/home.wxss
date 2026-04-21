@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  background: #F7F3EC;
+  background: #F4F1EC;
   padding-bottom: 140rpx;
 }
 
@@ -9,9 +9,9 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 252, 245, 0.95);
+  background: rgba(244, 241, 236, 0.95);
   padding: 16rpx 0 12rpx;
-  border-bottom: 1rpx solid #E5DFD3;
+  border-bottom: 1rpx solid #E5E0D8;
 }
 
 .profile-scroll {
@@ -31,22 +31,22 @@
   align-items: center;
   gap: 10rpx;
   padding: 10rpx 20rpx;
-  background: #FFFCF5;
+  background: #FFFFFF;
   border-radius: 40rpx;
-  border: 1rpx solid #E5DFD3;
+  border: 1rpx solid #E5E0D8;
   transition: all 0.2s;
 }
 
 .profile-chip.active {
-  background: rgba(74, 124, 138, 0.08);
-  border-color: #4A7C8A;
+  background: rgba(61, 107, 94, 0.06);
+  border-color: #3D6B5E;
 }
 
 .chip-avatar {
   width: 40rpx;
   height: 40rpx;
   border-radius: 50%;
-  background: rgba(74, 124, 138, 0.1);
+  background: rgba(61, 107, 94, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,23 +54,23 @@
 }
 
 .active .chip-avatar {
-  background: rgba(74, 124, 138, 0.2);
+  background: rgba(61, 107, 94, 0.15);
 }
 
 .chip-initial {
   font-size: 22rpx;
-  color: #4A7C8A;
+  color: #3D6B5E;
   font-weight: bold;
 }
 
 .chip-name {
   font-size: 24rpx;
-  color: #7A7A7A;
+  color: #888888;
   font-weight: 500;
 }
 
 .active .chip-name {
-  color: #4A7C8A;
+  color: #3D6B5E;
   font-weight: bold;
 }
 
@@ -78,18 +78,18 @@
   width: 8rpx;
   height: 8rpx;
   border-radius: 50%;
-  background: #4A7C8A;
+  background: #3D6B5E;
 }
 
 .chip-add {
   padding: 10rpx 24rpx;
   border-style: dashed;
-  border-color: #D0C8B8;
+  border-color: #D5CFC5;
 }
 
 .chip-plus {
   font-size: 28rpx;
-  color: #AAAAAA;
+  color: #BBBBBB;
 }
 
 .add-prompt {
@@ -101,16 +101,16 @@
 
 .add-prompt-text {
   font-size: 26rpx;
-  color: #4A7C8A;
+  color: #3D6B5E;
   padding: 10rpx 32rpx;
-  border: 1rpx dashed #D0C8B8;
+  border: 1rpx dashed #D5CFC5;
   border-radius: 40rpx;
 }
 
 /* ===== Compact Info Bar ===== */
 .info-bar {
   padding: 24rpx 28rpx 20rpx;
-  background: linear-gradient(180deg, #F5F0E8 0%, #F7F3EC 100%);
+  background: linear-gradient(180deg, #F0EDE6 0%, #F4F1EC 100%);
 }
 
 .greeting-row {
@@ -133,15 +133,15 @@
 
 .daily-tag {
   font-size: 22rpx;
-  color: #4A7C8A;
-  background: rgba(74, 124, 138, 0.08);
+  color: #3D6B5E;
+  background: rgba(61, 107, 94, 0.06);
   padding: 4rpx 14rpx;
   border-radius: 12rpx;
 }
 
 .daily-date {
   font-size: 22rpx;
-  color: #AAAAAA;
+  color: #BBBBBB;
   margin-left: auto;
 }
 
@@ -166,18 +166,18 @@
 }
 
 .yiji-badge.yi {
-  background: rgba(91, 138, 114, 0.12);
-  color: #5B8A72;
+  background: rgba(61, 107, 94, 0.08);
+  color: #3D6B5E;
 }
 
 .yiji-badge.ji {
-  background: rgba(184, 149, 42, 0.12);
-  color: #B8952A;
+  background: rgba(196, 150, 90, 0.1);
+  color: #C4965A;
 }
 
 .yiji-text {
   font-size: 22rpx;
-  color: #7A7A7A;
+  color: #888888;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -195,12 +195,12 @@
   width: 8rpx;
   height: 8rpx;
   border-radius: 50%;
-  background: #4A7C8A;
+  background: #3D6B5E;
 }
 
 .hint-text {
   font-size: 22rpx;
-  color: #4A7C8A;
+  color: #3D6B5E;
 }
 
 /* ===== Section Header ===== */
@@ -214,7 +214,7 @@
 .section-title {
   font-size: 26rpx;
   font-weight: bold;
-  color: #AAAAAA;
+  color: #BBBBBB;
   white-space: nowrap;
   letter-spacing: 4rpx;
 }
@@ -222,11 +222,11 @@
 .section-line {
   flex: 1;
   height: 1rpx;
-  background: linear-gradient(90deg, #E5DFD3, transparent);
+  background: linear-gradient(90deg, #E5E0D8, transparent);
 }
 
 .section-line:first-child {
-  background: linear-gradient(90deg, transparent, #E5DFD3);
+  background: linear-gradient(90deg, transparent, #E5E0D8);
 }
 
 /* ===== Module Grid ===== */
@@ -244,31 +244,31 @@
   display: flex;
   align-items: center;
   gap: 16rpx;
-  background: #FFFCF5;
-  border: 1rpx solid #E5DFD3;
-  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #FFFFFF;
+  border: 1rpx solid #E5E0D8;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease;
 }
 
 .module-card-hover {
   transform: scale(0.97);
-  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
 }
 
-/* Card left accent line per module */
+/* Card left accent */
 .card-bazi { border-left: 4rpx solid #2D7A72; }
 .card-qimen { border-left: 4rpx solid #3A5A8A; }
-.card-ziwei { border-left: 4rpx solid #5A3A8A; }
-.card-yinyuan { border-left: 4rpx solid #8A5A3A; }
+.card-ziwei { border-left: 4rpx solid #6A4A9A; }
+.card-yinyuan { border-left: 4rpx solid #C4965A; }
 .card-tarot { border-left: 4rpx solid #8A6A20; }
-.card-liuyao { border-left: 4rpx solid #2D6A4A; }
+.card-liuyao { border-left: 4rpx solid #3D6B5E; }
 .card-fengshui { border-left: 4rpx solid #2A5A7A; }
 .card-buddhism { border-left: 4rpx solid #8A7A30; }
 
 /* ===== Icon Circles ===== */
 .icon-circle {
-  width: 80rpx;
-  height: 80rpx;
+  width: 76rpx;
+  height: 76rpx;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -277,66 +277,40 @@
 }
 
 .icon-symbol {
-  font-size: 36rpx;
+  font-size: 34rpx;
   font-weight: bold;
-  position: relative;
-  z-index: 2;
 }
 
-/* ☯ 八字排盘 - Teal */
-.icon-bg-bazi {
-  background: linear-gradient(135deg, #E8F4F2, #D4EBE7);
-  box-shadow: 0 4rpx 16rpx rgba(45, 122, 114, 0.15);
-}
+/* ☯ 八字 - Jade */
+.icon-bg-bazi { background: rgba(45, 122, 114, 0.08); }
 .icon-color-bazi { color: #2D7A72; }
 
-/* ✦ 奇门遁甲 - Blue */
-.icon-bg-qimen {
-  background: linear-gradient(135deg, #E8ECF5, #D4D9ED);
-  box-shadow: 0 4rpx 16rpx rgba(58, 90, 138, 0.15);
-}
+/* ✦ 奇门 - Indigo */
+.icon-bg-qimen { background: rgba(58, 90, 138, 0.08); }
 .icon-color-qimen { color: #3A5A8A; }
 
-/* ★ 紫微斗数 - Purple */
-.icon-bg-ziwei {
-  background: linear-gradient(135deg, #EDE8F5, #DDD6ED);
-  box-shadow: 0 4rpx 16rpx rgba(90, 58, 138, 0.15);
-}
-.icon-color-ziwei { color: #5A3A8A; }
+/* ★ 紫微 - Violet */
+.icon-bg-ziwei { background: rgba(106, 74, 154, 0.08); }
+.icon-color-ziwei { color: #6A4A9A; }
 
-/* ♡ 月老姻缘 - Rose */
-.icon-bg-yinyuan {
-  background: linear-gradient(135deg, #F5EDE8, #EDDDD6);
-  box-shadow: 0 4rpx 16rpx rgba(138, 90, 58, 0.15);
-}
-.icon-color-yinyuan { color: #8A5A3A; }
+/* ♡ 姻缘 - Bronze */
+.icon-bg-yinyuan { background: rgba(196, 150, 90, 0.1); }
+.icon-color-yinyuan { color: #C4965A; }
 
-/* ◆ 塔罗占卜 - Amber */
-.icon-bg-tarot {
-  background: linear-gradient(135deg, #F5F0E0, #EDE6D0);
-  box-shadow: 0 4rpx 16rpx rgba(138, 106, 32, 0.15);
-}
+/* ◆ 塔罗 - Amber */
+.icon-bg-tarot { background: rgba(138, 106, 32, 0.08); }
 .icon-color-tarot { color: #8A6A20; }
 
-/* ☰ 六爻占卦 - Green */
-.icon-bg-liuyao {
-  background: linear-gradient(135deg, #E8F2EC, #D4E8DD);
-  box-shadow: 0 4rpx 16rpx rgba(45, 106, 74, 0.15);
-}
-.icon-color-liuyao { color: #2D6A4A; }
+/* ☰ 六爻 - Jade */
+.icon-bg-liuyao { background: rgba(61, 107, 94, 0.08); }
+.icon-color-liuyao { color: #3D6B5E; }
 
-/* ≈ 易经风水 - Ocean */
-.icon-bg-fengshui {
-  background: linear-gradient(135deg, #E8F0F5, #D4E3ED);
-  box-shadow: 0 4rpx 16rpx rgba(42, 90, 122, 0.15);
-}
+/* ≈ 风水 - Ocean */
+.icon-bg-fengshui { background: rgba(42, 90, 122, 0.08); }
 .icon-color-fengshui { color: #2A5A7A; }
 
-/* ☸ 佛学大师 - Gold */
-.icon-bg-buddhism {
-  background: linear-gradient(135deg, #F5F0E0, #EDE6CC);
-  box-shadow: 0 4rpx 16rpx rgba(138, 122, 48, 0.15);
-}
+/* ☸ 佛学 - Gold */
+.icon-bg-buddhism { background: rgba(138, 122, 48, 0.08); }
 .icon-color-buddhism { color: #8A7A30; }
 
 /* ===== Card Text ===== */
@@ -356,13 +330,13 @@
 .card-desc {
   display: block;
   font-size: 22rpx;
-  color: #AAAAAA;
+  color: #BBBBBB;
 }
 
 /* ===== Disclaimer ===== */
 .page-disclaimer {
   text-align: center;
-  color: #AAAAAA;
+  color: #BBBBBB;
   font-size: 22rpx;
   padding: 40rpx 24rpx 20rpx;
 }

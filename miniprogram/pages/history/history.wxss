@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  background: #F7F3EC;
+  background: #F4F1EC;
   padding-bottom: 140rpx;
 }
 
@@ -13,7 +13,7 @@
 
 .empty-icon-text {
   font-size: 80rpx;
-  color: #E5DFD3;
+  color: #E5E0D8;
   margin-bottom: 24rpx;
   font-weight: bold;
 }
@@ -26,7 +26,7 @@
 
 .empty-hint {
   font-size: 26rpx;
-  color: #AAAAAA;
+  color: #BBBBBB;
 }
 
 .history-list {
@@ -42,12 +42,12 @@
 
 .list-count {
   font-size: 26rpx;
-  color: #7A7A7A;
+  color: #888888;
 }
 
 .clear-btn {
   font-size: 26rpx;
-  color: #B8952A;
+  color: #C4965A;
   padding: 8rpx 24rpx;
   border: 1rpx solid rgba(201, 185, 138, 0.3);
   border-radius: 24rpx;
@@ -68,19 +68,19 @@
   width: 10rpx;
   height: 10rpx;
   border-radius: 50%;
-  background: #4A7C8A;
+  background: #3D6B5E;
 }
 
 .date-text {
   font-size: 26rpx;
-  color: #7A7A7A;
+  color: #888888;
   font-weight: bold;
 }
 
 .record-card {
   display: flex;
   align-items: center;
-  background: #FFFCF5;
+  background: #FFFFFF;
   border-radius: 16rpx;
   padding: 24rpx;
   margin-bottom: 12rpx;
@@ -102,7 +102,7 @@
 .record-summary {
   display: block;
   font-size: 26rpx;
-  color: #7A7A7A;
+  color: #888888;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -112,7 +112,7 @@
 .record-time {
   display: block;
   font-size: 22rpx;
-  color: #AAAAAA;
+  color: #BBBBBB;
 }
 
 .record-delete {
@@ -122,5 +122,5 @@
 
 .delete-icon {
   font-size: 28rpx;
-  color: #AAAAAA;
+  color: #BBBBBB;
 }
