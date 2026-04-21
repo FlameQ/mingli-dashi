@@ -1,19 +1,17 @@
 .zen-border-wrapper {
   position: relative;
-  background: rgba(37, 37, 64, 0.6);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1rpx solid rgba(255, 255, 255, 0.04);
+  background: #FFFCF5;
+  border: 1rpx solid #E5DFD3;
   border-radius: 16rpx;
   padding: 32rpx;
-  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.2), inset 0 1rpx 0 rgba(255, 255, 255, 0.03);
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
 }
 
 .corner {
   position: absolute;
   width: 20rpx;
   height: 20rpx;
-  border-color: rgba(136, 173, 166, 0.4);
+  border-color: #4A7C8A;
   border-style: solid;
 }
 

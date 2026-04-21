@@ -1,18 +1,15 @@
 /* ========================================
-   命理大师 - 水墨禅意主题
-   Ink Wash Zen Theme
+   命理大师 - 宣纸水墨主题
+   Rice Paper & Ink Theme
    ======================================== */
 
-/* Zen Border - minimal corners with glass */
 .chinese-border {
   position: relative;
-  border: 2rpx solid rgba(255, 255, 255, 0.04);
+  border: 1rpx solid #E5DFD3;
   border-radius: 16rpx;
   overflow: hidden;
-  background: rgba(37, 37, 64, 0.6);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.2), inset 0 1rpx 0 rgba(255, 255, 255, 0.03);
+  background: #FFFCF5;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
 }
 
 .chinese-border::before,
@@ -21,7 +18,7 @@
   position: absolute;
   width: 24rpx;
   height: 24rpx;
-  border: 2rpx solid #88ADA6;
+  border: 2rpx solid #4A7C8A;
 }
 
 .chinese-border::before {
@@ -38,27 +35,22 @@
   border-top: none;
 }
 
-/* Scroll container - glass dark style */
 .scroll-container {
-  background: rgba(37, 37, 64, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1rpx solid rgba(255, 255, 255, 0.05);
+  background: #FFFCF5;
+  border: 1rpx solid #E5DFD3;
   border-radius: 16rpx;
   padding: 32rpx;
   position: relative;
-  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.2), inset 0 1rpx 0 rgba(255, 255, 255, 0.03);
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
 }
 
-/* Zen Divider - thin line with subtle glow */
 .zen-divider {
   height: 1rpx;
-  background: linear-gradient(90deg, transparent, rgba(136, 173, 166, 0.2), rgba(136, 173, 166, 0.4), rgba(136, 173, 166, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, #E5DFD3, #4A7C8A, #E5DFD3, transparent);
   margin: 24rpx 0;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
-/* Animations - minimal fade only */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20rpx); }
   to { opacity: 1; transform: translateY(0); }
@@ -68,15 +60,12 @@
   animation: fadeIn 0.5s ease-out forwards;
 }
 
-/* Hexagram symbol style */
 .hexagram-symbol {
   font-family: serif;
   font-size: 80rpx;
-  color: #88ADA6;
-  text-shadow: none;
+  color: #4A7C8A;
 }
 
-/* Fortune badge */
 .fortune-badge {
   display: inline-flex;
   align-items: center;
@@ -87,25 +76,25 @@
 }
 
 .fortune-badge.excellent {
-  background: rgba(136, 173, 166, 0.15);
-  color: #88ADA6;
-  border: 1rpx solid rgba(136, 173, 166, 0.3);
+  background: rgba(74, 124, 138, 0.12);
+  color: #4A7C8A;
+  border: 1rpx solid rgba(74, 124, 138, 0.25);
 }
 
 .fortune-badge.good {
-  background: rgba(123, 169, 143, 0.15);
-  color: #7BA98F;
-  border: 1rpx solid rgba(123, 169, 143, 0.3);
+  background: rgba(91, 138, 114, 0.12);
+  color: #5B8A72;
+  border: 1rpx solid rgba(91, 138, 114, 0.25);
 }
 
 .fortune-badge.neutral {
-  background: rgba(160, 160, 184, 0.15);
-  color: #A0A0B8;
-  border: 1rpx solid rgba(160, 160, 184, 0.3);
+  background: rgba(122, 122, 122, 0.12);
+  color: #7A7A7A;
+  border: 1rpx solid rgba(122, 122, 122, 0.25);
 }
 
 .fortune-badge.poor {
-  background: rgba(201, 185, 138, 0.15);
-  color: #C9B98A;
-  border: 1rpx solid rgba(201, 185, 138, 0.3);
+  background: rgba(184, 149, 42, 0.12);
+  color: #B8952A;
+  border: 1rpx solid rgba(184, 149, 42, 0.25);
 }
