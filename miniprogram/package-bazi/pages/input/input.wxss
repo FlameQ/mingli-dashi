@@ -1,0 +1,12 @@
+@import "/app.wxss";
+.container { padding: 32rpx 24rpx; }
+.form-section { background: #FFF8E7; border-radius: 24rpx; padding: 32rpx 24rpx; box-shadow: 0 2rpx 12rpx rgba(60,36,21,0.06); }
+.form-item { margin-bottom: 32rpx; }
+.form-item:last-child { margin-bottom: 0; }
+.form-label { display: block; font-size: 28rpx; color: #3C2415; font-weight: bold; margin-bottom: 12rpx; }
+.input-field { background: #FFFBF0; border: 2rpx solid #E8D5A3; border-radius: 12rpx; padding: 20rpx; font-size: 28rpx; color: #3C2415; }
+.radio-group { display: flex; gap: 32rpx; }
+.radio-label { font-size: 28rpx; color: #3C2415; display: flex; align-items: center; gap: 8rpx; }
+.picker-field { background: #FFFBF0; border: 2rpx solid #E8D5A3; border-radius: 12rpx; padding: 20rpx; font-size: 28rpx; color: #3C2415; display: flex; justify-content: space-between; }
+.submit-btn { margin-top: 48rpx; background: linear-gradient(135deg, #D4A017, #F2BE45); color: #3C2415; text-align: center; padding: 24rpx; border-radius: 48rpx; font-size: 32rpx; font-weight: bold; box-shadow: 0 4rpx 16rpx rgba(212,160,23,0.3); }
+.submit-btn-hover { opacity: 0.85; transform: scale(0.98); }

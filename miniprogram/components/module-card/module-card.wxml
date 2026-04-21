@@ -1,0 +1,9 @@
+<view class="module-card" bindtap="onTap" hover-class="module-card-hover">
+  <view class="card-icon" style="background: {{color}}15;">
+    <text class="icon-text">{{icon}}</text>
+  </view>
+  <view class="card-info">
+    <text class="card-title">{{title}}</text>
+    <text class="card-desc">{{desc}}</text>
+  </view>
+</view>

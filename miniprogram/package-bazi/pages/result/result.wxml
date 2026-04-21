@@ -1,0 +1,47 @@
+<view class="page">
+  <!-- Pillars -->
+  <view class="pillars-row">
+    <view class="pillar-card" wx:for="{{[pillars.yearPillar, pillars.monthPillar, pillars.dayPillar, pillars.hourPillar]}}" wx:key="index">
+      <text class="pillar-label">{{['年柱','月柱','日柱','时柱'][index]}}</text>
+      <text class="pillar-gan">{{item[0]}}</text>
+      <text class="pillar-zhi">{{item[1]}}</text>
+    </view>
+  </view>
+
+  <!-- Day Master -->
+  <view class="card section">
+    <text class="section-title">日主分析</text>
+    <view class="dm-row">
+      <text class="dm-text">日主 {{dayMaster}}（{{dayMasterWx}}）</text>
+      <text class="strength-badge">{{strength.level}}</text>
+    </view>
+    <text class="dm-desc">{{strength.description}}</text>
+  </view>
+
+  <!-- Five Elements -->
+  <view class="card section">
+    <text class="section-title">五行分布</text>
+    <view class="wuxing-bars">
+      <view class="wx-item" wx:for="{{[1,2,3,4,5]}}" wx:key="*this">
+        <text class="wx-name">{{['金','木','水','火','土'][item-1]}}</text>
+        <view class="wx-bar-bg">
+          <view class="wx-bar" style="width: {{wuxingCount[['金','木','水','火','土'][item-1]] * 12.5}}%; background: {{['#D4A017','#6B9E3C','#4A90D9','#F07050','#B36D61'][item-1]}};"></view>
+        </view>
+        <text class="wx-count">{{wuxingCount[['金','木','水','火','土'][item-1]]}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Reading -->
+  <view class="card section">
+    <text class="section-title">命理简评</text>
+    <text class="reading-text">{{reading.summary}}</text>
+  </view>
+
+  <!-- Actions -->
+  <view class="action-row">
+    <view class="btn-save" bindtap="onSave"><text>{{saved ? '已保存' : '保存记录'}}</text></view>
+    <view class="btn-retry" bindtap="onRetry"><text>重新测算</text></view>
+  </view>
+  <view class="disclaimer">仅供娱乐参考，不作为人生决策依据</view>
+</view>

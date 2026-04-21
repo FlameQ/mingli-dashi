@@ -1,0 +1,5 @@
+node_modules/
+skills-temp/
+.DS_Store
+*.log
+coverage/

@@ -1,0 +1,18 @@
+@import "/app.wxss";
+.container{padding:32rpx 24rpx;}
+.form-section{background:#FFF8E7;border-radius:24rpx;padding:32rpx 24rpx;}
+.form-title{display:block;font-size:28rpx;font-weight:bold;color:#3C2415;margin:20rpx 0 12rpx;}
+.form-title:first-child{margin-top:0;}
+.type-row{display:flex;gap:16rpx;margin-bottom:8rpx;}
+.type-btn{flex:1;text-align:center;padding:16rpx;background:#FFFBF0;border:2rpx solid #E8D5A3;border-radius:12rpx;font-size:26rpx;color:#3C2415;}
+.type-btn.active{border-color:#6B9E3C;background:rgba(107,158,60,0.08);color:#6B9E3C;font-weight:bold;}
+.facing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12rpx;margin-bottom:8rpx;}
+.facing-btn{text-align:center;padding:16rpx 8rpx;background:#FFFBF0;border:2rpx solid #E8D5A3;border-radius:12rpx;font-size:26rpx;color:#3C2415;}
+.facing-btn.active{border-color:#6B9E3C;background:rgba(107,158,60,0.08);color:#6B9E3C;font-weight:bold;}
+.form-item{margin:16rpx 0;}
+.form-label{display:block;font-size:28rpx;color:#3C2415;font-weight:bold;margin-bottom:12rpx;}
+.input-field{background:#FFFBF0;border:2rpx solid #E8D5A3;border-radius:12rpx;padding:20rpx;font-size:28rpx;}
+.area-grid{display:flex;flex-wrap:wrap;gap:12rpx;}
+.area-btn{padding:12rpx 24rpx;background:#FFFBF0;border:2rpx solid #E8D5A3;border-radius:20rpx;font-size:26rpx;color:#3C2415;}
+.area-btn.active{border-color:#6B9E3C;background:rgba(107,158,60,0.08);color:#6B9E3C;}
+.submit-btn{margin-top:32rpx;background:linear-gradient(135deg,#6B9E3C,#8BC34A);text-align:center;padding:24rpx;border-radius:48rpx;font-size:32rpx;font-weight:bold;color:#FFF;box-shadow:0 4rpx 16rpx rgba(107,158,60,0.3);}

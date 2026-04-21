@@ -1,0 +1,25 @@
+<view class="page container">
+  <view class="form-section">
+    <text class="form-title">选择问题类型</text>
+    <view class="type-grid">
+      <view class="type-card {{selectedType===item.name?'active':''}}" wx:for="{{types}}" wx:key="name"
+            data-name="{{item.name}}" bindtap="onSelectType">
+        <text class="type-icon">{{item.icon}}</text>
+        <text class="type-name">{{item.name}}</text>
+      </view>
+    </view>
+    <view class="form-item">
+      <text class="form-label">您的疑问</text>
+      <textarea class="textarea-field" placeholder="请详细描述您想占问的事情..." value="{{questionGoal}}" bindinput="onGoalInput" maxlength="200" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">求测时间</text>
+      <input class="input-field" value="{{queryTime}}" bindinput="onTimeChange" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">所在城市</text>
+      <input class="input-field" placeholder="如：北京" value="{{city}}" bindinput="onCityInput" />
+    </view>
+  </view>
+  <view class="submit-btn" bindtap="onSubmit"><text>起局排盘</text></view>
+</view>

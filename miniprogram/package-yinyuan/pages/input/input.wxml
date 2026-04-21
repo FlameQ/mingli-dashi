@@ -1,0 +1,14 @@
+<view class="page container">
+  <view class="mode-grid">
+    <view class="mode-card {{selectedMode===item.name?'active':''}}" wx:for="{{modes}}" wx:key="name" data-name="{{item.name}}" bindtap="onSelectMode">
+      <text class="mode-icon">{{item.icon}}</text>
+      <text class="mode-name">{{item.name}}</text>
+      <text class="mode-desc">{{item.desc}}</text>
+    </view>
+  </view>
+  <view class="form-section" wx:if="{{selectedMode}}">
+    <view class="form-item"><text class="form-label">您的出生日期</text><picker mode="date" value="{{myBirthDate}}" bindchange="onMyDateChange"><view class="picker-field">{{myBirthDate}} ›</view></picker></view>
+    <view class="form-item" wx:if="{{showPartner}}"><text class="form-label">对方出生日期</text><picker mode="date" value="{{partnerBirthDate}}" bindchange="onPartnerDateChange"><view class="picker-field">{{partnerBirthDate}} ›</view></picker></view>
+  </view>
+  <view class="submit-btn" bindtap="onSubmit" wx:if="{{selectedMode}}"><text>月老牵线</text></view>
+</view>

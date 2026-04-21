@@ -1,0 +1,15 @@
+<view class="result-scroll">
+  <view class="scroll-top"></view>
+  <view class="scroll-header">
+    <view class="gold-line"></view>
+    <text class="scroll-title">{{title}}</text>
+    <view class="gold-line"></view>
+  </view>
+  <view class="scroll-body">
+    <slot></slot>
+  </view>
+  <view class="scroll-bottom">
+    <text class="disclaimer">仅供娱乐参考，不作为人生决策依据</text>
+  </view>
+  <view class="scroll-foot"></view>
+</view>

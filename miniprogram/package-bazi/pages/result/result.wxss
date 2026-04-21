@@ -1,0 +1,24 @@
+@import "/app.wxss";
+.page { padding: 24rpx; padding-bottom: 120rpx; background: #FFFBF0; min-height: 100vh; }
+.pillars-row { display: flex; gap: 12rpx; margin-bottom: 24rpx; }
+.pillar-card { flex: 1; background: #FFF8E7; border-radius: 16rpx; padding: 24rpx 12rpx; text-align: center; border: 2rpx solid #E8D5A3; }
+.pillar-label { display: block; font-size: 22rpx; color: #8B7355; margin-bottom: 8rpx; }
+.pillar-gan { display: block; font-size: 44rpx; font-weight: bold; color: #AA2116; }
+.pillar-zhi { display: block; font-size: 36rpx; color: #3C2415; margin-top: 4rpx; }
+.section { background: #FFF8E7; border-radius: 20rpx; padding: 28rpx; margin-bottom: 20rpx; box-shadow: 0 2rpx 8rpx rgba(60,36,21,0.04); }
+.section-title { display: block; font-size: 30rpx; font-weight: bold; color: #3C2415; margin-bottom: 16rpx; border-left: 6rpx solid #D4A017; padding-left: 16rpx; }
+.dm-row { display: flex; align-items: center; gap: 16rpx; margin-bottom: 12rpx; }
+.dm-text { font-size: 30rpx; color: #3C2415; font-weight: bold; }
+.strength-badge { font-size: 24rpx; padding: 4rpx 16rpx; border-radius: 16rpx; background: rgba(212,160,23,0.15); color: #B8860B; font-weight: bold; }
+.dm-desc { font-size: 26rpx; color: #8B7355; }
+.wuxing-bars { display: flex; flex-direction: column; gap: 12rpx; }
+.wx-item { display: flex; align-items: center; gap: 12rpx; }
+.wx-name { font-size: 26rpx; color: #3C2415; width: 40rpx; text-align: center; }
+.wx-bar-bg { flex: 1; height: 20rpx; background: #F4EFE6; border-radius: 10rpx; overflow: hidden; }
+.wx-bar { height: 100%; border-radius: 10rpx; transition: width 0.5s; }
+.wx-count { font-size: 24rpx; color: #8B7355; width: 30rpx; text-align: center; }
+.reading-text { font-size: 28rpx; color: #3C2415; line-height: 1.8; }
+.action-row { display: flex; gap: 24rpx; margin-top: 32rpx; }
+.btn-save { flex: 1; background: linear-gradient(135deg, #AA2116, #C93756); color: #FFF; text-align: center; padding: 20rpx; border-radius: 40rpx; font-size: 28rpx; font-weight: bold; }
+.btn-retry { flex: 1; background: #FFF8E7; border: 2rpx solid #E8D5A3; color: #8B7355; text-align: center; padding: 20rpx; border-radius: 40rpx; font-size: 28rpx; }
+.disclaimer { text-align: center; color: #BBA88A; font-size: 22rpx; margin-top: 24rpx; }

@@ -1,0 +1,38 @@
+.chinese-border-wrapper {
+  position: relative;
+  border: 2rpx solid #E8D5A3;
+  border-radius: 16rpx;
+  padding: 32rpx;
+}
+
+.corner {
+  position: absolute;
+  width: 32rpx;
+  height: 32rpx;
+  border-color: #D4A017;
+  border-style: solid;
+}
+
+.corner-tl {
+  top: 8rpx;
+  left: 8rpx;
+  border-width: 3rpx 0 0 3rpx;
+}
+
+.corner-tr {
+  top: 8rpx;
+  right: 8rpx;
+  border-width: 3rpx 3rpx 0 0;
+}
+
+.corner-bl {
+  bottom: 8rpx;
+  left: 8rpx;
+  border-width: 0 0 3rpx 3rpx;
+}
+
+.corner-br {
+  bottom: 8rpx;
+  right: 8rpx;
+  border-width: 0 3rpx 3rpx 0;
+}

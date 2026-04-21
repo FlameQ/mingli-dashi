@@ -1,0 +1,23 @@
+<view class="page">
+  <view class="header-card">
+    <text class="dun-type">{{dunType}}{{juNumber}}局</text>
+    <text class="query-type">问题类型：{{params.type}}</text>
+  </view>
+  <view class="palace-grid">
+    <view class="palace-cell" wx:for="{{palaces}}" wx:key="position">
+      <text class="palace-pos">{{item.position}}</text>
+      <text class="palace-star">{{item.star}}</text>
+      <text class="palace-door">{{item.door}}</text>
+      <text class="palace-god" wx:if="{{item.god}}">{{item.god}}</text>
+    </view>
+  </view>
+  <view class="card section">
+    <text class="section-title">综合解读</text>
+    <text class="reading-text">{{reading}}</text>
+  </view>
+  <view class="action-row">
+    <view class="btn-save" bindtap="onSave"><text>{{saved?'已保存':'保存记录'}}</text></view>
+    <view class="btn-retry" bindtap="onRetry"><text>重新起局</text></view>
+  </view>
+  <view class="disclaimer">仅供娱乐参考，不作为人生决策依据</view>
+</view>

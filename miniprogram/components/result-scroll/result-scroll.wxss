@@ -1,0 +1,47 @@
+.result-scroll {
+  margin: 24rpx;
+  background: linear-gradient(180deg, #F5E6D3 0%, #FFFBF0 4%, #FFFBF0 96%, #F5E6D3 100%);
+  border-left: 12rpx solid #E8D5A3;
+  border-right: 12rpx solid #E8D5A3;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.scroll-top, .scroll-foot {
+  height: 8rpx;
+  background: linear-gradient(90deg, #D4A017, #F2BE45, #D4A017);
+}
+
+.scroll-header {
+  padding: 32rpx 32rpx 16rpx;
+  text-align: center;
+}
+
+.gold-line {
+  height: 2rpx;
+  background: linear-gradient(90deg, transparent, #D4A017, transparent);
+  margin: 12rpx 0;
+}
+
+.scroll-title {
+  display: block;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #3C2415;
+  letter-spacing: 8rpx;
+}
+
+.scroll-body {
+  padding: 16rpx 32rpx 32rpx;
+}
+
+.scroll-bottom {
+  padding: 24rpx 32rpx;
+  text-align: center;
+  border-top: 1rpx solid #E8D5A3;
+}
+
+.disclaimer {
+  font-size: 22rpx;
+  color: #BBA88A;
+}

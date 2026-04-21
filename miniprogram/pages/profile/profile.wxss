@@ -1,0 +1,165 @@
+.page {
+  min-height: 100vh;
+  background: #FFFBF0;
+  padding-bottom: 120rpx;
+}
+
+.user-card {
+  margin: 24rpx;
+  background: linear-gradient(135deg, #AA2116, #C93756);
+  border-radius: 24rpx;
+  padding: 40rpx 32rpx;
+  box-shadow: 0 8rpx 32rpx rgba(170, 33, 22, 0.2);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  margin-bottom: 32rpx;
+}
+
+.avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3rpx solid rgba(255, 255, 255, 0.4);
+}
+
+.avatar-text {
+  font-size: 40rpx;
+  color: #FFF;
+}
+
+.user-detail {
+  flex: 1;
+}
+
+.nickname {
+  display: block;
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #FFF;
+  margin-bottom: 4rpx;
+}
+
+.user-desc {
+  display: block;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.stats-row {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16rpx;
+  padding: 24rpx 0;
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-num {
+  display: block;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #D4A017;
+  margin-bottom: 4rpx;
+}
+
+.stat-label {
+  display: block;
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.stat-divider {
+  width: 1rpx;
+  height: 48rpx;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.menu-section {
+  margin: 0 24rpx;
+  background: #FFF8E7;
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(60, 36, 21, 0.06);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx 24rpx;
+  border-bottom: 1rpx solid rgba(232, 213, 163, 0.4);
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item-hover {
+  background: rgba(232, 213, 163, 0.2);
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.menu-icon {
+  font-size: 36rpx;
+}
+
+.menu-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #3C2415;
+}
+
+.menu-desc {
+  font-size: 24rpx;
+  color: #8B7355;
+  margin-top: 2rpx;
+}
+
+.menu-right {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.menu-badge {
+  font-size: 20rpx;
+  color: #AA2116;
+  background: rgba(170, 33, 22, 0.1);
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  font-weight: bold;
+}
+
+.menu-arrow {
+  font-size: 36rpx;
+  color: #BBA88A;
+}
+
+.footer-text {
+  text-align: center;
+  margin-top: 48rpx;
+  font-size: 22rpx;
+  color: #BBA88A;
+}

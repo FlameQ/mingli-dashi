@@ -1,0 +1,120 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/category/category",
+    "pages/history/history",
+    "pages/profile/profile"
+  ],
+  "subPackages": [
+    {
+      "root": "package-bazi",
+      "name": "bazi",
+      "pages": [
+        "pages/input/input",
+        "pages/result/result"
+      ]
+    },
+    {
+      "root": "package-qimen",
+      "name": "qimen",
+      "pages": [
+        "pages/input/input",
+        "pages/result/result"
+      ]
+    },
+    {
+      "root": "package-ziwei",
+      "name": "ziwei",
+      "pages": [
+        "pages/input/input",
+        "pages/result/result"
+      ]
+    },
+    {
+      "root": "package-yinyuan",
+      "name": "yinyuan",
+      "pages": [
+        "pages/input/input",
+        "pages/result/result"
+      ]
+    },
+    {
+      "root": "package-tarot",
+      "name": "tarot",
+      "pages": [
+        "pages/select/select",
+        "pages/reading/reading"
+      ]
+    },
+    {
+      "root": "package-liuyao",
+      "name": "liuyao",
+      "pages": [
+        "pages/input/input",
+        "pages/result/result"
+      ]
+    },
+    {
+      "root": "package-fengshui",
+      "name": "fengshui",
+      "pages": [
+        "pages/input/input",
+        "pages/result/result"
+      ]
+    },
+    {
+      "root": "package-buddhism",
+      "name": "buddhism",
+      "pages": [
+        "pages/chat/chat",
+        "pages/result/result"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#AA2116",
+    "navigationBarTitleText": "命理大师",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#FFFBF0",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#8B7355",
+    "selectedColor": "#AA2116",
+    "backgroundColor": "#FFF8E7",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "记录"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "preloadRule": {
+    "pages/home/home": {
+      "network": "all",
+      "packages": ["bazi", "tarot"]
+    },
+    "pages/category/category": {
+      "network": "all",
+      "packages": ["qimen", "ziwei", "yinyuan", "liuyao", "fengshui", "buddhism"]
+    }
+  },
+  "usingComponents": {},
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

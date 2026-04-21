@@ -1,0 +1,7 @@
+<view class="chinese-border-wrapper">
+  <view class="corner corner-tl"></view>
+  <view class="corner corner-tr"></view>
+  <view class="corner corner-bl"></view>
+  <view class="corner corner-br"></view>
+  <slot></slot>
+</view>

@@ -1,0 +1,16 @@
+@import "/app.wxss";
+.page{padding:24rpx;padding-bottom:120rpx;background:#FFFBF0;min-height:100vh;}
+.cards-scroll{display:flex;overflow-x:auto;padding:16rpx 0 24rpx;gap:16rpx;margin-bottom:16rpx;}
+.tarot-card{min-width:160rpx;background:linear-gradient(180deg,#7B68AE,#9B8FD4);border-radius:16rpx;padding:20rpx 16rpx;text-align:center;color:#FFF;flex-shrink:0;}
+.tarot-card.reversed{background:linear-gradient(180deg,#5A4A8A,#7B68AE);transform:rotate(180deg);}
+.card-position{display:block;font-size:20rpx;opacity:0.8;margin-bottom:8rpx;}
+.card-face{width:80rpx;height:120rpx;background:rgba(255,255,255,0.15);border-radius:8rpx;display:flex;align-items:center;justify-content:center;margin:0 auto 8rpx;}
+.card-name{font-size:22rpx;font-weight:bold;}
+.card-dir{display:block;font-size:18rpx;opacity:0.7;}
+.section{background:#FFF8E7;border-radius:20rpx;padding:28rpx;margin-bottom:20rpx;}
+.section-title{display:block;font-size:30rpx;font-weight:bold;color:#3C2415;margin-bottom:16rpx;border-left:6rpx solid #7B68AE;padding-left:16rpx;}
+.reading-text{font-size:28rpx;color:#3C2415;line-height:1.8;}
+.action-row{display:flex;gap:24rpx;margin-top:32rpx;}
+.btn-save{flex:1;background:linear-gradient(135deg,#7B68AE,#9B8FD4);color:#FFF;text-align:center;padding:20rpx;border-radius:40rpx;font-size:28rpx;font-weight:bold;}
+.btn-retry{flex:1;background:#FFF8E7;border:2rpx solid #E8D5A3;color:#8B7355;text-align:center;padding:20rpx;border-radius:40rpx;font-size:28rpx;}
+.disclaimer{text-align:center;color:#BBA88A;font-size:22rpx;margin-top:24rpx;}

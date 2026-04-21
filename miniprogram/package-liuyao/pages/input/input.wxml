@@ -1,0 +1,16 @@
+<view class="page container">
+  <view class="form-section">
+    <view class="form-item"><text class="form-label">起卦方式</text><picker range="{{methods}}" value="{{selectedMethod}}" bindchange="onMethodChange"><view class="picker-field">{{methods[selectedMethod]}} ›</view></picker></view>
+    <view class="form-item"><text class="form-label">心中的疑问</text><textarea class="textarea-field" placeholder="请输入您想占问的事情..." value="{{question}}" bindinput="onQuestionInput" maxlength="200"/></view>
+    <view wx:if="{{selectedMethod===1}}">
+      <text class="form-label">请输入三个数字(1-999)</text>
+      <view class="number-row"><input class="num-input" type="number" placeholder="数1" data-idx="0" bindinput="onNumberInput"/><input class="num-input" type="number" placeholder="数2" data-idx="1" bindinput="onNumberInput"/><input class="num-input" type="number" placeholder="数3" data-idx="2" bindinput="onNumberInput"/></view>
+    </view>
+    <view wx:if="{{selectedMethod===2}}" class="coin-section">
+      <text class="coin-info">已投掷 {{coinResults.length}}/6 次</text>
+      <view class="coin-btn" bindtap="onCoinFlip" wx:if="{{coinResults.length<6}}"><text>掷铜钱</text></view>
+      <view class="coin-history"><text wx:for="{{coinResults}}" wx:key="step">第{{item.step}}次：{{item.results.join('')}}（{{item.value}}正）</text></view>
+    </view>
+  </view>
+  <view class="submit-btn" bindtap="onSubmit"><text>起卦</text></view>
+</view>

@@ -1,0 +1,64 @@
+/* ========================================
+   命理大师 - 全局样式变量
+   新中式温暖配色方案
+   ======================================== */
+
+/* 页面背景 */
+page {
+  --bg-page: #FFFBF0;
+  --bg-card: #FFF8E7;
+  --bg-card-alt: #F4EFE6;
+  --bg-input: #FFFFFF;
+
+  /* 品牌色 */
+  --color-primary: #AA2116;
+  --color-primary-light: #C93756;
+  --color-secondary: #D4A017;
+  --color-secondary-light: #E8D5A3;
+
+  /* 文本色 */
+  --text-primary: #3C2415;
+  --text-secondary: #8B7355;
+  --text-placeholder: #BBA88A;
+
+  /* 功能色 */
+  --color-accent: #F07050;
+  --color-warning: #F2BE45;
+  --color-success: #6B9E3C;
+  --color-border: #E8D5A3;
+  --color-border-dark: #B36D61;
+
+  /* 渐变 */
+  --gradient-warm: linear-gradient(135deg, #FFFBF0 0%, #FFF0D4 50%, #FFE4B5 100%);
+  --gradient-gold: linear-gradient(135deg, #FFF8E7 0%, #F5E6D3 50%, #E8D5A3 100%);
+  --gradient-hero: linear-gradient(180deg, #FFF8E7 0%, #FFE8D0 100%);
+  --gradient-primary: linear-gradient(135deg, #AA2116 0%, #C93756 100%);
+  --gradient-gold-btn: linear-gradient(135deg, #D4A017 0%, #F2BE45 100%);
+
+  /* 圆角 */
+  --radius-sm: 8rpx;
+  --radius-md: 16rpx;
+  --radius-lg: 24rpx;
+  --radius-xl: 32rpx;
+
+  /* 间距 */
+  --space-xs: 8rpx;
+  --space-sm: 16rpx;
+  --space-md: 24rpx;
+  --space-lg: 32rpx;
+  --space-xl: 48rpx;
+
+  /* 字号 */
+  --font-xs: 22rpx;
+  --font-sm: 26rpx;
+  --font-md: 30rpx;
+  --font-lg: 34rpx;
+  --font-xl: 40rpx;
+  --font-xxl: 48rpx;
+
+  /* 阴影 */
+  --shadow-sm: 0 2rpx 8rpx rgba(60, 36, 21, 0.06);
+  --shadow-md: 0 4rpx 16rpx rgba(60, 36, 21, 0.1);
+  --shadow-lg: 0 8rpx 32rpx rgba(60, 36, 21, 0.12);
+  --shadow-gold: 0 4rpx 16rpx rgba(212, 160, 23, 0.2);
+}

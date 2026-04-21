@@ -1,0 +1,173 @@
+/* ========================================
+   命理大师 - 中式主题装饰样式
+   ======================================== */
+
+/* 中式装饰性边框 */
+.chinese-border {
+  position: relative;
+  border: 2rpx solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.chinese-border::before,
+.chinese-border::after {
+  content: '';
+  position: absolute;
+  width: 32rpx;
+  height: 32rpx;
+  border: 3rpx solid var(--color-secondary);
+}
+
+.chinese-border::before {
+  top: 8rpx;
+  left: 8rpx;
+  border-right: none;
+  border-bottom: none;
+}
+
+.chinese-border::after {
+  bottom: 8rpx;
+  right: 8rpx;
+  border-left: none;
+  border-top: none;
+}
+
+/* 卷轴容器 */
+.scroll-container {
+  background: linear-gradient(180deg, #F5E6D3 0%, #FFFBF0 3%, #FFFBF0 97%, #F5E6D3 100%);
+  border-left: 12rpx solid var(--color-border);
+  border-right: 12rpx solid var(--color-border);
+  padding: var(--space-lg);
+  position: relative;
+}
+
+.scroll-container::before,
+.scroll-container::after {
+  content: '';
+  display: block;
+  height: 8rpx;
+  background: var(--gradient-gold-btn);
+  margin: 0 -48rpx;
+}
+
+/* 云纹装饰 */
+.cloud-pattern {
+  position: relative;
+}
+
+.cloud-pattern::after {
+  content: '☁';
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+  font-size: 60rpx;
+  opacity: 0.1;
+  color: var(--color-secondary);
+}
+
+/* 太极图案背景 */
+.taiji-bg {
+  background-image: radial-gradient(circle at 50% 50%, rgba(212, 160, 23, 0.03) 0%, transparent 70%);
+}
+
+/* 印章效果 */
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80rpx;
+  height: 80rpx;
+  border: 4rpx solid var(--color-primary);
+  border-radius: 8rpx;
+  color: var(--color-primary);
+  font-size: var(--font-sm);
+  font-weight: bold;
+  transform: rotate(-5deg);
+  opacity: 0.9;
+}
+
+/* 金色分隔线 */
+.gold-divider {
+  height: 2rpx;
+  background: var(--gradient-gold-btn);
+  margin: var(--space-md) 0;
+  opacity: 0.6;
+}
+
+/* 动画 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200rpx 0; }
+  100% { background-position: 200rpx 0; }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10rpx); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(212, 160, 23, 0.1) 50%, transparent 100%);
+  background-size: 200rpx 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* 卦象符号样式 */
+.hexagram-symbol {
+  font-family: serif;
+  font-size: 80rpx;
+  color: var(--color-primary);
+  text-shadow: 0 2rpx 8rpx rgba(170, 33, 22, 0.2);
+}
+
+/* 运势等级徽章 */
+.fortune-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: var(--font-xs);
+  font-weight: bold;
+}
+
+.fortune-badge.excellent {
+  background: rgba(212, 160, 23, 0.15);
+  color: #B8860B;
+  border: 1rpx solid rgba(212, 160, 23, 0.3);
+}
+
+.fortune-badge.good {
+  background: rgba(107, 158, 60, 0.15);
+  color: #4A7A1A;
+  border: 1rpx solid rgba(107, 158, 60, 0.3);
+}
+
+.fortune-badge.neutral {
+  background: rgba(139, 115, 85, 0.15);
+  color: #8B7355;
+  border: 1rpx solid rgba(139, 115, 85, 0.3);
+}
+
+.fortune-badge.poor {
+  background: rgba(240, 112, 80, 0.15);
+  color: #D4503A;
+  border: 1rpx solid rgba(240, 112, 80, 0.3);
+}

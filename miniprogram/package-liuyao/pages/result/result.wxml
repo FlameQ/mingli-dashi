@@ -1,0 +1,13 @@
+<view class="page">
+  <view class="gua-header"><text class="gua-symbol">☰</text><text class="gua-name">{{guaName}}卦</text></view>
+  <view class="yao-list">
+    <view class="yao-item {{item.isMoving?'moving':''}}" wx:for="{{yaos}}" wx:key="position">
+      <text class="yao-label">{{item.label}}</text>
+      <text class="yao-line">{{item.line}}</text>
+      <text class="yao-type">{{item.type}}{{item.isMoving?' ○动':''}}</text>
+    </view>
+  </view>
+  <view class="card section"><text class="section-title">卦象解读</text><text class="reading-text">{{reading}}</text></view>
+  <view class="action-row"><view class="btn-save" bindtap="onSave"><text>{{saved?'已保存':'保存记录'}}</text></view><view class="btn-retry" bindtap="onRetry"><text>重新起卦</text></view></view>
+  <view class="disclaimer">仅供娱乐参考，不作为人生决策依据</view>
+</view>

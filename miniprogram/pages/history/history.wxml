@@ -1,0 +1,34 @@
+<view class="page">
+  <!-- Empty State -->
+  <view class="empty-state" wx:if="{{isEmpty}}">
+    <text class="empty-icon">📜</text>
+    <text class="empty-text">暂无占卜记录</text>
+    <text class="empty-hint">去首页选择一种占卜方式试试吧</text>
+  </view>
+
+  <!-- History List -->
+  <view class="history-list" wx:else>
+    <view class="list-header">
+      <text class="list-count">共 {{history.length}} 条记录</text>
+      <text class="clear-btn" bindtap="onClearAll">清空</text>
+    </view>
+
+    <view class="date-group" wx:for="{{history}}" wx:key="date">
+      <view class="date-header">
+        <view class="date-dot"></view>
+        <text class="date-text">{{item.date}}</text>
+      </view>
+
+      <view class="record-card" wx:for="{{item.items}}" wx:for-item="record" wx:key="id">
+        <view class="record-info" data-item="{{record}}" bindtap="onViewDetail">
+          <text class="record-type">{{record.type}}</text>
+          <text class="record-summary">{{record.summary}}</text>
+          <text class="record-time">{{record.date}}</text>
+        </view>
+        <view class="record-delete" data-id="{{record.id}}" bindtap="onDeleteItem">
+          <text class="delete-icon">✕</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

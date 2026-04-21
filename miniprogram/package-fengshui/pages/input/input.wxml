@@ -1,0 +1,18 @@
+<view class="page container">
+  <view class="form-section">
+    <text class="form-title">房屋类型</text>
+    <view class="type-row">
+      <view class="type-btn {{selectedType===item?'active':''}}" wx:for="{{houseTypes}}" wx:key="*this" data-type="{{item}}" bindtap="onSelectType">{{item}}</view>
+    </view>
+    <text class="form-title">房屋朝向</text>
+    <view class="facing-grid">
+      <view class="facing-btn {{selectedFacing===item?'active':''}}" wx:for="{{facings}}" wx:key="*this" data-facing="{{item}}" bindtap="onSelectFacing">{{item}}</view>
+    </view>
+    <view class="form-item"><text class="form-label">建造/入住年份</text><input class="input-field" type="number" value="{{buildYear}}" bindinput="onYearChange" maxlength="4"/></view>
+    <text class="form-title">关键区域（多选）</text>
+    <view class="area-grid">
+      <view class="area-btn {{item.checked?'active':''}}" wx:for="{{areas}}" wx:key="name" data-idx="{{index}}" bindtap="onAreaChange">{{item.name}}</view>
+    </view>
+  </view>
+  <view class="submit-btn" bindtap="onSubmit"><text>开始分析</text></view>
+</view>

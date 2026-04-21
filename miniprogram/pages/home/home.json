@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "命理大师",
+  "usingComponents": {
+    "module-card": "/components/module-card/module-card"
+  }
+}
