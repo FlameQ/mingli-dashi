@@ -1,84 +1,75 @@
 <view class="page">
-  <!-- Hero Section -->
-  <view class="hero">
-    <view class="hero-content">
-      <text class="hero-title">命理大师</text>
-      <view class="hero-divider"></view>
-      <text class="hero-subtitle">{{greeting}}千年智慧，一触即达</text>
+
+  <!-- Profile Selector - TOP -->
+  <view class="top-bar">
+    <scroll-view class="profile-scroll" scroll-x enhanced show-scrollbar="{{false}}" wx:if="{{hasProfiles}}">
+      <view class="profile-list">
+        <view class="profile-chip {{activeProfileId === item.id ? 'active' : ''}}"
+              wx:for="{{profiles}}" wx:key="id"
+              data-id="{{item.id}}" bindtap="onProfileTap">
+          <view class="chip-avatar">
+            <text class="chip-initial">{{item.name[0]}}</text>
+          </view>
+          <text class="chip-name">{{item.name}}</text>
+          <view class="chip-dot" wx:if="{{activeProfileId === item.id}}"></view>
+        </view>
+        <view class="profile-chip chip-add" bindtap="onAddProfile">
+          <text class="chip-plus">+</text>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="add-prompt" wx:else bindtap="onAddProfile">
+      <text class="add-prompt-text">+ 添加人物档案</text>
     </view>
   </view>
 
-  <!-- Today's Almanac -->
-  <view class="daily-card">
-    <view class="daily-header">
-      <text class="daily-label">今日黄历</text>
-      <text class="daily-date">{{dailyInfo.date}}</text>
+  <!-- Greeting + Daily Info - COMPACT -->
+  <view class="info-bar">
+    <view class="greeting-row">
+      <text class="greeting-text">{{greeting}}，一触即达千年智慧</text>
     </view>
-    <view class="daily-tags">
+    <view class="daily-row">
       <text class="daily-tag">{{dailyInfo.yearGz}}年</text>
       <text class="daily-tag">属{{dailyInfo.zodiac}}</text>
       <text class="daily-tag">{{dailyInfo.shichen}}</text>
+      <text class="daily-date">{{dailyInfo.date}}</text>
     </view>
-    <view class="daily-yiji">
-      <view class="yiji-block">
-        <text class="yiji-label yiji-yi">宜</text>
+    <view class="yiji-row">
+      <view class="yiji-group">
+        <text class="yiji-badge yi">宜</text>
         <text class="yiji-text">{{dailyInfo.yi}}</text>
       </view>
-      <view class="yiji-block">
-        <text class="yiji-label yiji-ji">忌</text>
+      <view class="yiji-group">
+        <text class="yiji-badge ji">忌</text>
         <text class="yiji-text">{{dailyInfo.ji}}</text>
       </view>
     </view>
   </view>
 
-  <!-- Profile Selector -->
-  <view class="profile-section" wx:if="{{hasProfiles}}">
-    <scroll-view class="profile-scroll" scroll-x enhanced show-scrollbar="{{false}}">
-      <view class="profile-list">
-        <view class="profile-chip {{activeProfileId === item.id ? 'profile-chip-active' : ''}}"
-              wx:for="{{profiles}}" wx:key="id"
-              data-id="{{item.id}}" bindtap="onProfileTap">
-          <view class="profile-chip-avatar">
-            <text class="profile-chip-initial">{{item.name[0]}}</text>
-          </view>
-          <view class="profile-chip-info-wrap">
-            <text class="profile-chip-name">{{item.name}}</text>
-            <text class="profile-chip-detail">{{item.zodiac}} · {{item.gender}}</text>
-          </view>
-        </view>
-        <view class="profile-chip profile-chip-add" bindtap="onAddProfile">
-          <text class="profile-chip-plus">+</text>
-        </view>
-      </view>
-    </scroll-view>
-  </view>
-
-  <!-- Quick Add Profile Prompt -->
-  <view class="profile-prompt" wx:else bindtap="onAddProfile">
-    <view class="profile-prompt-inner">
-      <text class="profile-prompt-icon">+</text>
-      <text class="profile-prompt-text">添加人物档案，快速开始占卜</text>
-    </view>
+  <!-- Active Profile Hint -->
+  <view class="active-hint" wx:if="{{activeProfile}}">
+    <view class="hint-dot"></view>
+    <text class="hint-text">当前：{{activeProfile.name}} · {{activeProfile.zodiac}} · {{activeProfile.gender}}</text>
   </view>
 
   <!-- Module Grid -->
   <view class="section-header">
     <view class="section-line"></view>
-    <text class="section-title">选择占卜方式</text>
+    <text class="section-title">占卜方式</text>
     <view class="section-line"></view>
   </view>
 
   <view class="module-grid">
-    <view class="module-card" wx:for="{{modules}}" wx:key="id"
+    <view class="module-card card-{{item.id}}" wx:for="{{modules}}" wx:key="id"
           data-url="{{item.url}}" bindtap="onModuleTap"
           hover-class="module-card-hover">
-      <view class="card-icon-wrap icon-{{item.id}}">
-        <view class="icon-deco-a deco-{{item.id}}"></view>
-        <view class="icon-deco-b deco-{{item.id}}"></view>
-        <text class="card-icon-char char-{{item.id}}">{{item.icon}}</text>
+      <view class="icon-circle icon-bg-{{item.id}}">
+        <text class="icon-symbol icon-color-{{item.id}}">{{item.icon}}</text>
       </view>
-      <text class="card-title">{{item.title}}</text>
-      <text class="card-desc">{{item.desc}}</text>
+      <view class="card-text">
+        <text class="card-title">{{item.title}}</text>
+        <text class="card-desc">{{item.desc}}</text>
+      </view>
     </view>
   </view>
 

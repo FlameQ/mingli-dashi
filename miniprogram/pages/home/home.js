@@ -4,26 +4,26 @@ const dateUtil = require('../../utils/date-util')
 Page({
   data: {
     modules: [
-      { id: 'bazi', icon: '命', title: '八字排盘', desc: '四柱八字 · 命理推演', url: '/package-bazi/pages/input/input' },
-      { id: 'qimen', icon: '遁', title: '奇门遁甲', desc: '时家转盘 · 预测吉凶', url: '/package-qimen/pages/input/input' },
-      { id: 'ziwei', icon: '星', title: '紫微斗数', desc: '命宫星曜 · 人生格局', url: '/package-ziwei/pages/input/input' },
-      { id: 'yinyuan', icon: '缘', title: '月老姻缘', desc: '红线牵引 · 缘分天定', url: '/package-yinyuan/pages/input/input' },
-      { id: 'tarot', icon: '牌', title: '塔罗占卜', desc: '心灵之镜 · 洞见未来', url: '/package-tarot/pages/select/select' },
-      { id: 'liuyao', icon: '卦', title: '六爻占卦', desc: '铜钱起卦 · 周易断事', url: '/package-liuyao/pages/input/input' },
-      { id: 'fengshui', icon: '风', title: '易经风水', desc: '阳宅布局 · 趋吉避凶', url: '/package-fengshui/pages/input/input' },
-      { id: 'buddhism', icon: '禅', title: '佛学大师', desc: '高僧开示 · 智慧人生', url: '/package-buddhism/pages/chat/chat' }
+      { id: 'bazi', icon: '☯', title: '八字排盘', desc: '四柱八字 · 命理推演', url: '/package-bazi/pages/input/input' },
+      { id: 'qimen', icon: '✦', title: '奇门遁甲', desc: '时家转盘 · 预测吉凶', url: '/package-qimen/pages/input/input' },
+      { id: 'ziwei', icon: '★', title: '紫微斗数', desc: '命宫星曜 · 人生格局', url: '/package-ziwei/pages/input/input' },
+      { id: 'yinyuan', icon: '♡', title: '月老姻缘', desc: '红线牵引 · 缘分天定', url: '/package-yinyuan/pages/input/input' },
+      { id: 'tarot', icon: '◆', title: '塔罗占卜', desc: '心灵之镜 · 洞见未来', url: '/package-tarot/pages/select/select' },
+      { id: 'liuyao', icon: '☰', title: '六爻占卦', desc: '铜钱起卦 · 周易断事', url: '/package-liuyao/pages/input/input' },
+      { id: 'fengshui', icon: '≈', title: '易经风水', desc: '阳宅布局 · 趋吉避凶', url: '/package-fengshui/pages/input/input' },
+      { id: 'buddhism', icon: '☸', title: '佛学大师', desc: '高僧开示 · 智慧人生', url: '/package-buddhism/pages/chat/chat' }
     ],
     dailyInfo: {},
     greeting: '',
     profiles: [],
     activeProfileId: '',
-    hasProfiles: false
+    hasProfiles: false,
+    activeProfile: null
   },
 
   onLoad() {
     this.generateDailyInfo()
     this.setGreeting()
-    this.loadProfiles()
   },
 
   onShow() {
@@ -36,17 +36,20 @@ Page({
   loadProfiles() {
     const profiles = app.getProfiles() || []
     const activeId = app.globalData.activeProfileId
+    const activeProfile = profiles.find(p => p.id === activeId) || null
     this.setData({
       profiles,
       activeProfileId: activeId,
-      hasProfiles: profiles.length > 0
+      hasProfiles: profiles.length > 0,
+      activeProfile
     })
   },
 
   onProfileTap(e) {
     const id = e.currentTarget.dataset.id
     app.setActiveProfile(id)
-    this.setData({ activeProfileId: id })
+    const activeProfile = this.data.profiles.find(p => p.id === id) || null
+    this.setData({ activeProfileId: id, activeProfile })
   },
 
   onAddProfile() {
@@ -55,12 +58,12 @@ Page({
 
   setGreeting() {
     const hour = new Date().getHours()
-    let greeting = '夜深了，'
-    if (hour >= 5 && hour < 8) greeting = '早安，'
-    else if (hour >= 8 && hour < 12) greeting = '上午好，'
-    else if (hour >= 12 && hour < 14) greeting = '中午好，'
-    else if (hour >= 14 && hour < 18) greeting = '下午好，'
-    else if (hour >= 18 && hour < 22) greeting = '晚上好，'
+    let greeting = '夜深了'
+    if (hour >= 5 && hour < 8) greeting = '早安'
+    else if (hour >= 8 && hour < 12) greeting = '上午好'
+    else if (hour >= 12 && hour < 14) greeting = '中午好'
+    else if (hour >= 14 && hour < 18) greeting = '下午好'
+    else if (hour >= 18 && hour < 22) greeting = '晚上好'
     this.setData({ greeting })
   },
 
@@ -81,7 +84,7 @@ Page({
 
     this.setData({
       dailyInfo: {
-        date: `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日`,
+        date: `${now.getMonth() + 1}月${now.getDate()}日`,
         yearGz,
         zodiac,
         shichen,
@@ -98,6 +101,7 @@ Page({
 
   onPullDownRefresh() {
     this.generateDailyInfo()
+    this.loadProfiles()
     wx.stopPullDownRefresh()
   }
 })
