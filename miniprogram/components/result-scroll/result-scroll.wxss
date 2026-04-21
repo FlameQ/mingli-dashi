@@ -1,25 +1,23 @@
 .result-scroll {
   margin: 24rpx;
-  background: linear-gradient(180deg, #F5E6D3 0%, #FFFBF0 4%, #FFFBF0 96%, #F5E6D3 100%);
-  border-left: 12rpx solid #E8D5A3;
-  border-right: 12rpx solid #E8D5A3;
-  border-radius: 8rpx;
+  background: #252540;
+  border-radius: 16rpx;
   overflow: hidden;
-}
-
-.scroll-top, .scroll-foot {
-  height: 8rpx;
-  background: linear-gradient(90deg, #D4A017, #F2BE45, #D4A017);
+  border: 1rpx solid #3A3A55;
 }
 
 .scroll-header {
   padding: 32rpx 32rpx 16rpx;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.gold-line {
+.header-line {
+  width: 60rpx;
   height: 2rpx;
-  background: linear-gradient(90deg, transparent, #D4A017, transparent);
+  background: linear-gradient(90deg, transparent, #3A3A55, transparent);
   margin: 12rpx 0;
 }
 
@@ -27,7 +25,7 @@
   display: block;
   font-size: 36rpx;
   font-weight: bold;
-  color: #3C2415;
+  color: #F0EDE0;
   letter-spacing: 8rpx;
 }
 
@@ -35,13 +33,13 @@
   padding: 16rpx 32rpx 32rpx;
 }
 
-.scroll-bottom {
+.scroll-footer {
   padding: 24rpx 32rpx;
   text-align: center;
-  border-top: 1rpx solid #E8D5A3;
+  border-top: 1rpx solid #3A3A55;
 }
 
 .disclaimer {
   font-size: 22rpx;
-  color: #BBA88A;
+  color: #666680;
 }

@@ -1,30 +1,52 @@
 <view class="page">
-  <!-- User Card -->
-  <view class="user-card">
-    <view class="user-info" bindtap="onGetUserInfo">
-      <view class="avatar">
-        <text class="avatar-text">{{hasUserInfo ? '👤' : '?'}}</text>
+  <!-- Profile Header -->
+  <view class="profile-header">
+    <text class="header-title">我的档案</text>
+    <text class="header-count">{{profiles.length}} 个档案</text>
+  </view>
+
+  <!-- Profile Cards -->
+  <view class="profile-list">
+    <view class="profile-card {{item.id === activeProfileId ? 'active' : ''}}"
+          wx:for="{{profiles}}" wx:key="id">
+      <view class="profile-main" data-id="{{item.id}}" bindtap="onSetActive">
+        <view class="profile-avatar">
+          <text class="avatar-char">{{item.name[0] || '?'}}</text>
+        </view>
+        <view class="profile-info">
+          <view class="profile-name-row">
+            <text class="profile-name">{{item.name || '未命名'}}</text>
+            <text class="active-tag" wx:if="{{item.id === activeProfileId}}">使用中</text>
+          </view>
+          <text class="profile-detail">{{item.gender}} · {{item.birthDate || '未设置'}}</text>
+          <text class="profile-detail" wx:if="{{item.zodiac}}">属{{item.zodiac}}</text>
+        </view>
       </view>
-      <view class="user-detail">
-        <text class="nickname">{{hasUserInfo ? userInfo.nickName : '点击登录'}}</text>
-        <text class="user-desc">探索命运的奥秘</text>
+      <view class="profile-actions">
+        <text class="action-btn" data-id="{{item.id}}" bindtap="onEditProfile">编辑</text>
+        <text class="action-btn action-delete" data-id="{{item.id}}" bindtap="onDeleteProfile">删除</text>
       </view>
     </view>
-    <view class="stats-row">
-      <view class="stat-item">
-        <text class="stat-num">{{historyCount}}</text>
-        <text class="stat-label">占卜次数</text>
+
+    <!-- Add Profile Button -->
+    <view class="add-profile-card" bindtap="onAddProfile" hover-class="add-profile-hover">
+      <view class="add-icon-wrap">
+        <text class="add-icon">+</text>
       </view>
-      <view class="stat-divider"></view>
-      <view class="stat-item">
-        <text class="stat-num">8</text>
-        <text class="stat-label">可用模块</text>
-      </view>
-      <view class="stat-divider"></view>
-      <view class="stat-item">
-        <text class="stat-num">VIP</text>
-        <text class="stat-label">会员等级</text>
-      </view>
+      <text class="add-text">添加档案</text>
+    </view>
+  </view>
+
+  <!-- Stats Row -->
+  <view class="stats-card">
+    <view class="stat-item">
+      <text class="stat-num">{{historyCount}}</text>
+      <text class="stat-label">占卜次数</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-num">8</text>
+      <text class="stat-label">可用模块</text>
     </view>
   </view>
 
@@ -33,16 +55,15 @@
     <view class="menu-item" wx:for="{{menuList}}" wx:key="id"
           data-id="{{item.id}}" bindtap="onMenuTap" hover-class="menu-item-hover">
       <view class="menu-left">
-        <text class="menu-icon">{{item.icon}}</text>
+        <view class="menu-icon-wrap">
+          <text class="menu-icon-char">{{item.icon}}</text>
+        </view>
         <view class="menu-text">
           <text class="menu-title">{{item.title}}</text>
           <text class="menu-desc">{{item.desc}}</text>
         </view>
       </view>
-      <view class="menu-right">
-        <text class="menu-badge" wx:if="{{item.badge}}">{{item.badge}}</text>
-        <text class="menu-arrow">›</text>
-      </view>
+      <text class="menu-arrow">></text>
     </view>
   </view>
 

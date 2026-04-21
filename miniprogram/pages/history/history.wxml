@@ -1,7 +1,7 @@
 <view class="page">
   <!-- Empty State -->
   <view class="empty-state" wx:if="{{isEmpty}}">
-    <text class="empty-icon">📜</text>
+    <text class="empty-icon-text">卦</text>
     <text class="empty-text">暂无占卜记录</text>
     <text class="empty-hint">去首页选择一种占卜方式试试吧</text>
   </view>
@@ -26,7 +26,7 @@
           <text class="record-time">{{record.date}}</text>
         </view>
         <view class="record-delete" data-id="{{record.id}}" bindtap="onDeleteItem">
-          <text class="delete-icon">✕</text>
+          <text class="delete-icon">x</text>
         </view>
       </view>
     </view>

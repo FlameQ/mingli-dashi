@@ -1,7 +1,7 @@
 .page {
   min-height: 100vh;
-  background: #FFFBF0;
-  padding-bottom: 120rpx;
+  background: #1A1A2E;
+  padding-bottom: 140rpx;
 }
 
 .empty-state {
@@ -11,21 +11,22 @@
   padding: 160rpx 40rpx;
 }
 
-.empty-icon {
+.empty-icon-text {
   font-size: 80rpx;
+  color: #3A3A55;
   margin-bottom: 24rpx;
-  opacity: 0.6;
+  font-weight: bold;
 }
 
 .empty-text {
   font-size: 34rpx;
-  color: #3C2415;
+  color: #F0EDE0;
   margin-bottom: 12rpx;
 }
 
 .empty-hint {
   font-size: 26rpx;
-  color: #8B7355;
+  color: #666680;
 }
 
 .history-list {
@@ -41,14 +42,14 @@
 
 .list-count {
   font-size: 26rpx;
-  color: #8B7355;
+  color: #A0A0B8;
 }
 
 .clear-btn {
   font-size: 26rpx;
-  color: #AA2116;
+  color: #C9B98A;
   padding: 8rpx 24rpx;
-  border: 1rpx solid #AA2116;
+  border: 1rpx solid rgba(201, 185, 138, 0.3);
   border-radius: 24rpx;
 }
 
@@ -64,26 +65,26 @@
 }
 
 .date-dot {
-  width: 12rpx;
-  height: 12rpx;
+  width: 10rpx;
+  height: 10rpx;
   border-radius: 50%;
-  background: #D4A017;
+  background: #88ADA6;
 }
 
 .date-text {
   font-size: 26rpx;
-  color: #8B7355;
+  color: #A0A0B8;
   font-weight: bold;
 }
 
 .record-card {
   display: flex;
   align-items: center;
-  background: #FFF8E7;
+  background: #252540;
   border-radius: 16rpx;
   padding: 24rpx;
   margin-bottom: 12rpx;
-  box-shadow: 0 2rpx 8rpx rgba(60, 36, 21, 0.04);
+  border: 1rpx solid #3A3A55;
 }
 
 .record-info {
@@ -94,14 +95,14 @@
   display: block;
   font-size: 30rpx;
   font-weight: bold;
-  color: #3C2415;
+  color: #F0EDE0;
   margin-bottom: 8rpx;
 }
 
 .record-summary {
   display: block;
   font-size: 26rpx;
-  color: #8B7355;
+  color: #A0A0B8;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -111,7 +112,7 @@
 .record-time {
   display: block;
   font-size: 22rpx;
-  color: #BBA88A;
+  color: #666680;
 }
 
 .record-delete {
@@ -121,5 +122,5 @@
 
 .delete-icon {
   font-size: 28rpx;
-  color: #BBA88A;
+  color: #666680;
 }

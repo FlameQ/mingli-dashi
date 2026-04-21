@@ -1,47 +1,37 @@
 <view class="page">
-  <!-- Hero Banner -->
-  <view class="hero-banner">
-    <view class="hero-bg"></view>
+  <!-- Hero Section -->
+  <view class="hero">
     <view class="hero-content">
-      <view class="hero-title">
-        <text class="title-main">命理大师</text>
-        <view class="title-decoration">
-          <view class="deco-line"></view>
-          <text class="deco-dot">◆</text>
-          <view class="deco-line"></view>
-        </view>
-      </view>
+      <text class="hero-title">命理大师</text>
+      <view class="hero-divider"></view>
       <text class="hero-subtitle">{{greeting}}千年智慧，一触即达</text>
     </view>
-    <!-- 装饰性云纹 -->
-    <view class="cloud-deco cloud-left">☁</view>
-    <view class="cloud-deco cloud-right">☁</view>
   </view>
 
-  <!-- 今日宜忌 -->
-  <view class="daily-section card animate-fade-in">
+  <!-- Today's Almanac -->
+  <view class="daily-card animate-fade-in">
     <view class="daily-header">
-      <text class="daily-title">📅 今日黄历</text>
+      <text class="daily-label">今日黄历</text>
       <text class="daily-date">{{dailyInfo.date}}</text>
     </view>
-    <view class="daily-ganzhi">
-      <text class="ganzhi-tag">{{dailyInfo.yearGz}}年</text>
-      <text class="ganzhi-tag">属{{dailyInfo.zodiac}}</text>
-      <text class="ganzhi-tag">{{dailyInfo.shichen}}</text>
+    <view class="daily-tags">
+      <text class="daily-tag">{{dailyInfo.yearGz}}年</text>
+      <text class="daily-tag">属{{dailyInfo.zodiac}}</text>
+      <text class="daily-tag">{{dailyInfo.shichen}}</text>
     </view>
     <view class="daily-yiji">
-      <view class="yi-ji-item">
-        <text class="yi-ji-label yi">宜</text>
-        <text class="yi-ji-text">{{dailyInfo.yi}}</text>
+      <view class="yiji-block">
+        <text class="yiji-label yiji-yi">宜</text>
+        <text class="yiji-text">{{dailyInfo.yi}}</text>
       </view>
-      <view class="yi-ji-item">
-        <text class="yi-ji-label ji">忌</text>
-        <text class="yi-ji-text">{{dailyInfo.ji}}</text>
+      <view class="yiji-block">
+        <text class="yiji-label yiji-ji">忌</text>
+        <text class="yiji-text">{{dailyInfo.ji}}</text>
       </view>
     </view>
   </view>
 
-  <!-- 功能模块网格 -->
+  <!-- Module Grid -->
   <view class="section-header">
     <view class="section-line"></view>
     <text class="section-title">选择占卜方式</text>
@@ -52,15 +42,14 @@
     <view class="module-card" wx:for="{{modules}}" wx:key="id"
           data-url="{{item.url}}" bindtap="onModuleTap"
           hover-class="module-card-hover">
-      <view class="card-icon" style="background: {{item.color}}15;">
-        <text class="icon-emoji">{{item.icon}}</text>
+      <view class="card-icon-wrap">
+        <text class="card-icon-char">{{item.icon}}</text>
       </view>
-      <view class="card-text">
-        <text class="card-title">{{item.title}}</text>
-        <text class="card-desc">{{item.desc}}</text>
-      </view>
+      <text class="card-title">{{item.title}}</text>
+      <text class="card-desc">{{item.desc}}</text>
     </view>
   </view>
 
-  <view class="disclaimer">仅供娱乐参考，不作为人生决策依据</view>
+  <!-- Disclaimer -->
+  <view class="page-disclaimer">仅供娱乐参考，不作为人生决策依据</view>
 </view>

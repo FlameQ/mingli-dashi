@@ -3,14 +3,14 @@ const dateUtil = require('../../utils/date-util')
 Page({
   data: {
     modules: [
-      { id: 'bazi', icon: '🎴', title: '八字排盘', desc: '输入生辰 · 解读命运', url: '/package-bazi/pages/input/input', color: '#AA2116' },
-      { id: 'qimen', icon: '🧭', title: '奇门遁甲', desc: '时家转盘 · 预测吉凶', url: '/package-qimen/pages/input/input', color: '#D4A017' },
-      { id: 'ziwei', icon: '⭐', title: '紫微斗数', desc: '命宫星曜 · 人生格局', url: '/package-ziwei/pages/input/input', color: '#C93756' },
-      { id: 'yinyuan', icon: '💕', title: '月老姻缘', desc: '红线牵引 · 缘分天定', url: '/package-yinyuan/pages/input/input', color: '#F07050' },
-      { id: 'tarot', icon: '🔮', title: '塔罗占卜', desc: '心灵之镜 · 洞见未来', url: '/package-tarot/pages/select/select', color: '#7B68AE' },
-      { id: 'liuyao', icon: '☯️', title: '六爻占卦', desc: '铜钱起卦 · 周易断事', url: '/package-liuyao/pages/input/input', color: '#B36D61' },
-      { id: 'fengshui', icon: '🏠', title: '易经风水', desc: '阳宅布局 · 趋吉避凶', url: '/package-fengshui/pages/input/input', color: '#6B9E3C' },
-      { id: 'buddhism', icon: '🙏', title: '佛学大师', desc: '高僧开示 · 智慧人生', url: '/package-buddhism/pages/chat/chat', color: '#D4A017' }
+      { id: 'bazi', icon: '命', title: '八字排盘', desc: '四柱八字 · 命理推演', url: '/package-bazi/pages/input/input' },
+      { id: 'qimen', icon: '遁', title: '奇门遁甲', desc: '时家转盘 · 预测吉凶', url: '/package-qimen/pages/input/input' },
+      { id: 'ziwei', icon: '星', title: '紫微斗数', desc: '命宫星曜 · 人生格局', url: '/package-ziwei/pages/input/input' },
+      { id: 'yinyuan', icon: '缘', title: '月老姻缘', desc: '红线牵引 · 缘分天定', url: '/package-yinyuan/pages/input/input' },
+      { id: 'tarot', icon: '牌', title: '塔罗占卜', desc: '心灵之镜 · 洞见未来', url: '/package-tarot/pages/select/select' },
+      { id: 'liuyao', icon: '卦', title: '六爻占卦', desc: '铜钱起卦 · 周易断事', url: '/package-liuyao/pages/input/input' },
+      { id: 'fengshui', icon: '风', title: '易经风水', desc: '阳宅布局 · 趋吉避凶', url: '/package-fengshui/pages/input/input' },
+      { id: 'buddhism', icon: '禅', title: '佛学大师', desc: '高僧开示 · 智慧人生', url: '/package-buddhism/pages/chat/chat' }
     ],
     dailyInfo: {},
     greeting: ''

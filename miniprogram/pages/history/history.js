@@ -36,7 +36,7 @@ Page({
     wx.showModal({
       title: '确认删除',
       content: '确定要删除这条记录吗？',
-      confirmColor: '#AA2116',
+      confirmColor: '#88ADA6',
       success: (res) => {
         if (res.confirm) {
           app.removeFromHistory(id)
@@ -51,7 +51,7 @@ Page({
     wx.showModal({
       title: '清空记录',
       content: '确定要清空所有占卜记录吗？此操作不可恢复。',
-      confirmColor: '#AA2116',
+      confirmColor: '#88ADA6',
       success: (res) => {
         if (res.confirm) {
           app.clearHistory()

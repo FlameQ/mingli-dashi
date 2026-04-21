@@ -1,7 +1,7 @@
 .page {
   min-height: 100vh;
-  background: #FFFBF0;
-  padding-bottom: 120rpx;
+  background: #1A1A2E;
+  padding-bottom: 140rpx;
 }
 
 .category-list {
@@ -26,31 +26,31 @@
 .group-name {
   font-size: 34rpx;
   font-weight: bold;
-  color: #3C2415;
+  color: #F0EDE0;
 }
 
 .group-desc {
   font-size: 24rpx;
-  color: #8B7355;
+  color: #666680;
 }
 
 .group-line {
-  height: 2rpx;
-  background: linear-gradient(90deg, #D4A017, #E8D5A3, transparent);
+  height: 1rpx;
+  background: linear-gradient(90deg, #3A3A55, transparent);
 }
 
 .module-list {
-  background: #FFF8E7;
-  border-radius: 24rpx;
+  background: #252540;
+  border-radius: 20rpx;
   overflow: hidden;
-  box-shadow: 0 2rpx 12rpx rgba(60, 36, 21, 0.06);
+  border: 1rpx solid #3A3A55;
 }
 
 .module-item {
   display: flex;
   align-items: center;
   padding: 28rpx 24rpx;
-  border-bottom: 1rpx solid rgba(232, 213, 163, 0.4);
+  border-bottom: 1rpx solid #3A3A55;
   transition: background 0.2s;
 }
 
@@ -59,19 +59,26 @@
 }
 
 .module-item-hover {
-  background: rgba(232, 213, 163, 0.2);
+  background: rgba(136, 173, 166, 0.05);
 }
 
-.module-icon {
-  width: 72rpx;
-  height: 72rpx;
+.module-icon-wrap {
+  width: 64rpx;
+  height: 64rpx;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 36rpx;
   margin-right: 24rpx;
   flex-shrink: 0;
+  background: rgba(136, 173, 166, 0.1);
+  border: 1rpx solid rgba(136, 173, 166, 0.2);
+}
+
+.module-icon-char {
+  font-size: 28rpx;
+  color: #88ADA6;
+  font-weight: bold;
 }
 
 .module-info {
@@ -82,18 +89,18 @@
   display: block;
   font-size: 30rpx;
   font-weight: bold;
-  color: #3C2415;
+  color: #F0EDE0;
   margin-bottom: 4rpx;
 }
 
 .module-desc {
   display: block;
   font-size: 24rpx;
-  color: #8B7355;
+  color: #666680;
 }
 
 .module-arrow {
-  font-size: 40rpx;
-  color: #BBA88A;
+  font-size: 28rpx;
+  color: #3A3A55;
   margin-left: 16rpx;
 }

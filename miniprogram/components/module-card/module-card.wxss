@@ -5,29 +5,33 @@
   justify-content: center;
   width: 340rpx;
   padding: 32rpx 24rpx;
-  background: #FFF8E7;
+  background: #252540;
   border-radius: 24rpx;
-  box-shadow: 0 4rpx 16rpx rgba(60, 36, 21, 0.06);
-  border: 1rpx solid rgba(232, 213, 163, 0.5);
-  transition: transform 0.2s ease;
+  border: 1rpx solid #3A3A55;
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .module-card-hover {
   transform: scale(0.97);
+  border-color: #88ADA6;
 }
 
-.card-icon {
-  width: 88rpx;
-  height: 88rpx;
+.card-icon-wrap {
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 16rpx;
+  background: rgba(136, 173, 166, 0.1);
+  border: 1rpx solid rgba(136, 173, 166, 0.2);
 }
 
-.icon-text {
-  font-size: 44rpx;
+.icon-char {
+  font-size: 36rpx;
+  color: #88ADA6;
+  font-weight: bold;
 }
 
 .card-info {
@@ -36,14 +40,14 @@
 
 .card-title {
   display: block;
-  font-size: 30rpx;
+  font-size: 28rpx;
   font-weight: bold;
-  color: #3C2415;
+  color: #F0EDE0;
   margin-bottom: 8rpx;
 }
 
 .card-desc {
   display: block;
   font-size: 22rpx;
-  color: #8B7355;
+  color: #666680;
 }

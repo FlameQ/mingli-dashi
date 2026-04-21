@@ -3,7 +3,8 @@
     "pages/home/home",
     "pages/category/category",
     "pages/history/history",
-    "pages/profile/profile"
+    "pages/profile/profile",
+    "pages/profile-edit/profile-edit"
   ],
   "subPackages": [
     {
@@ -72,18 +73,18 @@
     }
   ],
   "window": {
-    "navigationBarBackgroundColor": "#AA2116",
+    "navigationBarBackgroundColor": "#1A1A2E",
     "navigationBarTitleText": "命理大师",
     "navigationBarTextStyle": "white",
-    "backgroundColor": "#FFFBF0",
-    "backgroundTextStyle": "light"
+    "backgroundColor": "#1A1A2E",
+    "backgroundTextStyle": "dark"
   },
   "tabBar": {
     "custom": true,
-    "color": "#8B7355",
-    "selectedColor": "#AA2116",
-    "backgroundColor": "#FFF8E7",
-    "borderStyle": "white",
+    "color": "#666680",
+    "selectedColor": "#88ADA6",
+    "backgroundColor": "#1A1A2E",
+    "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/home/home",

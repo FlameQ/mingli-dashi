@@ -1,10 +1,10 @@
 Component({
   properties: {
-    icon: { type: String, value: '🎴' },
+    icon: { type: String, value: '卦' },
     title: { type: String, value: '' },
     desc: { type: String, value: '' },
     url: { type: String, value: '' },
-    color: { type: String, value: '#AA2116' }
+    color: { type: String, value: '#88ADA6' }
   },
 
   methods: {

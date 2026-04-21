@@ -12,14 +12,14 @@
       <view class="module-list">
         <view class="module-item" wx:for="{{item.modules}}" wx:for-item="mod" wx:key="id"
               data-url="{{mod.url}}" bindtap="onModuleTap" hover-class="module-item-hover">
-          <view class="module-icon" style="background: {{mod.color}}15;">
-            <text>{{mod.icon}}</text>
+          <view class="module-icon-wrap">
+            <text class="module-icon-char">{{mod.icon}}</text>
           </view>
           <view class="module-info">
             <text class="module-title">{{mod.title}}</text>
             <text class="module-desc">{{mod.desc}}</text>
           </view>
-          <text class="module-arrow">›</text>
+          <text class="module-arrow">></text>
         </view>
       </view>
     </view>
