@@ -1,7 +1,7 @@
 .page {
   min-height: 100vh;
   background: #F3F1ED;
-  padding-bottom: 140rpx;
+  padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
 }
 
 /* ===== Profile Section ===== */
@@ -264,10 +264,11 @@
   position: absolute; bottom: 0; left: 0; right: 0;
   background: #FFFFFF; border-radius: 24rpx 24rpx 0 0;
   padding: 32rpx 32rpx 0;
-  max-height: 80vh;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: calc(32rpx + env(safe-area-inset-bottom));
+  height: 85vh;
+}
+.coin-modal-spacer {
+  height: calc(60rpx + env(safe-area-inset-bottom));
+  flex-shrink: 0;
 }
 .coin-modal-header {
   display: flex; justify-content: space-between; align-items: center;

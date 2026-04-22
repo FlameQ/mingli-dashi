@@ -126,7 +126,7 @@
   <!-- ===== Coin Divination Modal ===== -->
   <view class="coin-modal" wx:if="{{showCoinModal}}">
     <view class="coin-modal-mask" bindtap="onCloseDivination"></view>
-    <view class="coin-modal-body">
+    <scroll-view class="coin-modal-body" scroll-y enhanced show-scrollbar="{{false}}">
       <view class="coin-modal-header">
         <text class="coin-modal-title">铜钱起卦</text>
         <text class="coin-modal-close" bindtap="onCloseDivination">✕</text>
@@ -279,6 +279,7 @@
         </view>
       </view>
 
-    </view>
+      <view class="coin-modal-spacer"></view>
+    </scroll-view>
   </view>
 </view>
