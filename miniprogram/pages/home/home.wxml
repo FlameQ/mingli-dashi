@@ -1,15 +1,12 @@
 <view class="page">
-
-  <!-- Profile Selector - TOP -->
+  <!-- Top Profile Bar -->
   <view class="top-bar">
     <scroll-view class="profile-scroll" scroll-x enhanced show-scrollbar="{{false}}" wx:if="{{hasProfiles}}">
       <view class="profile-list">
         <view class="profile-chip {{activeProfileId === item.id ? 'active' : ''}}"
               wx:for="{{profiles}}" wx:key="id"
               data-id="{{item.id}}" bindtap="onProfileTap">
-          <view class="chip-avatar">
-            <text class="chip-initial">{{item.name[0]}}</text>
-          </view>
+          <view class="chip-avatar"><text class="chip-initial">{{item.name[0]}}</text></view>
           <text class="chip-name">{{item.name}}</text>
           <view class="chip-dot" wx:if="{{activeProfileId === item.id}}"></view>
         </view>
@@ -23,18 +20,41 @@
     </view>
   </view>
 
-  <!-- Greeting + Daily Info - COMPACT -->
-  <view class="info-bar">
-    <view class="greeting-row">
-      <text class="greeting-text">{{greeting}}，一触即达千年智慧</text>
+  <!-- Greeting -->
+  <view class="greeting-bar">
+    <text class="greeting-text">{{greeting}}，一触即达千年智慧</text>
+  </view>
+
+  <!-- Module Grid: 3 columns -->
+  <view class="section-header">
+    <view class="section-line"></view>
+    <text class="section-title">占卜方式</text>
+    <view class="section-line"></view>
+  </view>
+
+  <view class="module-grid">
+    <view class="module-card" wx:for="{{modules}}" wx:key="id"
+          data-url="{{item.url}}" data-id="{{item.id}}" bindtap="onModuleTap"
+          hover-class="module-card-hover">
+      <view class="icon-circle icon-bg-{{item.id}}">
+        <text class="icon-symbol icon-color-{{item.id}}">{{item.icon}}</text>
+      </view>
+      <text class="card-title">{{item.title}}</text>
     </view>
-    <view class="daily-row">
+  </view>
+
+  <!-- Daily Almanac -->
+  <view class="daily-card">
+    <view class="daily-header">
+      <text class="daily-label">今日黄历</text>
+      <text class="daily-date">{{dailyInfo.date}}</text>
+    </view>
+    <view class="daily-tags">
       <text class="daily-tag">{{dailyInfo.yearGz}}年</text>
       <text class="daily-tag">属{{dailyInfo.zodiac}}</text>
       <text class="daily-tag">{{dailyInfo.shichen}}</text>
-      <text class="daily-date">{{dailyInfo.date}}</text>
     </view>
-    <view class="yiji-row">
+    <view class="daily-yiji">
       <view class="yiji-group">
         <text class="yiji-badge yi">宜</text>
         <text class="yiji-text">{{dailyInfo.yi}}</text>
@@ -46,33 +66,5 @@
     </view>
   </view>
 
-  <!-- Active Profile Hint -->
-  <view class="active-hint" wx:if="{{activeProfile}}">
-    <view class="hint-dot"></view>
-    <text class="hint-text">当前：{{activeProfile.name}} · {{activeProfile.zodiac}} · {{activeProfile.gender}}</text>
-  </view>
-
-  <!-- Module Grid -->
-  <view class="section-header">
-    <view class="section-line"></view>
-    <text class="section-title">占卜方式</text>
-    <view class="section-line"></view>
-  </view>
-
-  <view class="module-grid">
-    <view class="module-card card-{{item.id}}" wx:for="{{modules}}" wx:key="id"
-          data-url="{{item.url}}" bindtap="onModuleTap"
-          hover-class="module-card-hover">
-      <view class="icon-circle icon-bg-{{item.id}}">
-        <text class="icon-symbol icon-color-{{item.id}}">{{item.icon}}</text>
-      </view>
-      <view class="card-text">
-        <text class="card-title">{{item.title}}</text>
-        <text class="card-desc">{{item.desc}}</text>
-      </view>
-    </view>
-  </view>
-
-  <!-- Disclaimer -->
   <view class="page-disclaimer">仅供娱乐参考，不作为人生决策依据</view>
 </view>

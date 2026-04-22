@@ -1,64 +1,42 @@
 /* ========================================
-   命理大师 - 文人书房主题
-   Scholar's Study Theme
+   命理大师 - 茶禅暖调主题
+   Ivory & Champagne Gold Theme
    ======================================== */
 
 page {
-  --bg-page: #F4F1EC;
-  --bg-card: #FFFFFF;
-  --bg-card-alt: #F8F6F2;
-  --bg-input: #F8F6F2;
-  --bg-surface: #FAFAF8;
+  --bg-page: #F7F2E7;
+  --bg-card: #FDFAF2;
+  --bg-card-alt: #F5ECD7;
+  --bg-input: #F5ECD7;
+  --bg-surface: #FAF7F0;
 
-  /* 品牌色 - 青玉 Jade */
-  --color-primary: #3D6B5E;
-  --color-primary-light: #5A8E7D;
-  --color-secondary: #C4965A;
-  --color-secondary-light: #D4A86C;
+  --color-primary: #C9A96E;
+  --color-primary-light: #D4B87A;
+  --color-secondary: #B8860B;
+  --color-secondary-light: #CCAA44;
 
-  /* 文本色 */
-  --text-primary: #2D2D2D;
-  --text-secondary: #888888;
-  --text-placeholder: #BBBBBB;
+  --text-primary: #3E2723;
+  --text-secondary: #7D6B5D;
+  --text-placeholder: #A89888;
 
-  /* 功能色 */
-  --color-accent: #3D6B5E;
+  --color-accent: #C9A96E;
   --color-warning: #C4965A;
   --color-success: #3D6B5E;
-  --color-border: #E5E0D8;
-  --color-border-dark: #D5CFC5;
+  --color-border: #E8E0D0;
+  --color-border-dark: #D4C4A8;
 
-  /* 渐变 */
-  --gradient-warm: linear-gradient(135deg, #F4F1EC 0%, #FFFFFF 50%, #F8F6F2 100%);
-  --gradient-card: linear-gradient(135deg, #FFFFFF 0%, #FAFAF8 100%);
-  --gradient-hero: linear-gradient(180deg, #F0EDE6 0%, #F4F1EC 100%);
-  --gradient-primary: linear-gradient(135deg, #3D6B5E 0%, #2D5549 100%);
-  --gradient-secondary: linear-gradient(135deg, #C4965A 0%, #A87D44 100%);
+  --gradient-warm: linear-gradient(135deg, #F7F2E7 0%, #FDFAF2 50%, #F5ECD7 100%);
+  --gradient-card: linear-gradient(135deg, #FDFAF2 0%, #FAF7F0 100%);
+  --gradient-hero: linear-gradient(180deg, #F0E6D3 0%, #F7F2E7 100%);
+  --gradient-primary: linear-gradient(135deg, #C9A96E 0%, #B8860B 100%);
+  --gradient-secondary: linear-gradient(135deg, #B8860B 0%, #9A7D22 100%);
 
-  /* 圆角 */
-  --radius-sm: 8rpx;
-  --radius-md: 16rpx;
-  --radius-lg: 24rpx;
-  --radius-xl: 32rpx;
+  --radius-sm: 8rpx; --radius-md: 16rpx; --radius-lg: 24rpx; --radius-xl: 32rpx;
+  --space-xs: 8rpx; --space-sm: 16rpx; --space-md: 24rpx; --space-lg: 32rpx; --space-xl: 48rpx;
+  --font-xs: 22rpx; --font-sm: 26rpx; --font-md: 30rpx; --font-lg: 34rpx; --font-xl: 40rpx; --font-xxl: 48rpx;
 
-  /* 间距 */
-  --space-xs: 8rpx;
-  --space-sm: 16rpx;
-  --space-md: 24rpx;
-  --space-lg: 32rpx;
-  --space-xl: 48rpx;
-
-  /* 字号 */
-  --font-xs: 22rpx;
-  --font-sm: 26rpx;
-  --font-md: 30rpx;
-  --font-lg: 34rpx;
-  --font-xl: 40rpx;
-  --font-xxl: 48rpx;
-
-  /* 阴影 */
-  --shadow-sm: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
-  --shadow-glow: 0 0 20rpx rgba(61, 107, 94, 0.1);
+  --shadow-sm: 0 2rpx 8rpx rgba(62, 39, 35, 0.04);
+  --shadow-md: 0 4rpx 16rpx rgba(62, 39, 35, 0.06);
+  --shadow-lg: 0 8rpx 32rpx rgba(62, 39, 35, 0.08);
+  --shadow-glow: 0 0 20rpx rgba(201, 169, 110, 0.1);
 }

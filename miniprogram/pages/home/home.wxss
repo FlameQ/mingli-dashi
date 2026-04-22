@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  background: #F4F1EC;
+  background: #F7F2E7;
   padding-bottom: 140rpx;
 }
 
@@ -9,334 +9,106 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(244, 241, 236, 0.95);
+  background: rgba(247, 242, 231, 0.95);
   padding: 16rpx 0 12rpx;
-  border-bottom: 1rpx solid #E5E0D8;
+  border-bottom: 1rpx solid #E8E0D0;
 }
 
-.profile-scroll {
-  white-space: nowrap;
-  padding-left: 24rpx;
-}
-
-.profile-list {
-  display: inline-flex;
-  align-items: center;
-  gap: 12rpx;
-  padding-right: 24rpx;
-}
+.profile-scroll { white-space: nowrap; padding-left: 24rpx; }
+.profile-list { display: inline-flex; align-items: center; gap: 12rpx; padding-right: 24rpx; }
 
 .profile-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 10rpx;
-  padding: 10rpx 20rpx;
-  background: #FFFFFF;
-  border-radius: 40rpx;
-  border: 1rpx solid #E5E0D8;
-  transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 10rpx;
+  padding: 10rpx 20rpx; background: #FDFAF2; border-radius: 40rpx;
+  border: 1rpx solid #E8E0D0; transition: all 0.2s;
 }
-
-.profile-chip.active {
-  background: rgba(61, 107, 94, 0.06);
-  border-color: #3D6B5E;
-}
+.profile-chip.active { background: rgba(201, 169, 110, 0.08); border-color: #C9A96E; }
 
 .chip-avatar {
-  width: 40rpx;
-  height: 40rpx;
-  border-radius: 50%;
-  background: rgba(61, 107, 94, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+  width: 40rpx; height: 40rpx; border-radius: 50%;
+  background: rgba(201, 169, 110, 0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
+.active .chip-avatar { background: rgba(201, 169, 110, 0.2); }
+.chip-initial { font-size: 22rpx; color: #C9A96E; font-weight: bold; }
+.chip-name { font-size: 24rpx; color: #7D6B5D; }
+.active .chip-name { color: #C9A96E; font-weight: bold; }
+.chip-dot { width: 8rpx; height: 8rpx; border-radius: 50%; background: #C9A96E; }
 
-.active .chip-avatar {
-  background: rgba(61, 107, 94, 0.15);
-}
+.chip-add { padding: 10rpx 24rpx; border-style: dashed; border-color: #D4C4A8; }
+.chip-plus { font-size: 28rpx; color: #A89888; }
 
-.chip-initial {
-  font-size: 22rpx;
-  color: #3D6B5E;
-  font-weight: bold;
-}
+.add-prompt { display: flex; align-items: center; justify-content: center; padding: 12rpx 24rpx; }
+.add-prompt-text { font-size: 26rpx; color: #C9A96E; padding: 10rpx 32rpx; border: 1rpx dashed #D4C4A8; border-radius: 40rpx; }
 
-.chip-name {
-  font-size: 24rpx;
-  color: #888888;
-  font-weight: 500;
-}
-
-.active .chip-name {
-  color: #3D6B5E;
-  font-weight: bold;
-}
-
-.chip-dot {
-  width: 8rpx;
-  height: 8rpx;
-  border-radius: 50%;
-  background: #3D6B5E;
-}
-
-.chip-add {
-  padding: 10rpx 24rpx;
-  border-style: dashed;
-  border-color: #D5CFC5;
-}
-
-.chip-plus {
-  font-size: 28rpx;
-  color: #BBBBBB;
-}
-
-.add-prompt {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12rpx 24rpx;
-}
-
-.add-prompt-text {
-  font-size: 26rpx;
-  color: #3D6B5E;
-  padding: 10rpx 32rpx;
-  border: 1rpx dashed #D5CFC5;
-  border-radius: 40rpx;
-}
-
-/* ===== Compact Info Bar ===== */
-.info-bar {
-  padding: 24rpx 28rpx 20rpx;
-  background: linear-gradient(180deg, #F0EDE6 0%, #F4F1EC 100%);
-}
-
-.greeting-row {
-  margin-bottom: 12rpx;
-}
-
-.greeting-text {
-  font-size: 32rpx;
-  font-weight: bold;
-  color: #2D2D2D;
-  letter-spacing: 2rpx;
-}
-
-.daily-row {
-  display: flex;
-  align-items: center;
-  gap: 12rpx;
-  margin-bottom: 16rpx;
-}
-
-.daily-tag {
-  font-size: 22rpx;
-  color: #3D6B5E;
-  background: rgba(61, 107, 94, 0.06);
-  padding: 4rpx 14rpx;
-  border-radius: 12rpx;
-}
-
-.daily-date {
-  font-size: 22rpx;
-  color: #BBBBBB;
-  margin-left: auto;
-}
-
-.yiji-row {
-  display: flex;
-  gap: 24rpx;
-}
-
-.yiji-group {
-  display: flex;
-  align-items: center;
-  gap: 10rpx;
-  flex: 1;
-}
-
-.yiji-badge {
-  font-size: 22rpx;
-  font-weight: bold;
-  padding: 2rpx 12rpx;
-  border-radius: 6rpx;
-  flex-shrink: 0;
-}
-
-.yiji-badge.yi {
-  background: rgba(61, 107, 94, 0.08);
-  color: #3D6B5E;
-}
-
-.yiji-badge.ji {
-  background: rgba(196, 150, 90, 0.1);
-  color: #C4965A;
-}
-
-.yiji-text {
-  font-size: 22rpx;
-  color: #888888;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* ===== Active Profile Hint ===== */
-.active-hint {
-  display: flex;
-  align-items: center;
-  gap: 10rpx;
-  padding: 0 28rpx 12rpx;
-}
-
-.hint-dot {
-  width: 8rpx;
-  height: 8rpx;
-  border-radius: 50%;
-  background: #3D6B5E;
-}
-
-.hint-text {
-  font-size: 22rpx;
-  color: #3D6B5E;
-}
+/* ===== Greeting ===== */
+.greeting-bar { padding: 20rpx 28rpx 4rpx; }
+.greeting-text { font-size: 28rpx; color: #7D6B5D; }
 
 /* ===== Section Header ===== */
-.section-header {
-  display: flex;
-  align-items: center;
-  gap: 20rpx;
-  padding: 28rpx 28rpx 12rpx;
-}
+.section-header { display: flex; align-items: center; gap: 20rpx; padding: 24rpx 28rpx 12rpx; }
+.section-title { font-size: 24rpx; font-weight: bold; color: #A89888; letter-spacing: 4rpx; }
+.section-line { flex: 1; height: 1rpx; background: linear-gradient(90deg, #E8E0D0, transparent); }
+.section-line:first-child { background: linear-gradient(90deg, transparent, #E8E0D0); }
 
-.section-title {
-  font-size: 26rpx;
-  font-weight: bold;
-  color: #BBBBBB;
-  white-space: nowrap;
-  letter-spacing: 4rpx;
-}
-
-.section-line {
-  flex: 1;
-  height: 1rpx;
-  background: linear-gradient(90deg, #E5E0D8, transparent);
-}
-
-.section-line:first-child {
-  background: linear-gradient(90deg, transparent, #E5E0D8);
-}
-
-/* ===== Module Grid ===== */
+/* ===== Module Grid: 3 columns ===== */
 .module-grid {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 4rpx 20rpx;
+  display: flex; flex-wrap: wrap; padding: 4rpx 20rpx;
 }
-
 .module-card {
-  width: calc(50% - 16rpx);
-  margin: 8rpx;
-  border-radius: 20rpx;
-  padding: 24rpx 16rpx;
-  display: flex;
-  align-items: center;
-  gap: 16rpx;
-  background: #FFFFFF;
-  border: 1rpx solid #E5E0D8;
-  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.03);
+  width: calc(33.33% - 16rpx); margin: 8rpx;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 28rpx 8rpx 24rpx;
+  background: #FDFAF2; border-radius: 16rpx;
+  border: 1rpx solid #E8E0D0;
+  box-shadow: 0 2rpx 8rpx rgba(62, 39, 35, 0.04);
   transition: transform 0.2s ease;
 }
-
-.module-card-hover {
-  transform: scale(0.97);
-  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
-}
-
-/* Card left accent */
-.card-bazi { border-left: 4rpx solid #2D7A72; }
-.card-qimen { border-left: 4rpx solid #3A5A8A; }
-.card-ziwei { border-left: 4rpx solid #6A4A9A; }
-.card-yinyuan { border-left: 4rpx solid #C4965A; }
-.card-tarot { border-left: 4rpx solid #8A6A20; }
-.card-liuyao { border-left: 4rpx solid #3D6B5E; }
-.card-fengshui { border-left: 4rpx solid #2A5A7A; }
-.card-buddhism { border-left: 4rpx solid #8A7A30; }
+.module-card-hover { transform: scale(0.95); background: #F5ECD7; }
 
 /* ===== Icon Circles ===== */
 .icon-circle {
-  width: 76rpx;
-  height: 76rpx;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+  width: 72rpx; height: 72rpx; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 12rpx;
 }
+.icon-symbol { font-size: 32rpx; font-weight: bold; }
 
-.icon-symbol {
-  font-size: 34rpx;
-  font-weight: bold;
-}
-
-/* ☯ 八字 - Jade */
 .icon-bg-bazi { background: rgba(45, 122, 114, 0.08); }
 .icon-color-bazi { color: #2D7A72; }
-
-/* ✦ 奇门 - Indigo */
 .icon-bg-qimen { background: rgba(58, 90, 138, 0.08); }
 .icon-color-qimen { color: #3A5A8A; }
-
-/* ★ 紫微 - Violet */
 .icon-bg-ziwei { background: rgba(106, 74, 154, 0.08); }
 .icon-color-ziwei { color: #6A4A9A; }
-
-/* ♡ 姻缘 - Bronze */
-.icon-bg-yinyuan { background: rgba(196, 150, 90, 0.1); }
-.icon-color-yinyuan { color: #C4965A; }
-
-/* ◆ 塔罗 - Amber */
-.icon-bg-tarot { background: rgba(138, 106, 32, 0.08); }
-.icon-color-tarot { color: #8A6A20; }
-
-/* ☰ 六爻 - Jade */
+.icon-bg-yinyuan { background: rgba(201, 169, 110, 0.1); }
+.icon-color-yinyuan { color: #C9A96E; }
+.icon-bg-tarot { background: rgba(184, 134, 11, 0.08); }
+.icon-color-tarot { color: #B8860B; }
 .icon-bg-liuyao { background: rgba(61, 107, 94, 0.08); }
-.icon-color-liuyao { color: #3D6B5E; }
-
-/* ≈ 风水 - Ocean */
+.icon-color-liuyao { color: #C9A96E; }
 .icon-bg-fengshui { background: rgba(42, 90, 122, 0.08); }
 .icon-color-fengshui { color: #2A5A7A; }
+.icon-bg-buddhism { background: rgba(201, 169, 110, 0.08); }
+.icon-color-buddhism { color: #C9A96E; }
 
-/* ☸ 佛学 - Gold */
-.icon-bg-buddhism { background: rgba(138, 122, 48, 0.08); }
-.icon-color-buddhism { color: #8A7A30; }
+.card-title { font-size: 24rpx; font-weight: 500; color: #3E2723; text-align: center; }
 
-/* ===== Card Text ===== */
-.card-text {
-  flex: 1;
-  min-width: 0;
+/* ===== Daily Card ===== */
+.daily-card {
+  margin: 20rpx 24rpx 0; padding: 24rpx 28rpx;
+  background: linear-gradient(135deg, #FDFAF2, #F5ECD7);
+  border-radius: 20rpx; border: 1rpx solid #E8E0D0;
+  box-shadow: 0 4rpx 16rpx rgba(62, 39, 35, 0.06);
 }
+.daily-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12rpx; }
+.daily-label { font-size: 28rpx; font-weight: bold; color: #3E2723; }
+.daily-date { font-size: 22rpx; color: #A89888; }
+.daily-tags { display: flex; gap: 12rpx; margin-bottom: 16rpx; }
+.daily-tag { font-size: 22rpx; color: #C9A96E; background: rgba(201, 169, 110, 0.08); padding: 4rpx 14rpx; border-radius: 12rpx; }
+.daily-yiji { display: flex; gap: 24rpx; }
+.yiji-group { display: flex; align-items: center; gap: 10rpx; flex: 1; }
+.yiji-badge { font-size: 22rpx; font-weight: bold; padding: 2rpx 12rpx; border-radius: 6rpx; flex-shrink: 0; }
+.yiji-badge.yi { background: rgba(61, 107, 94, 0.08); color: #C9A96E; }
+.yiji-badge.ji { background: rgba(196, 150, 90, 0.1); color: #B8860B; }
+.yiji-text { font-size: 22rpx; color: #7D6B5D; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-.card-title {
-  display: block;
-  font-size: 28rpx;
-  font-weight: bold;
-  color: #2D2D2D;
-  margin-bottom: 4rpx;
-}
-
-.card-desc {
-  display: block;
-  font-size: 22rpx;
-  color: #BBBBBB;
-}
-
-/* ===== Disclaimer ===== */
-.page-disclaimer {
-  text-align: center;
-  color: #BBBBBB;
-  font-size: 22rpx;
-  padding: 40rpx 24rpx 20rpx;
-}
+.page-disclaimer { text-align: center; color: #A89888; font-size: 22rpx; padding: 32rpx 24rpx 20rpx; }

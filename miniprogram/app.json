@@ -73,17 +73,17 @@
     }
   ],
   "window": {
-    "navigationBarBackgroundColor": "#F4F1EC",
+    "navigationBarBackgroundColor": "#F7F2E7",
     "navigationBarTitleText": "命理大师",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#F4F1EC",
+    "backgroundColor": "#F7F2E7",
     "backgroundTextStyle": "dark"
   },
   "tabBar": {
     "custom": true,
     "color": "#999999",
-    "selectedColor": "#3D6B5E",
-    "backgroundColor": "#FFFFFF",
+    "selectedColor": "#C9A96E",
+    "backgroundColor": "#FDFAF2",
     "borderStyle": "white",
     "list": [
       {

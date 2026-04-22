@@ -95,6 +95,22 @@ Page({
   },
 
   onModuleTap(e) {
+    const { id } = e.currentTarget.dataset
+    const profile = this.data.activeProfile
+
+    // Auto-navigate with profile data for bazi
+    if (id === 'bazi' && profile && profile.birthDate) {
+      const params = encodeURIComponent(JSON.stringify({
+        name: profile.name,
+        gender: profile.gender,
+        birthDate: profile.birthDate,
+        birthHourIndex: profile.birthHourIndex != null ? profile.birthHourIndex : 6,
+        birthPlace: profile.birthPlace || ''
+      }))
+      wx.navigateTo({ url: `/package-bazi/pages/result/result?data=${params}` })
+      return
+    }
+
     const { url } = e.currentTarget.dataset
     wx.navigateTo({ url })
   },

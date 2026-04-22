@@ -2,8 +2,8 @@
 @import "styles/chinese-theme.wxss";
 
 page {
-  background-color: #F4F1EC;
-  color: #2D2D2D;
+  background-color: #F7F2E7;
+  color: #3E2723;
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
     'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
   font-size: 30rpx;
@@ -11,83 +11,41 @@ page {
   box-sizing: border-box;
 }
 
-view, text, image, navigator {
-  box-sizing: border-box;
-}
+view, text, image, navigator { box-sizing: border-box; }
 
-.container {
-  padding: 24rpx;
-  min-height: 100vh;
-}
+.container { padding: 24rpx; min-height: 100vh; }
 
 .section-title {
-  font-size: 34rpx;
-  font-weight: bold;
-  color: #2D2D2D;
-  margin-bottom: 24rpx;
-  padding-left: 16rpx;
-  border-left: 4rpx solid #3D6B5E;
+  font-size: 34rpx; font-weight: bold; color: #3E2723;
+  margin-bottom: 24rpx; padding-left: 16rpx; border-left: 4rpx solid #C9A96E;
 }
 
 .card {
-  background: #FFFFFF;
-  border-radius: 24rpx;
-  padding: 32rpx;
-  border: 1rpx solid #E5E0D8;
-  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+  background: #FDFAF2; border-radius: 24rpx; padding: 32rpx;
+  border: 1rpx solid #E8E0D0; box-shadow: 0 4rpx 16rpx rgba(62, 39, 35, 0.04);
 }
 
 .btn-primary {
-  background: #3D6B5E;
-  color: #FFFFFF;
-  border: none;
-  border-radius: 48rpx;
-  padding: 24rpx 48rpx;
-  font-size: 32rpx;
-  font-weight: bold;
-  text-align: center;
-  box-shadow: 0 4rpx 16rpx rgba(61, 107, 94, 0.2);
+  background: #C9A96E; color: #FFFFFF; border: none; border-radius: 48rpx;
+  padding: 24rpx 48rpx; font-size: 32rpx; font-weight: bold; text-align: center;
+  box-shadow: 0 4rpx 16rpx rgba(201, 169, 110, 0.2);
 }
-
-.btn-primary::after {
-  border: none;
-}
+.btn-primary::after { border: none; }
 
 .btn-secondary {
-  background: transparent;
-  color: #3D6B5E;
-  border: 2rpx solid #3D6B5E;
-  border-radius: 48rpx;
-  padding: 24rpx 48rpx;
-  font-size: 32rpx;
-  font-weight: bold;
-  text-align: center;
+  background: transparent; color: #C9A96E; border: 2rpx solid #C9A96E;
+  border-radius: 48rpx; padding: 24rpx 48rpx; font-size: 32rpx; font-weight: bold; text-align: center;
 }
 
 .input-field {
-  background: #F8F6F2;
-  border: 2rpx solid #E5E0D8;
-  border-radius: 16rpx;
-  padding: 20rpx 24rpx;
-  font-size: 30rpx;
-  color: #2D2D2D;
-  width: 100%;
+  background: #F5ECD7; border: 2rpx solid #E8E0D0; border-radius: 16rpx;
+  padding: 20rpx 24rpx; font-size: 30rpx; color: #3E2723; width: 100%;
 }
+.input-field::placeholder { color: #A89888; }
 
-.input-field::placeholder {
-  color: #BBBBBB;
-}
-
-.text-secondary {
-  color: #888888;
-  font-size: 26rpx;
-}
+.text-secondary { color: #7D6B5D; font-size: 26rpx; }
 
 .disclaimer {
-  text-align: center;
-  color: #BBBBBB;
-  font-size: 22rpx;
-  padding: 32rpx 0;
-  margin-top: 24rpx;
-  border-top: 1rpx solid #E5E0D8;
+  text-align: center; color: #A89888; font-size: 22rpx;
+  padding: 32rpx 0; margin-top: 24rpx; border-top: 1rpx solid #E8E0D0;
 }

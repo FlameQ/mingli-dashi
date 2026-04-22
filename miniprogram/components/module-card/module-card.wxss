@@ -5,16 +5,16 @@
   justify-content: center;
   width: 340rpx;
   padding: 32rpx 24rpx;
-  background: #FFFFFF;
+  background: #FDFAF2;
   border-radius: 24rpx;
-  border: 1rpx solid #E5E0D8;
+  border: 1rpx solid #E8E0D0;
   box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .module-card-hover {
   transform: scale(0.97);
-  border-color: #3D6B5E;
+  border-color: #C9A96E;
 }
 
 .card-icon-wrap {
@@ -31,7 +31,7 @@
 
 .icon-char {
   font-size: 36rpx;
-  color: #3D6B5E;
+  color: #C9A96E;
   font-weight: bold;
 }
 
@@ -43,12 +43,12 @@
   display: block;
   font-size: 28rpx;
   font-weight: bold;
-  color: #2D2D2D;
+  color: #3E2723;
   margin-bottom: 8rpx;
 }
 
 .card-desc {
   display: block;
   font-size: 22rpx;
-  color: #BBBBBB;
+  color: #A89888;
 }

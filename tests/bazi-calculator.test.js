@@ -11,7 +11,7 @@ describe('bazi-calculator', () => {
       expect(result).toHaveProperty('dayMaster')
       expect(result).toHaveProperty('dayMasterWx')
       expect(result).toHaveProperty('wuxingCount')
-      expect(result).toHaveProperty('shishen')
+      expect(result).toHaveProperty('fullShishen')
       expect(result).toHaveProperty('naying')
       expect(result).toHaveProperty('zodiac')
       expect(result).toHaveProperty('gender', '男')
@@ -45,29 +45,29 @@ describe('bazi-calculator', () => {
   })
 
   describe('getShishen', () => {
-    test('should return 比肩 for same element', () => {
-      expect(baziCalc.getShishen('木', '木')).toBe('比肩')
-      expect(baziCalc.getShishen('火', '火')).toBe('比肩')
+    test('should return 比肩 for same element same yin-yang', () => {
+      expect(baziCalc.getShishen('木', '木', '阳', '阳')).toBe('比肩')
+      expect(baziCalc.getShishen('火', '火', '阴', '阴')).toBe('比肩')
     })
 
-    test('should return 食神 for generating element', () => {
-      expect(baziCalc.getShishen('木', '火')).toBe('食神')
-      expect(baziCalc.getShishen('火', '土')).toBe('食神')
+    test('should return 食神 for same yin-yang generating element', () => {
+      expect(baziCalc.getShishen('木', '火', '阳', '阳')).toBe('食神')
+      expect(baziCalc.getShishen('火', '土', '阳', '阳')).toBe('食神')
     })
 
-    test('should return 偏财 for element I control', () => {
-      expect(baziCalc.getShishen('木', '土')).toBe('偏财')
-      expect(baziCalc.getShishen('火', '金')).toBe('偏财')
+    test('should return 偏财 for same yin-yang element I control', () => {
+      expect(baziCalc.getShishen('木', '土', '阳', '阳')).toBe('偏财')
+      expect(baziCalc.getShishen('火', '金', '阳', '阳')).toBe('偏财')
     })
 
-    test('should return 七杀 for element controlling me', () => {
-      expect(baziCalc.getShishen('木', '金')).toBe('七杀')
-      expect(baziCalc.getShishen('火', '水')).toBe('七杀')
+    test('should return 七杀 for same yin-yang element controlling me', () => {
+      expect(baziCalc.getShishen('木', '金', '阳', '阳')).toBe('七杀')
+      expect(baziCalc.getShishen('火', '水', '阳', '阳')).toBe('七杀')
     })
 
-    test('should return 正印 for element generating me', () => {
-      expect(baziCalc.getShishen('木', '水')).toBe('正印')
-      expect(baziCalc.getShishen('火', '木')).toBe('正印')
+    test('should return 正印 for different yin-yang element generating me', () => {
+      expect(baziCalc.getShishen('木', '水', '阳', '阴')).toBe('正印')
+      expect(baziCalc.getShishen('火', '木', '阳', '阴')).toBe('正印')
     })
 
     test('should handle empty/invalid inputs', () => {
@@ -102,16 +102,29 @@ describe('bazi-calculator', () => {
     })
   })
 
-  describe('generateBaziReading', () => {
-    test('should generate reading with summary and score', () => {
+  describe('generateRichReading', () => {
+    test('should generate reading with sections array', () => {
       const baziData = baziCalc.calculateBazi(1990, 5, 20, 10, '男')
-      const reading = baziCalc.generateBaziReading(baziData)
-      expect(reading).toHaveProperty('summary')
-      expect(reading).toHaveProperty('details')
-      expect(reading).toHaveProperty('score')
-      expect(reading.score).toBeGreaterThanOrEqual(70)
-      expect(reading.score).toBeLessThanOrEqual(90)
-      expect(reading.summary.length).toBeGreaterThan(0)
+      const reading = baziCalc.generateRichReading(
+        baziData.dayMaster,
+        baziData.dayMasterWx,
+        baziData.strength,
+        baziData.wuxingCount,
+        baziData.wuxingBalance,
+        baziData.xiyong,
+        baziData.geju,
+        baziData.personality,
+        baziData.zodiac,
+        baziData.naying,
+        baziData.pillars,
+        baziData.fullShishen
+      )
+      expect(reading).toHaveProperty('sections')
+      expect(Array.isArray(reading.sections)).toBe(true)
+      expect(reading.sections.length).toBeGreaterThan(0)
+      expect(reading.sections[0]).toHaveProperty('title')
+      expect(reading.sections[0]).toHaveProperty('content')
+      expect(reading.sections[0].content.length).toBeGreaterThan(0)
     })
   })
 })

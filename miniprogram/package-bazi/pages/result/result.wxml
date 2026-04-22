@@ -1,47 +1,139 @@
-<view class="page">
-  <!-- Pillars -->
-  <view class="pillars-row">
-    <view class="pillar-card" wx:for="{{[pillars.yearPillar, pillars.monthPillar, pillars.dayPillar, pillars.hourPillar]}}" wx:key="index">
-      <text class="pillar-label">{{['年柱','月柱','日柱','时柱'][index]}}</text>
-      <text class="pillar-gan">{{item[0]}}</text>
-      <text class="pillar-zhi">{{item[1]}}</text>
+<view class="page" wx:if="{{loaded}}">
+  <!-- Header -->
+  <view class="header-card">
+    <text class="header-name">{{name || '八字排盘'}}</text>
+    <text class="header-info">{{zodiac}} · {{dayMaster}}（{{dayMasterWx}}）· {{geju.name}}</text>
+    <view class="header-tags">
+      <text class="tag">{{strength.level}}</text>
+      <text class="tag">喜{{xiyong.xi}}</text>
+      <text class="tag">忌{{xiyong.ji}}</text>
     </view>
   </view>
 
-  <!-- Day Master -->
-  <view class="card section">
-    <text class="section-title">日主分析</text>
-    <view class="dm-row">
-      <text class="dm-text">日主 {{dayMaster}}（{{dayMasterWx}}）</text>
-      <text class="strength-badge">{{strength.level}}</text>
-    </view>
-    <text class="dm-desc">{{strength.description}}</text>
-  </view>
-
-  <!-- Five Elements -->
-  <view class="card section">
-    <text class="section-title">五行分布</text>
-    <view class="wuxing-bars">
-      <view class="wx-item" wx:for="{{[1,2,3,4,5]}}" wx:key="*this">
-        <text class="wx-name">{{['金','木','水','火','土'][item-1]}}</text>
-        <view class="wx-bar-bg">
-          <view class="wx-bar" style="width: {{wuxingCount[['金','木','水','火','土'][item-1]] * 12.5}}%; background: {{['#D4A017','#6B9E3C','#4A90D9','#F07050','#B36D61'][item-1]}};"></view>
-        </view>
-        <text class="wx-count">{{wuxingCount[['金','木','水','火','土'][item-1]]}}</text>
+  <!-- Four Pillars -->
+  <view class="card">
+    <view class="card-title">四柱八字</view>
+    <view class="pillars-row">
+      <view class="pillar" wx:for="{{[pillars.yearPillar, pillars.monthPillar, pillars.dayPillar, pillars.hourPillar]}}" wx:key="index">
+        <text class="pillar-label">{{['年柱','月柱','日柱','时柱'][index]}}</text>
+        <text class="pillar-gan">{{item[0]}}</text>
+        <view class="pillar-divider"></view>
+        <text class="pillar-zhi">{{item[1]}}</text>
+        <text class="pillar-naying">{{[naying.year, naying.month, naying.day, naying.hour][index]}}</text>
       </view>
     </view>
   </view>
 
-  <!-- Reading -->
-  <view class="card section">
-    <text class="section-title">命理简评</text>
-    <text class="reading-text">{{reading.summary}}</text>
+  <!-- Personality -->
+  <view class="card" wx:if="{{personality.trait}}">
+    <view class="card-title">性格特质</view>
+    <text class="personality-trait">{{personality.trait}}</text>
+    <text class="card-text">{{personality.desc}}</text>
+    <view class="trait-row">
+      <view class="trait-item good">
+        <text class="trait-label">优势</text>
+        <text class="trait-value">{{personality.strength}}</text>
+      </view>
+      <view class="trait-item warn">
+        <text class="trait-label">注意</text>
+        <text class="trait-value">{{personality.weakness}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Five Elements -->
+  <view class="card">
+    <view class="card-title">五行分布</view>
+    <view class="wx-bars">
+      <view class="wx-item" wx:for="{{['金','木','水','火','土']}}" wx:key="*this">
+        <text class="wx-name">{{item}}</text>
+        <view class="wx-bar-bg">
+          <view class="wx-bar" style="width: {{wuxingCount[item] * 14}}%;"></view>
+        </view>
+        <text class="wx-count">{{wuxingCount[item] || 0}}</text>
+      </view>
+    </view>
+    <view class="wx-tags">
+      <text class="wx-tag xi" wx:if="{{xiyong.xi}}">喜 {{xiyong.xi}}</text>
+      <text class="wx-tag yong" wx:if="{{xiyong.yong}}">用 {{xiyong.yong}}</text>
+      <text class="wx-tag ji" wx:if="{{xiyong.ji}}">忌 {{xiyong.ji}}</text>
+    </view>
+  </view>
+
+  <!-- Xi Yong Explanation -->
+  <view class="card">
+    <view class="card-title">喜用神分析</view>
+    <text class="card-text">{{xiyong.description}}</text>
+  </view>
+
+  <!-- Life Domains -->
+  <view class="card">
+    <view class="card-title">人生运势</view>
+    <view class="domain-list">
+      <view class="domain-item" wx:for="{{[lifeDomains.career, lifeDomains.wealth, lifeDomains.love, lifeDomains.health]}}" wx:key="title">
+        <view class="domain-header">
+          <text class="domain-title">{{item.title}}</text>
+          <text class="domain-level">{{item.level}}</text>
+        </view>
+        <text class="domain-reading">{{item.reading}}</text>
+        <text class="domain-advice">建议：{{item.advice}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Dayun -->
+  <view class="card" wx:if="{{dayunList.length > 0}}">
+    <view class="card-title">大运走势</view>
+    <scroll-view class="dayun-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="dayun-item" wx:for="{{dayunList}}" wx:key="ganzhi">
+        <text class="dayun-gz">{{item.ganzhi}}</text>
+        <text class="dayun-age">{{item.label}}</text>
+        <text class="dayun-wx">{{item.wuxing}}</text>
+        <text class="dayun-reading">{{item.reading}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- Lucky Elements -->
+  <view class="card" wx:if="{{luckyElements.colors}}">
+    <view class="card-title">幸运元素</view>
+    <view class="lucky-grid">
+      <view class="lucky-item">
+        <text class="lucky-label">幸运颜色</text>
+        <text class="lucky-value">{{luckyElements.colors}}</text>
+      </view>
+      <view class="lucky-item">
+        <text class="lucky-label">有利方位</text>
+        <text class="lucky-value">{{luckyElements.direction}}</text>
+      </view>
+      <view class="lucky-item">
+        <text class="lucky-label">幸运数字</text>
+        <text class="lucky-value">{{luckyElements.numbers}}</text>
+      </view>
+      <view class="lucky-item">
+        <text class="lucky-label">旺运时节</text>
+        <text class="lucky-value">{{luckyElements.season}}</text>
+      </view>
+      <view class="lucky-item">
+        <text class="lucky-label">适业方向</text>
+        <text class="lucky-value">{{luckyElements.industry}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Rich Readings -->
+  <view class="card" wx:if="{{reading.sections}}">
+    <view class="card-title">命理详批</view>
+    <view class="reading-section" wx:for="{{reading.sections}}" wx:key="title">
+      <text class="reading-subtitle">{{item.title}}</text>
+      <text class="reading-content">{{item.content}}</text>
+    </view>
   </view>
 
   <!-- Actions -->
   <view class="action-row">
-    <view class="btn-save" bindtap="onSave"><text>{{saved ? '已保存' : '保存记录'}}</text></view>
-    <view class="btn-retry" bindtap="onRetry"><text>重新测算</text></view>
+    <view class="btn-save" bindtap="onSave">{{saved ? '已保存' : '保存记录'}}</view>
+    <view class="btn-retry" bindtap="onRetry">重新测算</view>
   </view>
   <view class="disclaimer">仅供娱乐参考，不作为人生决策依据</view>
 </view>

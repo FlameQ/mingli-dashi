@@ -1,31 +1,31 @@
-.page{min-height:100vh;background:#F4F1EC;padding:32rpx 24rpx;padding-bottom:120rpx;}
-.form-section{background:#FFFFFF;border-radius:24rpx;padding:32rpx 24rpx;border:1rpx solid #E5E0D8;}
+.page{min-height:100vh;background:#F7F2E7;padding:32rpx 24rpx;padding-bottom:120rpx;}
+.form-section{background:#FDFAF2;border-radius:24rpx;padding:32rpx 24rpx;border:1rpx solid #E8E0D0;}
 .form-item{margin-bottom:28rpx;}
-.form-label{display:block;font-size:26rpx;color:#888888;margin-bottom:12rpx;}
-.input-field{background:#F8F6F2;border:2rpx solid #E5E0D8;border-radius:12rpx;padding:20rpx;font-size:28rpx;color:#2D2D2D;}
-.placeholder{color:#BBBBBB;}
+.form-label{display:block;font-size:26rpx;color:#7D6B5D;margin-bottom:12rpx;}
+.input-field{background:#F5ECD7;border:2rpx solid #E8E0D0;border-radius:12rpx;padding:20rpx;font-size:28rpx;color:#3E2723;}
+.placeholder{color:#A89888;}
 .radio-group{display:flex;gap:32rpx;}
-.radio-label{font-size:28rpx;color:#2D2D2D;display:flex;align-items:center;gap:8rpx;}
-.picker-field{background:#F8F6F2;border:2rpx solid #E5E0D8;border-radius:12rpx;padding:20rpx;font-size:28rpx;color:#2D2D2D;display:flex;justify-content:space-between;}
-.textarea-field{background:#F8F6F2;border:2rpx solid #E5E0D8;border-radius:12rpx;padding:20rpx;font-size:28rpx;color:#2D2D2D;width:100%;height:160rpx;}
-.submit-btn{margin-top:40rpx;background:#3D6B5E;text-align:center;padding:24rpx;border-radius:48rpx;font-size:32rpx;font-weight:bold;color:#FFFFFF;box-shadow:0 0 20rpx rgba(61,107,94,0.15);}
+.radio-label{font-size:28rpx;color:#3E2723;display:flex;align-items:center;gap:8rpx;}
+.picker-field{background:#F5ECD7;border:2rpx solid #E8E0D0;border-radius:12rpx;padding:20rpx;font-size:28rpx;color:#3E2723;display:flex;justify-content:space-between;}
+.textarea-field{background:#F5ECD7;border:2rpx solid #E8E0D0;border-radius:12rpx;padding:20rpx;font-size:28rpx;color:#3E2723;width:100%;height:160rpx;}
+.submit-btn{margin-top:40rpx;background:#C9A96E;text-align:center;padding:24rpx;border-radius:48rpx;font-size:32rpx;font-weight:bold;color:#FFFFFF;box-shadow:0 0 20rpx rgba(201,169,110,0.15);}
 .type-grid,.mode-grid{display:flex;flex-wrap:wrap;gap:12rpx;margin-bottom:24rpx;}
-.type-card,.mode-card{min-width:calc(33% - 12rpx);padding:16rpx 12rpx;background:#F8F6F2;border:2rpx solid #E5E0D8;border-radius:16rpx;text-align:center;font-size:24rpx;color:#888888;}
-.type-card.active,.mode-card.active{border-color:#3D6B5E;background:rgba(61,107,94,0.08);color:#3D6B5E;}
+.type-card,.mode-card{min-width:calc(33% - 12rpx);padding:16rpx 12rpx;background:#F5ECD7;border:2rpx solid #E8E0D0;border-radius:16rpx;text-align:center;font-size:24rpx;color:#7D6B5D;}
+.type-card.active,.mode-card.active{border-color:#C9A96E;background:rgba(201,169,110,0.08);color:#C9A96E;}
 .type-icon,.mode-icon{display:block;font-size:32rpx;margin-bottom:6rpx;}
 .type-name,.mode-name{display:block;font-size:24rpx;}
-.form-title{display:block;font-size:28rpx;font-weight:bold;color:#2D2D2D;margin-bottom:16rpx;}
-.num-input{flex:1;background:#F8F6F2;border:2rpx solid #E5E0D8;border-radius:12rpx;padding:20rpx;font-size:28rpx;text-align:center;color:#2D2D2D;}
+.form-title{display:block;font-size:28rpx;font-weight:bold;color:#3E2723;margin-bottom:16rpx;}
+.num-input{flex:1;background:#F5ECD7;border:2rpx solid #E8E0D0;border-radius:12rpx;padding:20rpx;font-size:28rpx;text-align:center;color:#3E2723;}
 .number-row{display:flex;gap:16rpx;}
 .coin-section{padding:16rpx 0;}
-.coin-info{display:block;font-size:24rpx;color:#888888;margin-bottom:12rpx;}
-.coin-btn{background:#3D6B5E;color:#FFFFFF;text-align:center;padding:16rpx;border-radius:32rpx;font-size:26rpx;font-weight:bold;width:200rpx;margin:0 auto;}
+.coin-info{display:block;font-size:24rpx;color:#7D6B5D;margin-bottom:12rpx;}
+.coin-btn{background:#C9A96E;color:#FFFFFF;text-align:center;padding:16rpx;border-radius:32rpx;font-size:26rpx;font-weight:bold;width:200rpx;margin:0 auto;}
 .coin-history{margin-top:12rpx;display:flex;flex-direction:column;gap:6rpx;}
-.coin-history text{font-size:22rpx;color:#888888;}
+.coin-history text{font-size:22rpx;color:#7D6B5D;}
 .spread-grid{display:flex;flex-direction:column;gap:12rpx;margin-bottom:24rpx;}
-.spread-card{background:#FFFFFF;border:2rpx solid #E5E0D8;border-radius:16rpx;padding:20rpx;display:flex;align-items:center;gap:16rpx;}
-.spread-card.active{border-color:#3D6B5E;background:rgba(61,107,94,0.06);}
-.spread-name{font-size:28rpx;font-weight:bold;color:#2D2D2D;min-width:140rpx;}
-.spread-count{font-size:22rpx;color:#3D6B5E;background:rgba(61,107,94,0.1);padding:4rpx 10rpx;border-radius:8rpx;}
-.spread-desc{font-size:22rpx;color:#888888;flex:1;text-align:right;}
-.page-title{display:block;font-size:32rpx;font-weight:bold;color:#2D2D2D;margin-bottom:24rpx;text-align:center;}
+.spread-card{background:#FDFAF2;border:2rpx solid #E8E0D0;border-radius:16rpx;padding:20rpx;display:flex;align-items:center;gap:16rpx;}
+.spread-card.active{border-color:#C9A96E;background:rgba(201,169,110,0.06);}
+.spread-name{font-size:28rpx;font-weight:bold;color:#3E2723;min-width:140rpx;}
+.spread-count{font-size:22rpx;color:#C9A96E;background:rgba(201,169,110,0.1);padding:4rpx 10rpx;border-radius:8rpx;}
+.spread-desc{font-size:22rpx;color:#7D6B5D;flex:1;text-align:right;}
+.page-title{display:block;font-size:32rpx;font-weight:bold;color:#3E2723;margin-bottom:24rpx;text-align:center;}
