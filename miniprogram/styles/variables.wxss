@@ -1,35 +1,34 @@
 /* ========================================
-   命理大师 - 雅致主题（无渐变）
-   Elegant Flat Theme
+   命理大师 - 素墨主题（Ink Elegance）
    ======================================== */
 
 page {
-  --bg-page: #F0ECE5;
+  --bg-page: #F3F1ED;
   --bg-card: #FFFFFF;
-  --bg-card-alt: #F7F4EF;
+  --bg-card-alt: #F7F5F2;
   --bg-input: #F5F2ED;
   --bg-surface: #FAFAF8;
 
-  --color-primary: #8C7A63;
-  --color-primary-light: #A08E78;
+  --color-primary: #4A3728;
+  --color-primary-light: #6B5747;
   --color-secondary: #B8860B;
   --color-secondary-light: #CCAA44;
 
-  --text-primary: #1C1917;
-  --text-secondary: #7D7568;
-  --text-placeholder: #A09888;
+  --text-primary: #1A1714;
+  --text-secondary: #7A7068;
+  --text-placeholder: #9A9088;
 
-  --color-accent: #C4A265;
+  --color-accent: #C49A6C;
   --color-warning: #C4965A;
-  --color-success: #5A7A6E;
-  --color-border: #E3DDD5;
-  --color-border-dark: #D4CFC6;
+  --color-success: #4A7A6E;
+  --color-border: #DDD7CD;
+  --color-border-dark: #C9C1B5;
 
   --radius-sm: 8rpx; --radius-md: 16rpx; --radius-lg: 24rpx; --radius-xl: 32rpx;
   --space-xs: 8rpx; --space-sm: 16rpx; --space-md: 24rpx; --space-lg: 32rpx; --space-xl: 48rpx;
   --font-xs: 22rpx; --font-sm: 26rpx; --font-md: 30rpx; --font-lg: 34rpx; --font-xl: 40rpx; --font-xxl: 48rpx;
 
-  --shadow-sm: 0 1rpx 4rpx rgba(28, 25, 23, 0.05);
-  --shadow-md: 0 2rpx 12rpx rgba(28, 25, 23, 0.06);
-  --shadow-lg: 0 4rpx 24rpx rgba(28, 25, 23, 0.08);
+  --shadow-sm: 0 1rpx 6rpx rgba(30, 25, 20, 0.06);
+  --shadow-md: 0 2rpx 16rpx rgba(30, 25, 20, 0.08);
+  --shadow-lg: 0 4rpx 28rpx rgba(30, 25, 20, 0.10);
 }

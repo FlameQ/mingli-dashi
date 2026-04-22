@@ -4,7 +4,33 @@
         data-index="{{index}}" data-path="{{item.pagePath}}"
         bindtap="switchTab">
     <view class="tab-icon-wrap">
-      <text class="tab-icon">{{item.icon}}</text>
+      <!-- Home Icon -->
+      <view class="icon-home" wx:if="{{item.icon === 'home'}}">
+        <view class="icon-home-roof"></view>
+        <view class="icon-home-body"></view>
+      </view>
+      <!-- Category Icon -->
+      <view class="icon-category" wx:elif="{{item.icon === 'category'}}">
+        <view class="icon-cat-row">
+          <view class="icon-cat-block"></view>
+          <view class="icon-cat-block"></view>
+        </view>
+        <view class="icon-cat-row">
+          <view class="icon-cat-block"></view>
+          <view class="icon-cat-block"></view>
+        </view>
+      </view>
+      <!-- History Icon -->
+      <view class="icon-history" wx:elif="{{item.icon === 'history'}}">
+        <view class="icon-clock-face">
+          <view class="icon-clock-hand"></view>
+        </view>
+      </view>
+      <!-- Profile Icon -->
+      <view class="icon-profile" wx:elif="{{item.icon === 'profile'}}">
+        <view class="icon-profile-head"></view>
+        <view class="icon-profile-body"></view>
+      </view>
       <view class="tab-indicator" wx:if="{{selected === index}}"></view>
     </view>
     <text class="tab-text">{{item.text}}</text>

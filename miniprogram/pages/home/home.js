@@ -71,18 +71,44 @@ const GUA_FORTUNES = {
   '未济': '事尚未成，仍需努力。今日宜总结反思，为下一步蓄力。'
 }
 
-// King Wen hexagram lookup: HEXAGRAM_TABLE[upperTrigram * 8 + lowerTrigram] = King Wen number (1-indexed)
-// Trigram index by binary value: 坤(000)=0, 震(001)=1, 坎(010)=2, 兑(011)=3, 艮(100)=4, 离(101)=5, 巽(110)=6, 乾(111)=7
+// King Wen hexagram lookup
 const HEXAGRAM_TABLE = [
-  2, 16, 8, 45, 23, 35, 20, 12,   // upper=坤
-  24, 51, 3, 17, 27, 21, 42, 25,  // upper=震
-  7, 40, 29, 47, 4, 64, 59, 6,   // upper=坎
-  19, 54, 60, 58, 41, 38, 61, 10, // upper=兑
-  15, 62, 39, 31, 52, 56, 53, 33, // upper=艮
-  36, 55, 63, 49, 22, 30, 37, 13, // upper=离
-  46, 32, 48, 28, 18, 50, 57, 44, // upper=巽
-  11, 34, 5, 43, 26, 14, 9, 1     // upper=乾
+  2, 16, 8, 45, 23, 35, 20, 12,
+  24, 51, 3, 17, 27, 21, 42, 25,
+  7, 40, 29, 47, 4, 64, 59, 6,
+  19, 54, 60, 58, 41, 38, 61, 10,
+  15, 62, 39, 31, 52, 56, 53, 33,
+  36, 55, 63, 49, 22, 30, 37, 13,
+  46, 32, 48, 28, 18, 50, 57, 44,
+  11, 34, 5, 43, 26, 14, 9, 1
 ]
+
+// Personal fortune based on zodiac + day
+const ZODIAC_DAILY = {
+  '鼠': { lucky: ['文昌', '桃花'], direction: '东南' },
+  '牛': { lucky: ['福星', '天德'], direction: '正南' },
+  '虎': { lucky: ['禄神', '驿马'], direction: '西北' },
+  '兔': { lucky: ['天喜', '红鸾'], direction: '正东' },
+  '龙': { lucky: ['紫微', '龙德'], direction: '正北' },
+  '蛇': { lucky: ['玉堂', '天乙'], direction: '西南' },
+  '马': { lucky: ['将星', '金匮'], direction: '正西' },
+  '羊': { lucky: ['月德', '福星'], direction: '东北' },
+  '猴': { lucky: ['天德', '文昌'], direction: '正南' },
+  '鸡': { lucky: ['禄神', '驿马'], direction: '东南' },
+  '狗': { lucky: ['红鸾', '天喜'], direction: '正北' },
+  '猪': { lucky: ['紫微', '龙德'], direction: '西南' }
+}
+
+const FORTUNE_LEVELS = ['大吉', '吉', '中吉', '小吉', '平', '小凶', '凶']
+const FORTUNE_ADVICE = {
+  '大吉': '今日运势极佳，诸事皆宜，可大胆行事。',
+  '吉': '今日运势良好，适合推进计划，把握机遇。',
+  '中吉': '今日运势不错，稳中求进，可有收获。',
+  '小吉': '今日运势平稳偏吉，宜做小事，积小胜为大胜。',
+  '平': '今日运势平平，宜守不宜攻，韬光养晦。',
+  '小凶': '今日运势略低，宜谨慎行事，避免冲动。',
+  '凶': '今日运势不佳，宜静不宜动，小心为上。'
+}
 
 Page({
   data: {
@@ -121,11 +147,13 @@ Page({
     activeProfileId: '',
     hasProfiles: false,
     activeProfile: null,
+    personalFortune: null,
     // Coin divination state
     showCoinModal: false,
     coinRound: 0,
     coinLines: [],
     coins: [0, 0, 0],
+    coinValues: ['', '', ''],
     isFlipping: false,
     hexagramResult: null
   },
@@ -153,6 +181,7 @@ Page({
       hasProfiles: profiles.length > 0,
       activeProfile
     })
+    this.generatePersonalFortune(activeProfile)
   },
 
   onProfileTap(e) {
@@ -160,6 +189,7 @@ Page({
     app.setActiveProfile(id)
     const activeProfile = this.data.profiles.find(p => p.id === id) || null
     this.setData({ activeProfileId: id, activeProfile })
+    this.generatePersonalFortune(activeProfile)
   },
 
   onAddProfile() {
@@ -175,6 +205,41 @@ Page({
     else if (hour >= 14 && hour < 18) greeting = '下午好'
     else if (hour >= 18 && hour < 22) greeting = '晚上好'
     this.setData({ greeting })
+  },
+
+  generatePersonalFortune(profile) {
+    if (!profile || !profile.birthDate) {
+      this.setData({ personalFortune: null })
+      return
+    }
+
+    const now = new Date()
+    const seed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate()
+    const zodiac = dateUtil.getZodiac(profile.birthDate.split('-')[0] || now.getFullYear())
+    const zodiacInfo = ZODIAC_DAILY[zodiac] || ZODIAC_DAILY['鼠']
+
+    // Deterministic fortune level based on profile + date
+    const nameSeed = profile.name.split('').reduce((s, c) => s + c.charCodeAt(0), 0)
+    const fortuneIdx = (seed + nameSeed) % FORTUNE_LEVELS.length
+    const fortuneLevel = FORTUNE_LEVELS[fortuneIdx]
+    const advice = FORTUNE_ADVICE[fortuneLevel]
+
+    // Lucky numbers
+    const luckyNum = ((seed * nameSeed) % 9) + 1
+    const luckyColor = ['赤', '橙', '黄', '绿', '青', '蓝', '紫', '金', '白'][(seed + nameSeed) % 9]
+
+    this.setData({
+      personalFortune: {
+        name: profile.name,
+        zodiac,
+        fortuneLevel,
+        advice,
+        luckyStars: zodiacInfo.lucky,
+        direction: zodiacInfo.direction,
+        luckyNum,
+        luckyColor
+      }
+    })
   },
 
   generateDailyInfo() {
@@ -270,6 +335,7 @@ Page({
       coinRound: 0,
       coinLines: [],
       coins: [0, 0, 0],
+      coinValues: ['', '', ''],
       isFlipping: false,
       hexagramResult: null
     })
@@ -279,7 +345,7 @@ Page({
     if (this.data.isFlipping || this.data.hexagramResult) return
     this.setData({ isFlipping: true })
 
-    // Simulate 3 coin tosses: 字(heads)=3, 背(tails)=2
+    // 字(heads)=3, 背(tails)=2
     const coins = [
       Math.random() < 0.5 ? 3 : 2,
       Math.random() < 0.5 ? 3 : 2,
@@ -290,14 +356,16 @@ Page({
     let lineType, lineSymbol, isMoving, yang
 
     if (sum === 6) {
-      lineType = '老阴'; lineSymbol = '━ ━ ━'; isMoving = true; yang = false
+      lineType = '老阴'; lineSymbol = '× ━ ━ ━ ×'; isMoving = true; yang = false
     } else if (sum === 7) {
-      lineType = '少阳'; lineSymbol = '━━━━━'; isMoving = false; yang = true
+      lineType = '少阳'; lineSymbol = '━━━━━━━'; isMoving = false; yang = true
     } else if (sum === 8) {
-      lineType = '少阴'; lineSymbol = '━ ━ ━'; isMoving = false; yang = false
+      lineType = '少阴'; lineSymbol = '━━━ ━ ━━━'; isMoving = false; yang = false
     } else {
-      lineType = '老阳'; lineSymbol = '━━━━━'; isMoving = true; yang = true
+      lineType = '老阳'; lineSymbol = '○ ━━━━━ ○'; isMoving = true; yang = true
     }
+
+    const coinValues = coins.map(c => c === 3 ? '字' : '背')
 
     setTimeout(() => {
       const newLines = [...this.data.coinLines, {
@@ -311,26 +379,25 @@ Page({
         const hexagramResult = this.lookupHexagram(newLines)
         this.setData({
           coinLines: newLines, coinRound: nextRound,
-          coins, isFlipping: false, hexagramResult
+          coins, coinValues, isFlipping: false, hexagramResult
         })
       } else {
         this.setData({
           coinLines: newLines, coinRound: nextRound,
-          coins, isFlipping: false
+          coins, coinValues, isFlipping: false
         })
       }
     }, 1200)
   },
 
   lookupHexagram(lines) {
-    // Lower trigram = lines 0,1,2 (bottom to top); Upper = lines 3,4,5
     const lower = (lines[0].yang ? 1 : 0) + (lines[1].yang ? 2 : 0) + (lines[2].yang ? 4 : 0)
     const upper = (lines[3].yang ? 1 : 0) + (lines[4].yang ? 2 : 0) + (lines[5].yang ? 4 : 0)
     const kingWenNum = HEXAGRAM_TABLE[upper * 8 + lower]
     const guaIndex = kingWenNum - 1
     const guaName = GUA_NAMES[guaIndex]
     const reading = GUA_FORTUNES[guaName] || '卦象已成，宜静心观变，顺势而为。'
-    const movingLines = lines.filter(l => l.isMoving).map(l => `第${l.position}爻${l.lineType}`)
+    const movingLines = lines.filter(l => l.isMoving).map(l => `第${l.position}爻 ${l.lineType}`)
 
     return { name: guaName, reading, movingLines, lines }
   },
@@ -342,7 +409,7 @@ Page({
   onResetDivination() {
     this.setData({
       coinRound: 0, coinLines: [], coins: [0, 0, 0],
-      isFlipping: false, hexagramResult: null
+      coinValues: ['', '', ''], isFlipping: false, hexagramResult: null
     })
   },
 

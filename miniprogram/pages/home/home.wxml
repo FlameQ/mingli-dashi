@@ -4,7 +4,7 @@
     <view class="profile-header">
       <view class="profile-header-left">
         <text class="profile-header-title">我的档案</text>
-        <text class="profile-header-hint">数据依据档案自动分析 · 可创建多个</text>
+        <text class="profile-header-hint">{{greeting}} · 所有数据依据档案自动分析</text>
       </view>
       <view class="profile-header-add" wx:if="{{hasProfiles}}" bindtap="onAddProfile">
         <text class="profile-add-text">+ 新建</text>
@@ -33,11 +33,6 @@
     </view>
   </view>
 
-  <!-- Greeting -->
-  <view class="greeting-bar">
-    <text class="greeting-text">{{greeting}}，一触即达千年智慧</text>
-  </view>
-
   <!-- Daily Almanac -->
   <view class="daily-card">
     <view class="daily-header">
@@ -57,6 +52,30 @@
       <view class="yiji-group">
         <text class="yiji-badge ji">忌</text>
         <text class="yiji-text">{{dailyInfo.ji}}</text>
+      </view>
+    </view>
+
+    <!-- Personal Fortune -->
+    <view class="personal-fortune" wx:if="{{personalFortune}}">
+      <view class="zen-divider"></view>
+      <view class="pf-header">
+        <text class="pf-title">{{personalFortune.name}} · 今日运势</text>
+        <text class="pf-level {{personalFortune.fortuneLevel === '大吉' || personalFortune.fortuneLevel === '吉' ? 'pf-level-good' : personalFortune.fortuneLevel === '凶' || personalFortune.fortuneLevel === '小凶' ? 'pf-level-bad' : ''}}">{{personalFortune.fortuneLevel}}</text>
+      </view>
+      <text class="pf-advice">{{personalFortune.advice}}</text>
+      <view class="pf-details">
+        <view class="pf-detail-item">
+          <text class="pf-detail-label">吉星</text>
+          <text class="pf-detail-value">{{personalFortune.luckyStars[0]}} · {{personalFortune.luckyStars[1]}}</text>
+        </view>
+        <view class="pf-detail-item">
+          <text class="pf-detail-label">方位</text>
+          <text class="pf-detail-value">{{personalFortune.direction}}</text>
+        </view>
+        <view class="pf-detail-item">
+          <text class="pf-detail-label">幸运</text>
+          <text class="pf-detail-value">{{personalFortune.luckyNum}} · {{personalFortune.luckyColor}}色</text>
+        </view>
       </view>
     </view>
   </view>
@@ -127,12 +146,29 @@
       <!-- Coin Tossing Area -->
       <view class="coin-area" wx:if="{{!hexagramResult}}">
         <view class="coins-row">
-          <view class="coin {{isFlipping ? 'coin-flip' : ''}} {{coins[index] === 3 ? 'coin-heads' : coins[index] === 2 ? 'coin-tails' : ''}}"
-                wx:for="{{[0,1,2]}}" wx:key="*this">
-            <text class="coin-text" wx:if="{{coins[item] === 3}}">字</text>
-            <text class="coin-text" wx:elif="{{coins[item] === 2}}">背</text>
-            <text class="coin-text coin-unknown" wx:else>?</text>
-            <view class="coin-hole"></view>
+          <view class="coin-wrap">
+            <view class="coin {{isFlipping ? 'coin-flip' : ''}} {{coins[0] === 3 ? 'coin-heads' : coins[0] === 2 ? 'coin-tails' : ''}}">
+              <text class="coin-text" wx:if="{{coins[0] === 3}}">字</text>
+              <text class="coin-text" wx:elif="{{coins[0] === 2}}">背</text>
+              <text class="coin-text coin-unknown" wx:else>?</text>
+            </view>
+            <text class="coin-value-label">{{coinValues[0]}}</text>
+          </view>
+          <view class="coin-wrap">
+            <view class="coin {{isFlipping ? 'coin-flip' : ''}} {{coins[1] === 3 ? 'coin-heads' : coins[1] === 2 ? 'coin-tails' : ''}}">
+              <text class="coin-text" wx:if="{{coins[1] === 3}}">字</text>
+              <text class="coin-text" wx:elif="{{coins[1] === 2}}">背</text>
+              <text class="coin-text coin-unknown" wx:else>?</text>
+            </view>
+            <text class="coin-value-label">{{coinValues[1]}}</text>
+          </view>
+          <view class="coin-wrap">
+            <view class="coin {{isFlipping ? 'coin-flip' : ''}} {{coins[2] === 3 ? 'coin-heads' : coins[2] === 2 ? 'coin-tails' : ''}}">
+              <text class="coin-text" wx:if="{{coins[2] === 3}}">字</text>
+              <text class="coin-text" wx:elif="{{coins[2] === 2}}">背</text>
+              <text class="coin-text coin-unknown" wx:else>?</text>
+            </view>
+            <text class="coin-value-label">{{coinValues[2]}}</text>
           </view>
         </view>
 
@@ -142,9 +178,11 @@
 
         <!-- Lines built so far -->
         <view class="coin-lines-built" wx:if="{{coinLines.length > 0}}">
+          <view class="coin-built-title">已成爻</view>
           <view class="coin-built-line" wx:for="{{coinLines}}" wx:key="position">
+            <text class="coin-built-num">{{item.position}}</text>
             <text class="coin-built-symbol {{item.isMoving ? 'moving' : ''}}">{{item.lineSymbol}}</text>
-            <text class="coin-built-label">{{item.lineType}}</text>
+            <text class="coin-built-type {{item.isMoving ? 'moving-type' : ''}}">{{item.lineType}}</text>
           </view>
         </view>
       </view>
@@ -158,8 +196,7 @@
           <view class="coin-result-line" wx:for="{{hexagramResult.lines}}" wx:key="position">
             <text class="coin-result-line-num">{{item.position}}</text>
             <text class="coin-result-line-sym {{item.isMoving ? 'moving' : ''}}">{{item.lineSymbol}}</text>
-            <text class="coin-result-line-type" wx:if="{{item.isMoving}}">{{item.lineType}} ●</text>
-            <text class="coin-result-line-type dim" wx:else>{{item.lineType}}</text>
+            <text class="coin-result-line-type {{item.isMoving ? 'moving-type' : 'dim-type'}}">{{item.lineType}}</text>
           </view>
         </view>
         <view class="coin-result-moving" wx:if="{{hexagramResult.movingLines.length > 0}}">

@@ -1,31 +1,31 @@
 /* ========================================
-   命理大师 - 雅致主题组件
+   命理大师 - 素墨主题组件
    ======================================== */
 
 .chinese-border {
-  position: relative; border: 1rpx solid #E3DDD5; border-radius: 16rpx;
-  overflow: hidden; background: #FFFFFF; box-shadow: 0 1rpx 4rpx rgba(28, 25, 23, 0.05);
+  position: relative; border: 1rpx solid #DDD7CD; border-radius: 16rpx;
+  overflow: hidden; background: #FFFFFF; box-shadow: 0 1rpx 6rpx rgba(30, 25, 20, 0.06);
 }
 .chinese-border::before, .chinese-border::after {
-  content: ''; position: absolute; width: 24rpx; height: 24rpx; border: 2rpx solid #8C7A63;
+  content: ''; position: absolute; width: 24rpx; height: 24rpx; border: 2rpx solid #4A3728;
 }
 .chinese-border::before { top: 8rpx; left: 8rpx; border-right: none; border-bottom: none; }
 .chinese-border::after { bottom: 8rpx; right: 8rpx; border-left: none; border-top: none; }
 
 .scroll-container {
-  background: #FFFFFF; border: 1rpx solid #E3DDD5; border-radius: 16rpx;
-  padding: 32rpx; position: relative; box-shadow: 0 1rpx 4rpx rgba(28, 25, 23, 0.05);
+  background: #FFFFFF; border: 1rpx solid #DDD7CD; border-radius: 16rpx;
+  padding: 32rpx; position: relative; box-shadow: 0 1rpx 6rpx rgba(30, 25, 20, 0.06);
 }
 
-.zen-divider { height: 1rpx; background: #E3DDD5; margin: 24rpx 0; opacity: 0.6; }
+.zen-divider { height: 1rpx; background: #DDD7CD; margin: 24rpx 0; opacity: 0.6; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(20rpx); } to { opacity: 1; transform: translateY(0); } }
 .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
 
-.hexagram-symbol { font-family: serif; font-size: 80rpx; color: #8C7A63; }
+.hexagram-symbol { font-family: serif; font-size: 80rpx; color: #4A3728; }
 
 .fortune-badge { display: inline-flex; align-items: center; padding: 4rpx 16rpx; border-radius: 20rpx; font-size: 22rpx; font-weight: bold; }
-.fortune-badge.excellent { background: #F0EDE7; color: #8C7A63; border: 1rpx solid #E3DDD5; }
-.fortune-badge.good { background: #E6ECE9; color: #5A7A6E; border: 1rpx solid #D4DDD9; }
-.fortune-badge.neutral { background: #F7F4EF; color: #7D7568; border: 1rpx solid #E3DDD5; }
-.fortune-badge.poor { background: #F5F2ED; color: #B8860B; border: 1rpx solid #E3DDD5; }
+.fortune-badge.excellent { background: #F0EDE7; color: #4A3728; border: 1rpx solid #DDD7CD; }
+.fortune-badge.good { background: #E6ECE9; color: #4A7A6E; border: 1rpx solid #D4DDD9; }
+.fortune-badge.neutral { background: #F7F4EF; color: #7A7068; border: 1rpx solid #DDD7CD; }
+.fortune-badge.poor { background: #F5F2ED; color: #B8860B; border: 1rpx solid #DDD7CD; }
