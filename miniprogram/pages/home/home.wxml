@@ -47,17 +47,21 @@
     <view class="daily-yiji">
       <view class="yiji-group">
         <text class="yiji-badge yi">宜</text>
-        <text class="yiji-text">{{dailyInfo.yi}}</text>
+        <view class="yiji-tags">
+          <text class="yiji-tag" wx:for="{{dailyInfo.yi}}" wx:key="*this">{{item}}</text>
+        </view>
       </view>
       <view class="yiji-group">
         <text class="yiji-badge ji">忌</text>
-        <text class="yiji-text">{{dailyInfo.ji}}</text>
+        <view class="yiji-tags">
+          <text class="yiji-tag" wx:for="{{dailyInfo.ji}}" wx:key="*this">{{item}}</text>
+        </view>
       </view>
     </view>
 
     <!-- Personal Fortune -->
     <view class="personal-fortune" wx:if="{{personalFortune}}">
-      <view class="zen-divider"></view>
+      <view class="pf-divider"></view>
       <view class="pf-header">
         <text class="pf-title">{{personalFortune.name}} · 今日运势</text>
         <text class="pf-level {{personalFortune.fortuneLevel === '大吉' || personalFortune.fortuneLevel === '吉' ? 'pf-level-good' : personalFortune.fortuneLevel === '凶' || personalFortune.fortuneLevel === '小凶' ? 'pf-level-bad' : ''}}">{{personalFortune.fortuneLevel}}</text>
@@ -80,23 +84,21 @@
     </view>
   </view>
 
-  <!-- Daily Hexagram Card -->
+  <!-- Daily Hexagram Card (compact) -->
   <view class="gua-card" bindtap="onStartDivination">
-    <view class="gua-card-header">
-      <text class="gua-card-label">每日一卦</text>
-      <text class="gua-card-date">{{dailyGua.date}}</text>
+    <view class="gua-card-row">
+      <view class="gua-left">
+        <text class="gua-card-label">每日一卦</text>
+        <text class="gua-card-date">{{dailyGua.date}}</text>
+      </view>
+      <view class="gua-symbol-mini">
+        <text class="gua-name-mini">{{dailyGua.name}}</text>
+      </view>
     </view>
-    <view class="gua-card-body">
-      <view class="gua-symbol-area">
-        <text class="gua-big-name">{{dailyGua.name}}</text>
-        <view class="gua-yao-display">
-          <text class="gua-yao-line" wx:for="{{dailyGua.yaos}}" wx:key="index">{{item.line}}</text>
-        </view>
-      </view>
-      <view class="gua-reading-area">
-        <text class="gua-reading-text">{{dailyGua.reading}}</text>
-        <text class="gua-tap-hint">点击摇铜钱起卦 ›</text>
-      </view>
+    <text class="gua-reading-mini">{{dailyGua.reading}}</text>
+    <view class="gua-cta">
+      <text class="gua-cta-text">摇铜钱起卦</text>
+      <text class="gua-cta-arrow">›</text>
     </view>
   </view>
 
@@ -124,7 +126,7 @@
   <!-- ===== Coin Divination Modal ===== -->
   <view class="coin-modal" wx:if="{{showCoinModal}}">
     <view class="coin-modal-mask" bindtap="onCloseDivination"></view>
-    <view class="coin-modal-body">
+    <scroll-view class="coin-modal-body" scroll-y enhanced show-scrollbar="{{false}}">
       <view class="coin-modal-header">
         <text class="coin-modal-title">铜钱起卦</text>
         <text class="coin-modal-close" bindtap="onCloseDivination">✕</text>
@@ -152,7 +154,6 @@
               <text class="coin-text" wx:elif="{{coins[0] === 2}}">背</text>
               <text class="coin-text coin-unknown" wx:else>?</text>
             </view>
-            <text class="coin-value-label">{{coinValues[0]}}</text>
           </view>
           <view class="coin-wrap">
             <view class="coin {{isFlipping ? 'coin-flip' : ''}} {{coins[1] === 3 ? 'coin-heads' : coins[1] === 2 ? 'coin-tails' : ''}}">
@@ -160,7 +161,6 @@
               <text class="coin-text" wx:elif="{{coins[1] === 2}}">背</text>
               <text class="coin-text coin-unknown" wx:else>?</text>
             </view>
-            <text class="coin-value-label">{{coinValues[1]}}</text>
           </view>
           <view class="coin-wrap">
             <view class="coin {{isFlipping ? 'coin-flip' : ''}} {{coins[2] === 3 ? 'coin-heads' : coins[2] === 2 ? 'coin-tails' : ''}}">
@@ -168,7 +168,6 @@
               <text class="coin-text" wx:elif="{{coins[2] === 2}}">背</text>
               <text class="coin-text coin-unknown" wx:else>?</text>
             </view>
-            <text class="coin-value-label">{{coinValues[2]}}</text>
           </view>
         </view>
 
@@ -181,7 +180,6 @@
           <view class="coin-built-title">已成爻</view>
           <view class="coin-built-line" wx:for="{{coinLines}}" wx:key="position">
             <text class="coin-built-num">{{item.position}}</text>
-            <!-- Visual yao bar -->
             <view class="yao-bar">
               <view class="yao-bar-inner {{item.yang ? 'yang' : 'yin'}} {{item.isMoving ? 'moving' : ''}}">
                 <view wx:if="{{item.yang}}" class="yang-line"></view>
@@ -280,6 +278,9 @@
           <view class="coin-close-btn" bindtap="onCloseDivination"><text>关闭</text></view>
         </view>
       </view>
-    </view>
+
+      <!-- Bottom safe spacer -->
+      <view class="coin-modal-spacer"></view>
+    </scroll-view>
   </view>
 </view>

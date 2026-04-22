@@ -153,7 +153,6 @@ Page({
     coinRound: 0,
     coinLines: [],
     coins: [0, 0, 0],
-    coinValues: ['', '', ''],
     isFlipping: false,
     hexagramResult: null
   },
@@ -335,7 +334,6 @@ Page({
       coinRound: 0,
       coinLines: [],
       coins: [0, 0, 0],
-      coinValues: ['', '', ''],
       isFlipping: false,
       hexagramResult: null
     })
@@ -365,11 +363,9 @@ Page({
       lineType = '老阳'; isMoving = true; yang = true
     }
 
-    const coinValues = coins.map(c => c === 3 ? '字' : '背')
-
     setTimeout(() => {
       const newLines = [...this.data.coinLines, {
-        coins: [...coins], sum, lineType, lineSymbol, isMoving, yang,
+        coins: [...coins], sum, lineType, isMoving, yang,
         position: this.data.coinRound + 1
       }]
       const nextRound = this.data.coinRound + 1
@@ -379,12 +375,12 @@ Page({
         const hexagramResult = this.lookupHexagram(newLines)
         this.setData({
           coinLines: newLines, coinRound: nextRound,
-          coins, coinValues, isFlipping: false, hexagramResult
+          coins, isFlipping: false, hexagramResult
         })
       } else {
         this.setData({
           coinLines: newLines, coinRound: nextRound,
-          coins, coinValues, isFlipping: false
+          coins, isFlipping: false
         })
       }
     }, 1200)
@@ -485,7 +481,7 @@ Page({
   onResetDivination() {
     this.setData({
       coinRound: 0, coinLines: [], coins: [0, 0, 0],
-      coinValues: ['', '', ''], isFlipping: false, hexagramResult: null
+      isFlipping: false, hexagramResult: null
     })
   },
 

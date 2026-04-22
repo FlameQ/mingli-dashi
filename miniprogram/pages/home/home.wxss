@@ -99,21 +99,28 @@
 .daily-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12rpx; }
 .daily-label { font-size: 28rpx; font-weight: bold; color: #1A1714; }
 .daily-date { font-size: 22rpx; color: #9A9088; }
-.daily-tags { display: flex; gap: 12rpx; margin-bottom: 16rpx; }
+.daily-tags { display: flex; gap: 12rpx; margin-bottom: 16rpx; flex-wrap: wrap; }
 .daily-tag {
   font-size: 22rpx; color: #4A3728; background: #F7F5F2;
   padding: 4rpx 14rpx; border-radius: 12rpx;
 }
-.daily-yiji { display: flex; gap: 24rpx; }
-.yiji-group { display: flex; align-items: center; gap: 10rpx; flex: 1; }
-.yiji-badge { font-size: 22rpx; font-weight: bold; padding: 2rpx 12rpx; border-radius: 6rpx; flex-shrink: 0; }
+.daily-yiji { display: flex; flex-direction: column; gap: 12rpx; }
+.yiji-group { display: flex; align-items: flex-start; gap: 10rpx; }
+.yiji-badge { font-size: 22rpx; font-weight: bold; padding: 4rpx 12rpx; border-radius: 6rpx; flex-shrink: 0; margin-top: 2rpx; }
 .yiji-badge.yi { background: #EFEAE4; color: #4A3728; }
 .yiji-badge.ji { background: #F5F2ED; color: #B8860B; }
-.yiji-text { font-size: 22rpx; color: #7A7068; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.yiji-tags { display: flex; flex-wrap: wrap; gap: 8rpx; flex: 1; }
+.yiji-tag {
+  font-size: 22rpx; color: #7A7068; background: #F7F5F2;
+  padding: 4rpx 14rpx; border-radius: 10rpx;
+}
 
 /* ===== Personal Fortune ===== */
 .personal-fortune {
-  margin-top: 8rpx;
+  margin-top: 16rpx;
+}
+.pf-divider {
+  height: 1rpx; background: #DDD7CD; margin-bottom: 16rpx;
 }
 .pf-header {
   display: flex; justify-content: space-between; align-items: center;
@@ -149,34 +156,44 @@
   font-size: 22rpx; color: #4A3728; font-weight: 500;
 }
 
-/* ===== Daily Hexagram ===== */
+/* ===== Daily Hexagram Card (compact) ===== */
 .gua-card {
-  margin: 12rpx 24rpx 0; padding: 24rpx 28rpx;
+  margin: 12rpx 24rpx 0; padding: 20rpx 24rpx;
   background: #FFFFFF; border-radius: 20rpx;
   border: 1rpx solid #DDD7CD;
   box-shadow: 0 1rpx 6rpx rgba(30, 25, 20, 0.06);
   position: relative; overflow: hidden;
 }
-.gua-card-header {
+.gua-card-row {
   display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 16rpx;
+  margin-bottom: 10rpx;
 }
-.gua-card-label { font-size: 28rpx; font-weight: bold; color: #1A1714; }
-.gua-card-date { font-size: 22rpx; color: #9A9088; }
-.gua-card-body { display: flex; gap: 24rpx; align-items: center; }
-.gua-symbol-area {
-  flex-shrink: 0; text-align: center;
-  padding: 12rpx 20rpx; background: #F7F5F2; border-radius: 12rpx;
+.gua-left {
+  display: flex; flex-direction: column; gap: 4rpx;
 }
-.gua-big-name {
-  font-size: 48rpx; font-weight: bold; color: #4A3728;
-  display: block; margin-bottom: 8rpx;
+.gua-card-label { font-size: 26rpx; font-weight: bold; color: #1A1714; }
+.gua-card-date { font-size: 20rpx; color: #9A9088; }
+.gua-symbol-mini {
+  width: 64rpx; height: 64rpx; border-radius: 50%;
+  background: #F7F5F2; display: flex; align-items: center; justify-content: center;
+  border: 2rpx solid #DDD7CD;
 }
-.gua-yao-display { display: flex; flex-direction: column; gap: 2rpx; }
-.gua-yao-line { font-size: 16rpx; color: #7A7068; letter-spacing: -2rpx; line-height: 1; }
-.gua-reading-area { flex: 1; }
-.gua-reading-text { font-size: 24rpx; color: #7A7068; line-height: 1.6; }
-.gua-tap-hint { font-size: 22rpx; color: #C49A6C; margin-top: 8rpx; display: block; }
+.gua-name-mini {
+  font-size: 32rpx; font-weight: bold; color: #4A3728;
+}
+.gua-reading-mini {
+  font-size: 22rpx; color: #7A7068; line-height: 1.5;
+  overflow: hidden; text-overflow: ellipsis;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  margin-bottom: 12rpx;
+}
+.gua-cta {
+  display: flex; align-items: center; justify-content: center;
+  gap: 6rpx; padding: 10rpx 0;
+  background: #4A3728; border-radius: 32rpx;
+}
+.gua-cta-text { font-size: 24rpx; color: #FFFFFF; font-weight: bold; }
+.gua-cta-arrow { font-size: 28rpx; color: #C49A6C; }
 
 /* ===== Module Section Groups ===== */
 .module-section { margin-top: 8rpx; }
@@ -237,7 +254,7 @@
 /* ===== Coin Divination Modal ===== */
 .coin-modal {
   position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 1000; display: flex; align-items: flex-end;
+  z-index: 2000; display: flex; align-items: flex-end;
 }
 .coin-modal-mask {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
@@ -246,43 +263,47 @@
 .coin-modal-body {
   position: relative; width: 100%;
   background: #FFFFFF; border-radius: 24rpx 24rpx 0 0;
-  padding: 36rpx 32rpx; padding-bottom: calc(36rpx + env(safe-area-inset-bottom));
-  max-height: 85vh; overflow-y: auto;
+  padding: 32rpx 32rpx 0;
+  height: 65vh;
+}
+.coin-modal-spacer {
+  height: calc(40rpx + env(safe-area-inset-bottom));
+  flex-shrink: 0;
 }
 .coin-modal-header {
   display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 24rpx;
+  margin-bottom: 20rpx;
 }
-.coin-modal-title { font-size: 36rpx; font-weight: bold; color: #1A1714; }
+.coin-modal-title { font-size: 34rpx; font-weight: bold; color: #1A1714; }
 .coin-modal-close { font-size: 36rpx; color: #9A9088; padding: 8rpx; }
 
 .coin-method-info {
-  background: #F7F5F2; border-radius: 12rpx; padding: 16rpx 20rpx;
-  margin-bottom: 24rpx;
+  background: #F7F5F2; border-radius: 12rpx; padding: 12rpx 20rpx;
+  margin-bottom: 20rpx;
 }
-.coin-method-text { font-size: 24rpx; color: #7A7068; line-height: 1.6; }
+.coin-method-text { font-size: 22rpx; color: #7A7068; line-height: 1.5; }
 
 /* Progress */
 .coin-progress {
   display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 28rpx;
+  margin-bottom: 24rpx;
 }
-.coin-progress-text { font-size: 28rpx; color: #7A7068; font-weight: 500; }
-.coin-progress-dots { display: flex; gap: 14rpx; }
+.coin-progress-text { font-size: 26rpx; color: #7A7068; font-weight: 500; }
+.coin-progress-dots { display: flex; gap: 12rpx; }
 .coin-dot {
-  width: 18rpx; height: 18rpx; border-radius: 50%;
+  width: 16rpx; height: 16rpx; border-radius: 50%;
   background: #DDD7CD; transition: background 0.3s;
 }
 .coin-dot.done { background: #4A3728; }
 
 /* Coins */
 .coin-area { display: flex; flex-direction: column; align-items: center; }
-.coins-row { display: flex; gap: 48rpx; margin-bottom: 36rpx; justify-content: center; }
+.coins-row { display: flex; gap: 40rpx; margin-bottom: 28rpx; justify-content: center; }
 .coin-wrap {
-  display: flex; flex-direction: column; align-items: center; gap: 8rpx;
+  display: flex; flex-direction: column; align-items: center; gap: 4rpx;
 }
 .coin {
-  width: 120rpx; height: 120rpx; border-radius: 50%;
+  width: 100rpx; height: 100rpx; border-radius: 50%;
   border: 4rpx solid #C49A6C; background: #F5EDE0;
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 4rpx 16rpx rgba(74, 55, 40, 0.15), inset 0 2rpx 4rpx rgba(255, 255, 255, 0.6);
@@ -295,12 +316,9 @@
   background: #D8CDB8; border-color: #8A7A5A;
 }
 .coin-text {
-  font-size: 36rpx; font-weight: bold; color: #5A4A30;
+  font-size: 32rpx; font-weight: bold; color: #5A4A30;
 }
 .coin-unknown { color: #B8A890; }
-.coin-value-label {
-  font-size: 20rpx; color: #9A9088; text-align: center;
-}
 
 /* Coin flip animation */
 @keyframes coinFlip {
@@ -317,9 +335,9 @@
 
 /* Toss Button */
 .coin-toss-btn {
-  width: 320rpx; padding: 24rpx 0; text-align: center;
+  width: 300rpx; padding: 20rpx 0; text-align: center;
   background: #4A3728; color: #FFFFFF;
-  border-radius: 48rpx; font-size: 30rpx; font-weight: bold;
+  border-radius: 48rpx; font-size: 28rpx; font-weight: bold;
   box-shadow: 0 6rpx 20rpx rgba(74, 55, 40, 0.3);
   transition: all 0.2s;
 }
