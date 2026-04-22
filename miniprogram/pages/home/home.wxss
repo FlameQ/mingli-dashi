@@ -264,7 +264,7 @@
   position: relative; width: 100%;
   background: #FFFFFF; border-radius: 24rpx 24rpx 0 0;
   padding: 32rpx 32rpx 0;
-  height: 65vh;
+  height: 80vh;
 }
 .coin-modal-spacer {
   height: calc(40rpx + env(safe-area-inset-bottom));
