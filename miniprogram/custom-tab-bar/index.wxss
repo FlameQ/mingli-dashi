@@ -1,109 +1,41 @@
 .tab-bar {
   position: fixed; bottom: 0; left: 0; right: 0;
-  height: 110rpx;
   background: #FFFFFF;
-  display: flex; align-items: center; justify-content: space-around;
+  display: flex; align-items: flex-start; justify-content: space-around;
   border-top: 1rpx solid #DDD7CD;
-  padding-bottom: env(safe-area-inset-bottom);
+  padding: 12rpx 0 0;
+  padding-bottom: calc(12rpx + env(safe-area-inset-bottom));
   z-index: 999;
 }
 .tab-item {
   display: flex; flex-direction: column; align-items: center;
-  justify-content: center; flex: 1; padding: 6rpx 0;
+  justify-content: flex-start; flex: 1;
   position: relative;
 }
 .tab-icon-wrap {
   display: flex; flex-direction: column; align-items: center;
-  margin-bottom: 4rpx; position: relative;
-  width: 48rpx; height: 48rpx;
-  justify-content: center;
+  justify-content: flex-start;
+  position: relative;
+  margin-bottom: 4rpx;
+}
+.tab-icon {
+  font-size: 44rpx; line-height: 1;
+  color: #B8B0A5;
+  transition: color 0.25s;
+}
+.tab-icon-active {
+  color: #4A3728;
 }
 .tab-text {
   font-size: 20rpx; color: #B8B0A5;
   transition: all 0.25s ease;
+  line-height: 1.2;
 }
 .tab-indicator {
-  position: absolute; bottom: -6rpx; left: 50%; transform: translateX(-50%);
   width: 8rpx; height: 8rpx; border-radius: 50%;
   background: #4A3728;
+  margin-top: 2rpx;
 }
 .tab-item.active .tab-text {
   color: #4A3728; font-weight: bold;
 }
-
-/* ===== CSS-Drawn Icons ===== */
-
-/* Home Icon */
-.icon-home {
-  display: flex; flex-direction: column; align-items: center;
-}
-.icon-home-roof {
-  width: 0; height: 0;
-  border-left: 18rpx solid transparent;
-  border-right: 18rpx solid transparent;
-  border-bottom: 14rpx solid #B8B0A5;
-  transition: border-color 0.25s;
-}
-.icon-home-body {
-  width: 22rpx; height: 14rpx;
-  border: 2rpx solid #B8B0A5;
-  border-top: none;
-  border-radius: 0 0 4rpx 4rpx;
-  transition: border-color 0.25s, background 0.25s;
-}
-.active .icon-home-roof { border-bottom-color: #4A3728; }
-.active .icon-home-body { border-color: #4A3728; }
-
-/* Category Icon */
-.icon-category {
-  display: flex; flex-direction: column; gap: 6rpx; align-items: center;
-}
-.icon-cat-row {
-  display: flex; gap: 6rpx;
-}
-.icon-cat-block {
-  width: 14rpx; height: 14rpx;
-  border: 2rpx solid #B8B0A5; border-radius: 2rpx;
-  transition: border-color 0.25s, background 0.25s;
-}
-.active .icon-cat-block { border-color: #4A3728; }
-
-/* History/Clock Icon */
-.icon-history {
-  display: flex; align-items: center; justify-content: center;
-}
-.icon-clock-face {
-  width: 28rpx; height: 28rpx;
-  border: 2rpx solid #B8B0A5; border-radius: 50%;
-  position: relative;
-  transition: border-color 0.25s;
-}
-.icon-clock-hand {
-  position: absolute; bottom: 50%; left: 50%;
-  width: 2rpx; height: 10rpx;
-  background: #B8B0A5;
-  transform-origin: bottom center;
-  transform: translateX(-50%) rotate(45deg);
-  transition: background 0.25s;
-}
-.active .icon-clock-face { border-color: #4A3728; }
-.active .icon-clock-hand { background: #4A3728; }
-
-/* Profile Icon */
-.icon-profile {
-  display: flex; flex-direction: column; align-items: center; gap: 4rpx;
-}
-.icon-profile-head {
-  width: 14rpx; height: 14rpx;
-  border: 2rpx solid #B8B0A5; border-radius: 50%;
-  transition: border-color 0.25s;
-}
-.icon-profile-body {
-  width: 24rpx; height: 8rpx;
-  border: 2rpx solid #B8B0A5;
-  border-bottom: none;
-  border-radius: 12rpx 12rpx 0 0;
-  transition: border-color 0.25s;
-}
-.active .icon-profile-head { border-color: #4A3728; }
-.active .icon-profile-body { border-color: #4A3728; }

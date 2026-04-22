@@ -356,13 +356,13 @@ Page({
     let lineType, lineSymbol, isMoving, yang
 
     if (sum === 6) {
-      lineType = '老阴'; lineSymbol = '× ━ ━ ━ ×'; isMoving = true; yang = false
+      lineType = '老阴'; isMoving = true; yang = false
     } else if (sum === 7) {
-      lineType = '少阳'; lineSymbol = '━━━━━━━'; isMoving = false; yang = true
+      lineType = '少阳'; isMoving = false; yang = true
     } else if (sum === 8) {
-      lineType = '少阴'; lineSymbol = '━━━ ━ ━━━'; isMoving = false; yang = false
+      lineType = '少阴'; isMoving = false; yang = false
     } else {
-      lineType = '老阳'; lineSymbol = '○ ━━━━━ ○'; isMoving = true; yang = true
+      lineType = '老阳'; isMoving = true; yang = true
     }
 
     const coinValues = coins.map(c => c === 3 ? '字' : '背')
@@ -391,15 +391,91 @@ Page({
   },
 
   lookupHexagram(lines) {
+    const TRIGRAM_NAMES = ['坤', '震', '坎', '兑', '艮', '离', '巽', '乾']
+    const TRIGRAM_NATURE = ['地', '雷', '水', '泽', '山', '火', '风', '天']
+    const TRIGRAM_ELEMENT = ['土', '木', '水', '金', '土', '火', '木', '金']
+
     const lower = (lines[0].yang ? 1 : 0) + (lines[1].yang ? 2 : 0) + (lines[2].yang ? 4 : 0)
     const upper = (lines[3].yang ? 1 : 0) + (lines[4].yang ? 2 : 0) + (lines[5].yang ? 4 : 0)
     const kingWenNum = HEXAGRAM_TABLE[upper * 8 + lower]
     const guaIndex = kingWenNum - 1
     const guaName = GUA_NAMES[guaIndex]
     const reading = GUA_FORTUNES[guaName] || '卦象已成，宜静心观变，顺势而为。'
-    const movingLines = lines.filter(l => l.isMoving).map(l => `第${l.position}爻 ${l.lineType}`)
 
-    return { name: guaName, reading, movingLines, lines }
+    const upperName = TRIGRAM_NAMES[upper]
+    const lowerName = TRIGRAM_NAMES[lower]
+    const upperNature = TRIGRAM_NATURE[upper]
+    const lowerNature = TRIGRAM_NATURE[lower]
+    const upperElement = TRIGRAM_ELEMENT[upper]
+    const lowerElement = TRIGRAM_ELEMENT[lower]
+
+    // Mutual hexagram (互卦): lines 2-3-4 form new lower, lines 3-4-5 form new upper
+    const mutualLower = (lines[1].yang ? 1 : 0) + (lines[2].yang ? 2 : 0) + (lines[3].yang ? 4 : 0)
+    const mutualUpper = (lines[2].yang ? 1 : 0) + (lines[3].yang ? 2 : 0) + (lines[4].yang ? 4 : 0)
+    const mutualKingWen = HEXAGRAM_TABLE[mutualUpper * 8 + mutualLower]
+    const mutualName = GUA_NAMES[mutualKingWen - 1]
+    const mutualReading = GUA_FORTUNES[mutualName] || '暗中运转，潜移默化。'
+
+    // Generate analysis text
+    const movingLines = lines.filter(l => l.isMoving)
+    const movingDesc = movingLines.map(l => `第${l.position}爻（${l.lineType}）`)
+
+    // Five-element relationship
+    const elementRelations = { '金水': '相生', '水木': '相生', '木火': '相生', '火土': '相生', '土金': '相生',
+      '水火': '相克', '火金': '相克', '金木': '相克', '木土': '相克', '土木': '相克' }
+    const elementRel = upperElement === lowerElement ? '比和' : (elementRelations[upperElement + lowerElement] || elementRelations[lowerElement + upperElement] || '相生')
+
+    // Detailed advice based on moving lines
+    let detailAdvice = ''
+    if (movingLines.length === 0) {
+      detailAdvice = '无动爻，以本卦卦辞为主断。卦象稳定，按部就班即可。'
+    } else if (movingLines.length === 1) {
+      detailAdvice = `单爻动，以${movingDesc[0]}爻辞为主断。此爻为变化关键，需重点关注。`
+    } else if (movingLines.length <= 3) {
+      detailAdvice = `多爻动，以本卦卦辞为体，变卦为用。${movingDesc.join('、')}共${movingLines.length}处变动，局势复杂，需综合判断。`
+    } else {
+      detailAdvice = `动爻过多（${movingLines.length}个），以静爻爻辞为主断。变化纷繁，宜守静观变。`
+    }
+
+    // Changed hexagram (变卦): flip moving lines
+    if (movingLines.length > 0) {
+      const changedYang = lines.map(l => l.isMoving ? !l.yang : l.yang)
+      const chLower = (changedYang[0] ? 1 : 0) + (changedYang[1] ? 2 : 0) + (changedYang[2] ? 4 : 0)
+      const chUpper = (changedYang[3] ? 1 : 0) + (changedYang[4] ? 2 : 0) + (changedYang[5] ? 4 : 0)
+      const chKingWen = HEXAGRAM_TABLE[chUpper * 8 + chLower]
+      const changedName = GUA_NAMES[chKingWen - 1]
+      const changedReading = GUA_FORTUNES[changedName] || '变化之象，宜顺势而为。'
+
+      this.setData({
+        hexagramResult: {
+          name: guaName, reading, lines, kingWenNum,
+          upperName, lowerName, upperNature, lowerNature,
+          upperElement, lowerElement, elementRel,
+          mutualName, mutualReading,
+          changedName, changedReading,
+          movingLines: movingDesc,
+          movingCount: movingLines.length,
+          detailAdvice,
+          hasChanged: true
+        }
+      })
+      return this.data.hexagramResult
+    }
+
+    this.setData({
+      hexagramResult: {
+        name: guaName, reading, lines, kingWenNum,
+        upperName, lowerName, upperNature, lowerNature,
+        upperElement, lowerElement, elementRel,
+        mutualName, mutualReading,
+        changedName: '', changedReading: '',
+        movingLines: movingDesc,
+        movingCount: movingLines.length,
+        detailAdvice,
+        hasChanged: false
+      }
+    })
+    return this.data.hexagramResult
   },
 
   onCloseDivination() {

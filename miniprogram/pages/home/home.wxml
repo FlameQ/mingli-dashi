@@ -181,7 +181,18 @@
           <view class="coin-built-title">已成爻</view>
           <view class="coin-built-line" wx:for="{{coinLines}}" wx:key="position">
             <text class="coin-built-num">{{item.position}}</text>
-            <text class="coin-built-symbol {{item.isMoving ? 'moving' : ''}}">{{item.lineSymbol}}</text>
+            <!-- Visual yao bar -->
+            <view class="yao-bar">
+              <view class="yao-bar-inner {{item.yang ? 'yang' : 'yin'}} {{item.isMoving ? 'moving' : ''}}">
+                <view wx:if="{{item.yang}}" class="yang-line"></view>
+                <block wx:else>
+                  <view class="yin-left"></view>
+                  <view class="yin-gap"></view>
+                  <view class="yin-right"></view>
+                </block>
+              </view>
+              <text class="yao-marker" wx:if="{{item.isMoving}}">{{item.yang ? '○' : '×'}}</text>
+            </view>
             <text class="coin-built-type {{item.isMoving ? 'moving-type' : ''}}">{{item.lineType}}</text>
           </view>
         </view>
@@ -191,18 +202,79 @@
       <view class="coin-result" wx:if="{{hexagramResult}}">
         <view class="coin-result-header">
           <text class="coin-result-gua">{{hexagramResult.name}}卦</text>
+          <text class="coin-result-num">第{{hexagramResult.kingWenNum}}卦</text>
         </view>
+
+        <!-- Trigram Info -->
+        <view class="coin-result-trigrams">
+          <view class="trigram-info">
+            <text class="trigram-label">上卦</text>
+            <text class="trigram-name">{{hexagramResult.upperName}}（{{hexagramResult.upperNature}}）</text>
+            <text class="trigram-element">{{hexagramResult.upperElement}}</text>
+          </view>
+          <text class="trigram-rel">{{hexagramResult.elementRel}}</text>
+          <view class="trigram-info">
+            <text class="trigram-label">下卦</text>
+            <text class="trigram-name">{{hexagramResult.lowerName}}（{{hexagramResult.lowerNature}}）</text>
+            <text class="trigram-element">{{hexagramResult.lowerElement}}</text>
+          </view>
+        </view>
+
+        <!-- Hexagram Lines Visual -->
         <view class="coin-result-lines">
           <view class="coin-result-line" wx:for="{{hexagramResult.lines}}" wx:key="position">
             <text class="coin-result-line-num">{{item.position}}</text>
-            <text class="coin-result-line-sym {{item.isMoving ? 'moving' : ''}}">{{item.lineSymbol}}</text>
+            <view class="yao-bar result-yao">
+              <view class="yao-bar-inner {{item.yang ? 'yang' : 'yin'}} {{item.isMoving ? 'moving' : ''}}">
+                <view wx:if="{{item.yang}}" class="yang-line"></view>
+                <block wx:else>
+                  <view class="yin-left"></view>
+                  <view class="yin-gap"></view>
+                  <view class="yin-right"></view>
+                </block>
+              </view>
+              <text class="yao-marker" wx:if="{{item.isMoving}}">{{item.yang ? '○' : '×'}}</text>
+            </view>
             <text class="coin-result-line-type {{item.isMoving ? 'moving-type' : 'dim-type'}}">{{item.lineType}}</text>
           </view>
         </view>
+
+        <!-- Moving Lines -->
         <view class="coin-result-moving" wx:if="{{hexagramResult.movingLines.length > 0}}">
           <text class="coin-moving-text">动爻：{{hexagramResult.movingLines.join('、')}}</text>
         </view>
-        <text class="coin-result-reading">{{hexagramResult.reading}}</text>
+
+        <!-- Changed Hexagram -->
+        <view class="coin-result-changed" wx:if="{{hexagramResult.hasChanged}}">
+          <view class="changed-header">
+            <text class="changed-label">变卦</text>
+            <text class="changed-arrow">→</text>
+            <text class="changed-name">{{hexagramResult.changedName}}卦</text>
+          </view>
+          <text class="changed-reading">{{hexagramResult.changedReading}}</text>
+        </view>
+
+        <!-- Mutual Hexagram -->
+        <view class="coin-result-mutual">
+          <view class="mutual-header">
+            <text class="mutual-label">互卦</text>
+            <text class="mutual-name">{{hexagramResult.mutualName}}卦</text>
+          </view>
+          <text class="mutual-reading">{{hexagramResult.mutualReading}}</text>
+        </view>
+
+        <!-- Main Reading -->
+        <view class="coin-result-main-reading">
+          <text class="main-reading-label">卦辞</text>
+          <text class="coin-result-reading">{{hexagramResult.reading}}</text>
+        </view>
+
+        <!-- Detail Advice -->
+        <view class="coin-result-detail">
+          <text class="detail-label">断卦分析</text>
+          <text class="detail-text">{{hexagramResult.detailAdvice}}</text>
+        </view>
+
         <view class="coin-result-btns">
           <view class="coin-retry-btn" bindtap="onResetDivination"><text>重新起卦</text></view>
           <view class="coin-close-btn" bindtap="onCloseDivination"><text>关闭</text></view>

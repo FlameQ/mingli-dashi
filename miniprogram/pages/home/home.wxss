@@ -343,16 +343,62 @@
 .coin-built-num {
   font-size: 22rpx; color: #9A9088; width: 32rpx; text-align: center;
 }
-.coin-built-symbol {
-  font-size: 22rpx; color: #7A7068; letter-spacing: -1rpx;
-  font-family: 'Courier New', monospace;
-}
-.coin-built-symbol.moving { color: #4A3728; font-weight: bold; }
 .coin-built-type {
-  font-size: 20rpx; color: #9A9088; margin-left: auto;
+  font-size: 20rpx; color: #9A9088; margin-left: auto; flex-shrink: 0;
 }
 .coin-built-type.moving-type {
   color: #4A3728; font-weight: bold;
+}
+
+/* ===== Visual Yao Bars ===== */
+.yao-bar {
+  display: flex; align-items: center; flex: 1; gap: 10rpx;
+  justify-content: center;
+}
+.yao-bar-inner {
+  display: flex; align-items: center; justify-content: center;
+  height: 16rpx; min-width: 200rpx;
+}
+.yao-bar-inner.yang {
+  /* single solid bar */
+}
+.yao-bar-inner.yin {
+  justify-content: center; gap: 12rpx;
+}
+.yang-line {
+  width: 200rpx; height: 12rpx;
+  background: #7A7068; border-radius: 2rpx;
+}
+.yao-bar-inner.moving .yang-line {
+  background: #4A3728; height: 14rpx;
+}
+.yin-left, .yin-right {
+  width: 88rpx; height: 12rpx;
+  background: #7A7068; border-radius: 2rpx;
+}
+.yao-bar-inner.moving .yin-left,
+.yao-bar-inner.moving .yin-right {
+  background: #4A3728; height: 14rpx;
+}
+.yin-gap {
+  width: 12rpx;
+}
+.yao-marker {
+  font-size: 20rpx; font-weight: bold; color: #4A3728;
+  width: 28rpx; text-align: center; flex-shrink: 0;
+}
+.result-yao .yang-line {
+  width: 240rpx; height: 14rpx;
+}
+.result-yao .yin-left, .result-yao .yin-right {
+  width: 106rpx; height: 14rpx;
+}
+.result-yao .yao-bar-inner.moving .yang-line {
+  height: 16rpx;
+}
+.result-yao .yao-bar-inner.moving .yin-left,
+.result-yao .yao-bar-inner.moving .yin-right {
+  height: 16rpx;
 }
 
 /* ===== Hexagram Result ===== */
@@ -360,50 +406,118 @@
   display: flex; flex-direction: column; align-items: center;
 }
 .coin-result-header {
-  margin-bottom: 28rpx;
+  display: flex; align-items: baseline; gap: 16rpx;
+  margin-bottom: 20rpx;
 }
 .coin-result-gua {
   font-size: 56rpx; font-weight: bold; color: #4A3728;
   letter-spacing: 8rpx;
 }
+.coin-result-num {
+  font-size: 22rpx; color: #9A9088;
+}
+
+/* Trigram info */
+.coin-result-trigrams {
+  display: flex; align-items: center; justify-content: center;
+  gap: 20rpx; width: 100%;
+  background: #F7F5F2; border-radius: 12rpx;
+  padding: 16rpx 20rpx; margin-bottom: 16rpx;
+}
+.trigram-info {
+  display: flex; flex-direction: column; align-items: center; gap: 4rpx;
+}
+.trigram-label { font-size: 20rpx; color: #9A9088; }
+.trigram-name { font-size: 24rpx; font-weight: bold; color: #4A3728; }
+.trigram-element {
+  font-size: 20rpx; color: #7A7068;
+  background: #EFEAE4; padding: 2rpx 12rpx; border-radius: 8rpx;
+}
+.trigram-rel {
+  font-size: 22rpx; color: #C49A6C; font-weight: bold;
+  background: #F5F2ED; padding: 4rpx 16rpx; border-radius: 16rpx;
+}
+
+/* Result lines */
 .coin-result-lines {
   background: #F7F5F2; border-radius: 16rpx;
-  padding: 24rpx 28rpx; width: 100%;
-  margin-bottom: 20rpx;
+  padding: 20rpx 24rpx; width: 100%;
+  margin-bottom: 16rpx;
 }
 .coin-result-line {
-  display: flex; align-items: center; gap: 16rpx;
-  padding: 10rpx 0;
+  display: flex; align-items: center; gap: 12rpx;
+  padding: 8rpx 0;
 }
 .coin-result-line-num {
-  font-size: 22rpx; color: #9A9088; width: 36rpx; text-align: right;
+  font-size: 22rpx; color: #9A9088; width: 32rpx; text-align: right; flex-shrink: 0;
 }
-.coin-result-line-sym {
-  font-size: 22rpx; color: #7A7068; letter-spacing: -1rpx;
-  font-family: 'Courier New', monospace;
-}
-.coin-result-line-sym.moving { color: #4A3728; font-weight: bold; }
 .coin-result-line-type {
-  font-size: 22rpx; margin-left: auto;
+  font-size: 20rpx; color: #C9C1B5; margin-left: auto; flex-shrink: 0;
 }
 .coin-result-line-type.moving-type {
   color: #4A3728; font-weight: bold;
 }
-.coin-result-line-type.dim-type {
-  color: #C9C1B5;
-}
 
+/* Moving lines */
 .coin-result-moving {
   background: #EFEAE4; border-radius: 12rpx;
   padding: 14rpx 20rpx; width: 100%;
-  margin-bottom: 20rpx;
+  margin-bottom: 16rpx;
 }
 .coin-moving-text { font-size: 24rpx; color: #4A3728; }
 
+/* Changed hexagram */
+.coin-result-changed {
+  background: #F7F5F2; border-radius: 12rpx;
+  padding: 16rpx 20rpx; width: 100%;
+  margin-bottom: 16rpx; border-left: 6rpx solid #C49A6C;
+}
+.changed-header {
+  display: flex; align-items: center; gap: 12rpx; margin-bottom: 8rpx;
+}
+.changed-label { font-size: 22rpx; color: #9A9088; }
+.changed-arrow { font-size: 24rpx; color: #C49A6C; }
+.changed-name { font-size: 26rpx; font-weight: bold; color: #4A3728; }
+.changed-reading { font-size: 24rpx; color: #7A7068; line-height: 1.6; }
+
+/* Mutual hexagram */
+.coin-result-mutual {
+  background: #F7F5F2; border-radius: 12rpx;
+  padding: 16rpx 20rpx; width: 100%;
+  margin-bottom: 16rpx; border-left: 6rpx solid #DDD7CD;
+}
+.mutual-header {
+  display: flex; align-items: center; gap: 12rpx; margin-bottom: 8rpx;
+}
+.mutual-label { font-size: 22rpx; color: #9A9088; }
+.mutual-name { font-size: 26rpx; font-weight: bold; color: #4A3728; }
+.mutual-reading { font-size: 24rpx; color: #7A7068; line-height: 1.6; }
+
+/* Main reading */
+.coin-result-main-reading {
+  width: 100%; margin-bottom: 16rpx;
+  text-align: center;
+}
+.main-reading-label {
+  font-size: 22rpx; color: #9A9088; display: block; margin-bottom: 8rpx;
+}
 .coin-result-reading {
   font-size: 28rpx; color: #1A1714; line-height: 1.8;
-  text-align: center; margin: 16rpx 0 28rpx;
-  padding: 0 12rpx;
+  text-align: center; padding: 0 12rpx;
+}
+
+/* Detail advice */
+.coin-result-detail {
+  width: 100%;
+  background: #EFEAE4; border-radius: 12rpx;
+  padding: 16rpx 20rpx; margin-bottom: 24rpx;
+}
+.detail-label {
+  font-size: 22rpx; color: #4A3728; font-weight: bold;
+  display: block; margin-bottom: 8rpx;
+}
+.detail-text {
+  font-size: 24rpx; color: #7A7068; line-height: 1.7;
 }
 
 .coin-result-btns {
