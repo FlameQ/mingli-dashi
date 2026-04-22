@@ -2,8 +2,8 @@
 @import "styles/chinese-theme.wxss";
 
 page {
-  background-color: #F7F2E7;
-  color: #3E2723;
+  background-color: #F0ECE5;
+  color: #1C1917;
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
     'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
   font-size: 30rpx;
@@ -16,36 +16,36 @@ view, text, image, navigator { box-sizing: border-box; }
 .container { padding: 24rpx; min-height: 100vh; }
 
 .section-title {
-  font-size: 34rpx; font-weight: bold; color: #3E2723;
-  margin-bottom: 24rpx; padding-left: 16rpx; border-left: 4rpx solid #C9A96E;
+  font-size: 34rpx; font-weight: bold; color: #1C1917;
+  margin-bottom: 24rpx; padding-left: 16rpx; border-left: 4rpx solid #8C7A63;
 }
 
 .card {
-  background: #FDFAF2; border-radius: 24rpx; padding: 32rpx;
-  border: 1rpx solid #E8E0D0; box-shadow: 0 4rpx 16rpx rgba(62, 39, 35, 0.04);
+  background: #FFFFFF; border-radius: 24rpx; padding: 32rpx;
+  border: 1rpx solid #E3DDD5; box-shadow: 0 2rpx 12rpx rgba(28, 25, 23, 0.06);
 }
 
 .btn-primary {
-  background: #C9A96E; color: #FFFFFF; border: none; border-radius: 48rpx;
+  background: #8C7A63; color: #FFFFFF; border: none; border-radius: 48rpx;
   padding: 24rpx 48rpx; font-size: 32rpx; font-weight: bold; text-align: center;
-  box-shadow: 0 4rpx 16rpx rgba(201, 169, 110, 0.2);
+  box-shadow: 0 4rpx 12rpx rgba(140, 122, 99, 0.2);
 }
 .btn-primary::after { border: none; }
 
 .btn-secondary {
-  background: transparent; color: #C9A96E; border: 2rpx solid #C9A96E;
+  background: transparent; color: #8C7A63; border: 2rpx solid #8C7A63;
   border-radius: 48rpx; padding: 24rpx 48rpx; font-size: 32rpx; font-weight: bold; text-align: center;
 }
 
 .input-field {
-  background: #F5ECD7; border: 2rpx solid #E8E0D0; border-radius: 16rpx;
-  padding: 20rpx 24rpx; font-size: 30rpx; color: #3E2723; width: 100%;
+  background: #F5F2ED; border: 2rpx solid #E3DDD5; border-radius: 16rpx;
+  padding: 20rpx 24rpx; font-size: 30rpx; color: #1C1917; width: 100%;
 }
-.input-field::placeholder { color: #A89888; }
+.input-field::placeholder { color: #A09888; }
 
-.text-secondary { color: #7D6B5D; font-size: 26rpx; }
+.text-secondary { color: #7D7568; font-size: 26rpx; }
 
 .disclaimer {
-  text-align: center; color: #A89888; font-size: 22rpx;
-  padding: 32rpx 0; margin-top: 24rpx; border-top: 1rpx solid #E8E0D0;
+  text-align: center; color: #A09888; font-size: 22rpx;
+  padding: 32rpx 0; margin-top: 24rpx; border-top: 1rpx solid #E3DDD5;
 }

@@ -1,6 +1,7 @@
 const app = getApp()
 const dateUtil = require('../../utils/date-util')
 
+// ===== 64 Hexagram Data =====
 const GUA_NAMES = ['乾','坤','屯','蒙','需','讼','师','比','小畜','履','泰','否','同人','大有','谦','豫','随','蛊','临','观','噬嗑','贲','剥','复','无妄','大畜','颐','大过','坎','离','咸','恒','遁','大壮','晋','明夷','家人','睽','蹇','解','损','益','夬','姤','萃','升','困','井','革','鼎','震','艮','渐','归妹','丰','旅','巽','兑','涣','节','中孚','小过','既济','未济']
 
 const GUA_FORTUNES = {
@@ -70,6 +71,19 @@ const GUA_FORTUNES = {
   '未济': '事尚未成，仍需努力。今日宜总结反思，为下一步蓄力。'
 }
 
+// King Wen hexagram lookup: HEXAGRAM_TABLE[upperTrigram * 8 + lowerTrigram] = King Wen number (1-indexed)
+// Trigram index by binary value: 坤(000)=0, 震(001)=1, 坎(010)=2, 兑(011)=3, 艮(100)=4, 离(101)=5, 巽(110)=6, 乾(111)=7
+const HEXAGRAM_TABLE = [
+  2, 16, 8, 45, 23, 35, 20, 12,   // upper=坤
+  24, 51, 3, 17, 27, 21, 42, 25,  // upper=震
+  7, 40, 29, 47, 4, 64, 59, 6,   // upper=坎
+  19, 54, 60, 58, 41, 38, 61, 10, // upper=兑
+  15, 62, 39, 31, 52, 56, 53, 33, // upper=艮
+  36, 55, 63, 49, 22, 30, 37, 13, // upper=离
+  46, 32, 48, 28, 18, 50, 57, 44, // upper=巽
+  11, 34, 5, 43, 26, 14, 9, 1     // upper=乾
+]
+
 Page({
   data: {
     moduleGroups: [
@@ -106,7 +120,14 @@ Page({
     profiles: [],
     activeProfileId: '',
     hasProfiles: false,
-    activeProfile: null
+    activeProfile: null,
+    // Coin divination state
+    showCoinModal: false,
+    coinRound: 0,
+    coinLines: [],
+    coins: [0, 0, 0],
+    isFlipping: false,
+    hexagramResult: null
   },
 
   onLoad() {
@@ -165,7 +186,6 @@ Page({
     const yiItems = ['祭祀', '祈福', '求嗣', '出行', '嫁娶', '纳采', '开市', '交易', '入宅', '安葬']
     const jiItems = ['动土', '破土', '修造', '开仓', '掘井', '开渠', '安床', '造桥', '乘船', '远行']
 
-    // Use date as seed for deterministic results
     const seed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate()
     const shuffle = (arr, s) => {
       const a = [...arr]
@@ -197,7 +217,6 @@ Page({
     const guaName = GUA_NAMES[index]
     const reading = GUA_FORTUNES[guaName] || '今日卦象，宜静心观变，顺时而动。'
 
-    // Generate 6 yao lines deterministically
     const yaos = []
     for (let i = 0; i < 6; i++) {
       const lineSeed = (seed * (i + 1) + i * 7) % 100
@@ -205,12 +224,7 @@ Page({
     }
 
     this.setData({
-      dailyGua: {
-        name: guaName,
-        reading,
-        yaos,
-        date: `${now.getMonth() + 1}月${now.getDate()}日`
-      }
+      dailyGua: { name: guaName, reading, yaos, date: `${now.getMonth() + 1}月${now.getDate()}日` }
     })
   },
 
@@ -218,11 +232,9 @@ Page({
     const { id } = e.currentTarget.dataset
     const profile = this.data.activeProfile
 
-    // Auto-navigate with profile data for bazi
     if (id === 'bazi' && profile && profile.birthDate) {
       const params = encodeURIComponent(JSON.stringify({
-        name: profile.name,
-        gender: profile.gender,
+        name: profile.name, gender: profile.gender,
         birthDate: profile.birthDate,
         birthHourIndex: profile.birthHourIndex != null ? profile.birthHourIndex : 6,
         birthPlace: profile.birthPlace || ''
@@ -231,11 +243,9 @@ Page({
       return
     }
 
-    // Auto-navigate with profile data for ziwei
     if (id === 'ziwei' && profile && profile.birthDate) {
       const params = encodeURIComponent(JSON.stringify({
-        name: profile.name,
-        gender: profile.gender,
+        name: profile.name, gender: profile.gender,
         birthDate: profile.birthDate,
         birthHourIndex: profile.birthHourIndex != null ? profile.birthHourIndex : 6
       }))
@@ -243,7 +253,6 @@ Page({
       return
     }
 
-    // Find URL from module groups
     let url = e.currentTarget.dataset.url
     if (!url) {
       for (const group of this.data.moduleGroups) {
@@ -252,6 +261,89 @@ Page({
       }
     }
     if (url) wx.navigateTo({ url })
+  },
+
+  // ===== Coin Divination (铜钱起卦法) =====
+  onStartDivination() {
+    this.setData({
+      showCoinModal: true,
+      coinRound: 0,
+      coinLines: [],
+      coins: [0, 0, 0],
+      isFlipping: false,
+      hexagramResult: null
+    })
+  },
+
+  onTossCoins() {
+    if (this.data.isFlipping || this.data.hexagramResult) return
+    this.setData({ isFlipping: true })
+
+    // Simulate 3 coin tosses: 字(heads)=3, 背(tails)=2
+    const coins = [
+      Math.random() < 0.5 ? 3 : 2,
+      Math.random() < 0.5 ? 3 : 2,
+      Math.random() < 0.5 ? 3 : 2
+    ]
+
+    const sum = coins[0] + coins[1] + coins[2]
+    let lineType, lineSymbol, isMoving, yang
+
+    if (sum === 6) {
+      lineType = '老阴'; lineSymbol = '━ ━ ━'; isMoving = true; yang = false
+    } else if (sum === 7) {
+      lineType = '少阳'; lineSymbol = '━━━━━'; isMoving = false; yang = true
+    } else if (sum === 8) {
+      lineType = '少阴'; lineSymbol = '━ ━ ━'; isMoving = false; yang = false
+    } else {
+      lineType = '老阳'; lineSymbol = '━━━━━'; isMoving = true; yang = true
+    }
+
+    setTimeout(() => {
+      const newLines = [...this.data.coinLines, {
+        coins: [...coins], sum, lineType, lineSymbol, isMoving, yang,
+        position: this.data.coinRound + 1
+      }]
+      const nextRound = this.data.coinRound + 1
+      const isComplete = nextRound >= 6
+
+      if (isComplete) {
+        const hexagramResult = this.lookupHexagram(newLines)
+        this.setData({
+          coinLines: newLines, coinRound: nextRound,
+          coins, isFlipping: false, hexagramResult
+        })
+      } else {
+        this.setData({
+          coinLines: newLines, coinRound: nextRound,
+          coins, isFlipping: false
+        })
+      }
+    }, 1200)
+  },
+
+  lookupHexagram(lines) {
+    // Lower trigram = lines 0,1,2 (bottom to top); Upper = lines 3,4,5
+    const lower = (lines[0].yang ? 1 : 0) + (lines[1].yang ? 2 : 0) + (lines[2].yang ? 4 : 0)
+    const upper = (lines[3].yang ? 1 : 0) + (lines[4].yang ? 2 : 0) + (lines[5].yang ? 4 : 0)
+    const kingWenNum = HEXAGRAM_TABLE[upper * 8 + lower]
+    const guaIndex = kingWenNum - 1
+    const guaName = GUA_NAMES[guaIndex]
+    const reading = GUA_FORTUNES[guaName] || '卦象已成，宜静心观变，顺势而为。'
+    const movingLines = lines.filter(l => l.isMoving).map(l => `第${l.position}爻${l.lineType}`)
+
+    return { name: guaName, reading, movingLines, lines }
+  },
+
+  onCloseDivination() {
+    this.setData({ showCoinModal: false })
+  },
+
+  onResetDivination() {
+    this.setData({
+      coinRound: 0, coinLines: [], coins: [0, 0, 0],
+      isFlipping: false, hexagramResult: null
+    })
   },
 
   onPullDownRefresh() {

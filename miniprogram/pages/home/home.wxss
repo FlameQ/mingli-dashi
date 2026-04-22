@@ -1,149 +1,148 @@
 .page {
   min-height: 100vh;
-  background: #F7F2E7;
+  background: #F0ECE5;
   padding-bottom: 140rpx;
 }
 
 /* ===== Profile Section ===== */
 .profile-section {
-  padding: 20rpx 0 0;
-  background: #F7F2E7;
+  margin: 16rpx 24rpx 0;
+  padding: 24rpx;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  border: 1rpx solid #E3DDD5;
+  box-shadow: 0 1rpx 4rpx rgba(28, 25, 23, 0.05);
 }
-.profile-scroll { white-space: nowrap; padding-left: 24rpx; }
+.profile-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 16rpx;
+}
+.profile-header-left {
+  display: flex; flex-direction: column; gap: 4rpx;
+}
+.profile-header-title {
+  font-size: 30rpx; font-weight: bold; color: #1C1917;
+}
+.profile-header-hint {
+  font-size: 20rpx; color: #A09888;
+}
+.profile-header-add {
+  padding: 8rpx 20rpx;
+  background: #F7F4EF; border-radius: 20rpx;
+  border: 1rpx solid #E3DDD5;
+}
+.profile-add-text { font-size: 22rpx; color: #8C7A63; }
+
+.profile-scroll { white-space: nowrap; }
 .profile-card-list {
   display: inline-flex; align-items: stretch; gap: 16rpx;
-  padding-right: 24rpx;
 }
 .profile-card-item {
-  display: inline-flex; align-items: center; gap: 16rpx;
-  padding: 20rpx 24rpx;
-  background: #FDFAF2; border-radius: 16rpx;
-  border: 1rpx solid #E8E0D0;
-  min-width: 300rpx;
+  display: inline-flex; align-items: center; gap: 14rpx;
+  padding: 16rpx 20rpx;
+  background: #F7F4EF; border-radius: 14rpx;
+  border: 2rpx solid transparent;
   position: relative;
   transition: all 0.2s;
 }
 .profile-card-item.active {
-  border-color: #C9A96E;
-  background: rgba(201, 169, 110, 0.04);
+  border-color: #8C7A63;
+  background: #F0EDE7;
 }
 .profile-card-hover { transform: scale(0.97); }
 
 .pc-avatar {
-  width: 64rpx; height: 64rpx; border-radius: 50%;
-  background: rgba(201, 169, 110, 0.1);
+  width: 56rpx; height: 56rpx; border-radius: 50%;
+  background: #E3DDD5;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-.active .pc-avatar { background: rgba(201, 169, 110, 0.2); }
-.pc-avatar-char { font-size: 28rpx; color: #C9A96E; font-weight: bold; }
+.active .pc-avatar { background: #8C7A63; }
+.pc-avatar-char { font-size: 24rpx; color: #8C7A63; font-weight: bold; }
+.active .pc-avatar-char { color: #FFFFFF; }
 
 .pc-info {
-  display: flex; flex-direction: column; gap: 4rpx;
-  overflow: hidden;
+  display: flex; flex-direction: column; gap: 2rpx; overflow: hidden;
 }
 .pc-name {
-  font-size: 28rpx; font-weight: bold; color: #3E2723;
+  font-size: 26rpx; font-weight: bold; color: #1C1917;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
-.pc-meta {
-  font-size: 22rpx; color: #A89888;
-}
-.pc-active-dot {
-  position: absolute; top: 12rpx; right: 12rpx;
-  width: 10rpx; height: 10rpx; border-radius: 50%;
-  background: #C9A96E;
+.pc-meta { font-size: 20rpx; color: #A09888; }
+
+.pc-check {
+  font-size: 20rpx; color: #8C7A63; font-weight: bold;
+  margin-left: 4rpx;
 }
 
-.card-add {
-  border-style: dashed; border-color: #D4C4A8;
-  justify-content: center; min-width: 200rpx;
+.profile-empty {
+  display: flex; align-items: center; justify-content: center; gap: 12rpx;
+  padding: 24rpx;
+  border: 2rpx dashed #D4CFC6; border-radius: 14rpx;
+  background: #F7F4EF;
 }
-.pc-add-icon {
-  width: 48rpx; height: 48rpx; border-radius: 50%;
-  background: rgba(201, 169, 110, 0.06);
+.profile-empty-icon {
+  width: 40rpx; height: 40rpx; border-radius: 50%;
+  background: #E3DDD5;
   display: flex; align-items: center; justify-content: center;
+  font-size: 28rpx; color: #8C7A63;
 }
-.pc-add-plus { font-size: 32rpx; color: #C9A96E; }
-.pc-add-text { font-size: 24rpx; color: #C9A96E; }
-
-/* No-profile prompt */
-.add-prompt-card {
-  margin: 20rpx 24rpx 0;
-  padding: 28rpx;
-  background: #FDFAF2; border-radius: 16rpx;
-  border: 1rpx dashed #D4C4A8;
-}
-.add-prompt-inner {
-  display: flex; align-items: center; justify-content: center; gap: 16rpx;
-}
-.add-prompt-icon-wrap {
-  width: 48rpx; height: 48rpx; border-radius: 50%;
-  background: rgba(201, 169, 110, 0.06);
-  display: flex; align-items: center; justify-content: center;
-}
-.add-prompt-icon { font-size: 32rpx; color: #C9A96E; }
-.add-prompt-label { font-size: 26rpx; color: #C9A96E; }
+.profile-empty-text { font-size: 24rpx; color: #8C7A63; }
 
 /* ===== Greeting ===== */
 .greeting-bar { padding: 20rpx 28rpx 4rpx; }
-.greeting-text { font-size: 28rpx; color: #7D6B5D; }
+.greeting-text { font-size: 28rpx; color: #7D7568; }
 
 /* ===== Daily Card ===== */
 .daily-card {
   margin: 16rpx 24rpx 0; padding: 24rpx 28rpx;
-  background: linear-gradient(135deg, #FDFAF2, #F5ECD7);
-  border-radius: 20rpx; border: 1rpx solid #E8E0D0;
-  box-shadow: 0 4rpx 16rpx rgba(62, 39, 35, 0.06);
+  background: #FFFFFF; border-radius: 20rpx;
+  border: 1rpx solid #E3DDD5;
+  box-shadow: 0 1rpx 4rpx rgba(28, 25, 23, 0.05);
 }
 .daily-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12rpx; }
-.daily-label { font-size: 28rpx; font-weight: bold; color: #3E2723; }
-.daily-date { font-size: 22rpx; color: #A89888; }
+.daily-label { font-size: 28rpx; font-weight: bold; color: #1C1917; }
+.daily-date { font-size: 22rpx; color: #A09888; }
 .daily-tags { display: flex; gap: 12rpx; margin-bottom: 16rpx; }
-.daily-tag { font-size: 22rpx; color: #C9A96E; background: rgba(201, 169, 110, 0.08); padding: 4rpx 14rpx; border-radius: 12rpx; }
+.daily-tag {
+  font-size: 22rpx; color: #8C7A63; background: #F7F4EF;
+  padding: 4rpx 14rpx; border-radius: 12rpx;
+}
 .daily-yiji { display: flex; gap: 24rpx; }
 .yiji-group { display: flex; align-items: center; gap: 10rpx; flex: 1; }
 .yiji-badge { font-size: 22rpx; font-weight: bold; padding: 2rpx 12rpx; border-radius: 6rpx; flex-shrink: 0; }
-.yiji-badge.yi { background: rgba(61, 107, 94, 0.08); color: #C9A96E; }
-.yiji-badge.ji { background: rgba(196, 150, 90, 0.1); color: #B8860B; }
-.yiji-text { font-size: 22rpx; color: #7D6B5D; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.yiji-badge.yi { background: #F0EDE7; color: #8C7A63; }
+.yiji-badge.ji { background: #F5F2ED; color: #B8860B; }
+.yiji-text { font-size: 22rpx; color: #7D7568; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 /* ===== Daily Hexagram ===== */
 .gua-card {
-  margin: 16rpx 24rpx 0; padding: 24rpx 28rpx;
-  background: linear-gradient(135deg, #FDFAF2 0%, #F0E6CF 100%);
-  border-radius: 20rpx; border: 1rpx solid #E8E0D0;
-  box-shadow: 0 4rpx 16rpx rgba(62, 39, 35, 0.06);
+  margin: 12rpx 24rpx 0; padding: 24rpx 28rpx;
+  background: #FFFFFF; border-radius: 20rpx;
+  border: 1rpx solid #E3DDD5;
+  box-shadow: 0 1rpx 4rpx rgba(28, 25, 23, 0.05);
   position: relative; overflow: hidden;
-}
-.gua-card::before {
-  content: '☰';
-  position: absolute; top: -8rpx; right: 8rpx;
-  font-size: 80rpx; color: rgba(201, 169, 110, 0.06);
 }
 .gua-card-header {
   display: flex; justify-content: space-between; align-items: center;
   margin-bottom: 16rpx;
 }
-.gua-card-label { font-size: 28rpx; font-weight: bold; color: #3E2723; }
-.gua-card-date { font-size: 22rpx; color: #A89888; }
+.gua-card-label { font-size: 28rpx; font-weight: bold; color: #1C1917; }
+.gua-card-date { font-size: 22rpx; color: #A09888; }
 .gua-card-body { display: flex; gap: 24rpx; align-items: center; }
 .gua-symbol-area {
   flex-shrink: 0; text-align: center;
-  padding: 12rpx 20rpx;
-  background: rgba(201, 169, 110, 0.06);
-  border-radius: 12rpx;
+  padding: 12rpx 20rpx; background: #F7F4EF; border-radius: 12rpx;
 }
 .gua-big-name {
-  font-size: 48rpx; font-weight: bold; color: #C9A96E;
+  font-size: 48rpx; font-weight: bold; color: #8C7A63;
   display: block; margin-bottom: 8rpx;
 }
-.gua-yao-display {
-  display: flex; flex-direction: column; gap: 2rpx;
-}
-.gua-yao-line { font-size: 16rpx; color: #7D6B5D; letter-spacing: -2rpx; line-height: 1; }
+.gua-yao-display { display: flex; flex-direction: column; gap: 2rpx; }
+.gua-yao-line { font-size: 16rpx; color: #7D7568; letter-spacing: -2rpx; line-height: 1; }
 .gua-reading-area { flex: 1; }
-.gua-reading-text { font-size: 24rpx; color: #7D6B5D; line-height: 1.6; }
+.gua-reading-text { font-size: 24rpx; color: #7D7568; line-height: 1.6; }
+.gua-tap-hint { font-size: 22rpx; color: #C4A265; margin-top: 8rpx; display: block; }
 
 /* ===== Module Section Groups ===== */
 .module-section { margin-top: 8rpx; }
@@ -152,13 +151,12 @@
   padding: 20rpx 28rpx 8rpx;
 }
 .group-title {
-  font-size: 22rpx; font-weight: bold; color: #A89888;
+  font-size: 22rpx; font-weight: bold; color: #A09888;
   letter-spacing: 4rpx; white-space: nowrap;
 }
-.group-line { flex: 1; height: 1rpx; background: linear-gradient(90deg, #E8E0D0, transparent); }
-.group-line:last-child { background: linear-gradient(90deg, transparent, #E8E0D0); }
+.group-line { flex: 1; height: 1rpx; background: #E3DDD5; }
 
-/* ===== Module Grid: 3 columns ===== */
+/* ===== Module Grid ===== */
 .module-grid {
   display: flex; flex-wrap: wrap; padding: 4rpx 20rpx;
 }
@@ -166,12 +164,12 @@
   width: calc(33.33% - 16rpx); margin: 8rpx;
   display: flex; flex-direction: column; align-items: center;
   padding: 28rpx 8rpx 24rpx;
-  background: #FDFAF2; border-radius: 16rpx;
-  border: 1rpx solid #E8E0D0;
-  box-shadow: 0 2rpx 8rpx rgba(62, 39, 35, 0.04);
+  background: #FFFFFF; border-radius: 16rpx;
+  border: 1rpx solid #E3DDD5;
+  box-shadow: 0 1rpx 4rpx rgba(28, 25, 23, 0.05);
   transition: transform 0.2s ease;
 }
-.module-card-hover { transform: scale(0.95); background: #F5ECD7; }
+.module-card-hover { transform: scale(0.95); background: #F7F4EF; }
 
 /* ===== Icon Circles ===== */
 .icon-circle {
@@ -181,23 +179,192 @@
 }
 .icon-symbol { font-size: 32rpx; font-weight: bold; }
 
-.icon-bg-bazi { background: rgba(45, 122, 114, 0.08); }
-.icon-color-bazi { color: #2D7A72; }
-.icon-bg-qimen { background: rgba(58, 90, 138, 0.08); }
-.icon-color-qimen { color: #3A5A8A; }
-.icon-bg-ziwei { background: rgba(106, 74, 154, 0.08); }
+.icon-bg-bazi { background: #E8F0EF; }
+.icon-color-bazi { color: #4A7A74; }
+.icon-bg-qimen { background: #E6EAF0; }
+.icon-color-qimen { color: #4A6A8A; }
+.icon-bg-ziwei { background: #EBE6F0; }
 .icon-color-ziwei { color: #6A4A9A; }
-.icon-bg-yinyuan { background: rgba(201, 169, 110, 0.1); }
-.icon-color-yinyuan { color: #C9A96E; }
-.icon-bg-tarot { background: rgba(184, 134, 11, 0.08); }
+.icon-bg-yinyuan { background: #F0ECE6; }
+.icon-color-yinyuan { color: #8C7A63; }
+.icon-bg-tarot { background: #F0EAE4; }
 .icon-color-tarot { color: #B8860B; }
-.icon-bg-liuyao { background: rgba(61, 107, 94, 0.08); }
-.icon-color-liuyao { color: #3D6B5E; }
-.icon-bg-fengshui { background: rgba(42, 90, 122, 0.08); }
-.icon-color-fengshui { color: #2A5A7A; }
-.icon-bg-buddhism { background: rgba(201, 169, 110, 0.08); }
-.icon-color-buddhism { color: #C9A96E; }
+.icon-bg-liuyao { background: #E6ECE9; }
+.icon-color-liuyao { color: #5A7A6E; }
+.icon-bg-fengshui { background: #E4EAF0; }
+.icon-color-fengshui { color: #3A6A8A; }
+.icon-bg-buddhism { background: #F0ECE6; }
+.icon-color-buddhism { color: #8C7A63; }
 
-.card-title { font-size: 24rpx; font-weight: 500; color: #3E2723; text-align: center; }
+.card-title { font-size: 24rpx; font-weight: 500; color: #1C1917; text-align: center; }
 
-.page-disclaimer { text-align: center; color: #A89888; font-size: 22rpx; padding: 32rpx 24rpx 20rpx; }
+.page-disclaimer { text-align: center; color: #A09888; font-size: 22rpx; padding: 32rpx 24rpx 20rpx; }
+
+/* ===== Coin Divination Modal ===== */
+.coin-modal {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 1000; display: flex; align-items: flex-end;
+}
+.coin-modal-mask {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(28, 25, 23, 0.5);
+}
+.coin-modal-body {
+  position: relative; width: 100%;
+  background: #FFFFFF; border-radius: 24rpx 24rpx 0 0;
+  padding: 32rpx 28rpx; padding-bottom: calc(32rpx + env(safe-area-inset-bottom));
+  max-height: 85vh; overflow-y: auto;
+}
+.coin-modal-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20rpx;
+}
+.coin-modal-title { font-size: 32rpx; font-weight: bold; color: #1C1917; }
+.coin-modal-close { font-size: 32rpx; color: #A09888; padding: 8rpx; }
+
+.coin-method-info {
+  background: #F7F4EF; border-radius: 12rpx; padding: 16rpx 20rpx;
+  margin-bottom: 20rpx;
+}
+.coin-method-text { font-size: 22rpx; color: #7D7568; line-height: 1.6; }
+
+/* Progress */
+.coin-progress {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 24rpx;
+}
+.coin-progress-text { font-size: 26rpx; color: #7D7568; }
+.coin-progress-dots { display: flex; gap: 12rpx; }
+.coin-dot {
+  width: 16rpx; height: 16rpx; border-radius: 50%;
+  background: #E3DDD5; transition: background 0.3s;
+}
+.coin-dot.done { background: #8C7A63; }
+
+/* Coins */
+.coin-area { display: flex; flex-direction: column; align-items: center; }
+.coins-row { display: flex; gap: 40rpx; margin-bottom: 32rpx; }
+.coin {
+  width: 120rpx; height: 120rpx; border-radius: 50%;
+  border: 4rpx solid #C4A265; background: #F0E4CE;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  box-shadow: 0 4rpx 12rpx rgba(28, 25, 23, 0.12), inset 0 1rpx 2rpx rgba(255, 255, 255, 0.5);
+  transition: all 0.3s;
+}
+.coin-heads {
+  background: #EEDDB8; border-color: #B8960B;
+}
+.coin-tails {
+  background: #D8CDB8; border-color: #9A8A6A;
+}
+.coin-text {
+  font-size: 36rpx; font-weight: bold; color: #7A6530;
+  position: relative; z-index: 1;
+}
+.coin-unknown { color: #C4B89A; }
+.coin-hole {
+  position: absolute;
+  width: 22rpx; height: 22rpx;
+  border: 2rpx solid currentColor; border-radius: 2rpx;
+  opacity: 0.2;
+}
+
+/* Coin flip animation */
+@keyframes coinFlip {
+  0% { transform: translateY(0) rotateX(0deg) scale(1); }
+  20% { transform: translateY(-60rpx) rotateX(180deg) scale(1.15); }
+  40% { transform: translateY(-40rpx) rotateX(540deg) scale(1.1); }
+  60% { transform: translateY(-20rpx) rotateX(900deg) scale(1.05); }
+  80% { transform: translateY(-8rpx) rotateX(1260deg) scale(1); }
+  100% { transform: translateY(0) rotateX(1440deg) scale(1); }
+}
+.coin-flip {
+  animation: coinFlip 1.2s ease-out;
+}
+
+/* Toss Button */
+.coin-toss-btn {
+  width: 320rpx; padding: 24rpx 0; text-align: center;
+  background: #8C7A63; color: #FFFFFF;
+  border-radius: 48rpx; font-size: 30rpx; font-weight: bold;
+  box-shadow: 0 4rpx 16rpx rgba(140, 122, 99, 0.25);
+  transition: all 0.2s;
+}
+.coin-toss-btn.disabled {
+  background: #D4CFC6; box-shadow: none;
+}
+.coin-toss-btn:active { transform: scale(0.95); }
+
+/* Lines built so far */
+.coin-lines-built {
+  margin-top: 28rpx; width: 100%;
+  background: #F7F4EF; border-radius: 12rpx; padding: 20rpx;
+}
+.coin-built-line {
+  display: flex; align-items: center; gap: 16rpx;
+  padding: 6rpx 0;
+}
+.coin-built-symbol { font-size: 20rpx; color: #7D7568; letter-spacing: -1rpx; }
+.coin-built-symbol.moving { color: #8C7A63; font-weight: bold; }
+.coin-built-label { font-size: 20rpx; color: #A09888; }
+
+/* ===== Hexagram Result ===== */
+.coin-result {
+  display: flex; flex-direction: column; align-items: center;
+}
+.coin-result-header {
+  margin-bottom: 24rpx;
+}
+.coin-result-gua {
+  font-size: 56rpx; font-weight: bold; color: #8C7A63;
+  letter-spacing: 8rpx;
+}
+.coin-result-lines {
+  background: #F7F4EF; border-radius: 16rpx;
+  padding: 20rpx 28rpx; width: 100%;
+  margin-bottom: 16rpx;
+}
+.coin-result-line {
+  display: flex; align-items: center; gap: 16rpx;
+  padding: 6rpx 0;
+}
+.coin-result-line-num {
+  font-size: 20rpx; color: #A09888; width: 36rpx; text-align: right;
+}
+.coin-result-line-sym {
+  font-size: 20rpx; color: #7D7568; letter-spacing: -1rpx;
+}
+.coin-result-line-sym.moving { color: #8C7A63; font-weight: bold; }
+.coin-result-line-type {
+  font-size: 20rpx; color: #8C7A63; margin-left: auto;
+}
+.coin-result-line-type.dim { color: #D4CFC6; }
+
+.coin-result-moving {
+  background: #F0EDE7; border-radius: 12rpx;
+  padding: 12rpx 20rpx; width: 100%;
+  margin-bottom: 16rpx;
+}
+.coin-moving-text { font-size: 22rpx; color: #8C7A63; }
+
+.coin-result-reading {
+  font-size: 28rpx; color: #1C1917; line-height: 1.8;
+  text-align: center; margin: 16rpx 0 28rpx;
+  padding: 0 12rpx;
+}
+
+.coin-result-btns {
+  display: flex; gap: 20rpx; width: 100%;
+}
+.coin-retry-btn {
+  flex: 1; padding: 22rpx 0; text-align: center;
+  background: #8C7A63; color: #FFFFFF;
+  border-radius: 48rpx; font-size: 28rpx; font-weight: bold;
+}
+.coin-close-btn {
+  flex: 1; padding: 22rpx 0; text-align: center;
+  background: #F7F4EF; color: #8C7A63;
+  border-radius: 48rpx; font-size: 28rpx;
+  border: 1rpx solid #E3DDD5;
+}

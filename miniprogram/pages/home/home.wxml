@@ -1,30 +1,35 @@
 <view class="page">
-  <!-- Profile Cards -->
-  <view class="profile-section" wx:if="{{hasProfiles}}">
-    <scroll-view class="profile-scroll" scroll-x enhanced show-scrollbar="{{false}}">
-      <view class="profile-card-list">
-        <view class="profile-card-item {{activeProfileId === item.id ? 'active' : ''}}"
-              wx:for="{{profiles}}" wx:key="id"
-              data-id="{{item.id}}" bindtap="onProfileTap"
-              hover-class="profile-card-hover">
-          <view class="pc-avatar"><text class="pc-avatar-char">{{item.name[0]}}</text></view>
-          <view class="pc-info">
-            <text class="pc-name">{{item.name}}</text>
-            <text class="pc-meta">{{item.gender}} · {{item.birthDate}}</text>
-          </view>
-          <view class="pc-active-dot" wx:if="{{activeProfileId === item.id}}"></view>
-        </view>
-        <view class="profile-card-item card-add" bindtap="onAddProfile">
-          <view class="pc-add-icon"><text class="pc-add-plus">+</text></view>
-          <text class="pc-add-text">添加档案</text>
-        </view>
+  <!-- Profile Section -->
+  <view class="profile-section">
+    <view class="profile-header">
+      <view class="profile-header-left">
+        <text class="profile-header-title">我的档案</text>
+        <text class="profile-header-hint">数据依据档案自动分析 · 可创建多个</text>
       </view>
-    </scroll-view>
-  </view>
-  <view class="add-prompt-card" wx:else bindtap="onAddProfile">
-    <view class="add-prompt-inner">
-      <view class="add-prompt-icon-wrap"><text class="add-prompt-icon">+</text></view>
-      <text class="add-prompt-label">添加人物档案，开启命理推演</text>
+      <view class="profile-header-add" wx:if="{{hasProfiles}}" bindtap="onAddProfile">
+        <text class="profile-add-text">+ 新建</text>
+      </view>
+    </view>
+    <view wx:if="{{hasProfiles}}">
+      <scroll-view class="profile-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+        <view class="profile-card-list">
+          <view class="profile-card-item {{activeProfileId === item.id ? 'active' : ''}}"
+                wx:for="{{profiles}}" wx:key="id"
+                data-id="{{item.id}}" bindtap="onProfileTap"
+                hover-class="profile-card-hover">
+            <view class="pc-avatar"><text class="pc-avatar-char">{{item.name[0]}}</text></view>
+            <view class="pc-info">
+              <text class="pc-name">{{item.name}}</text>
+              <text class="pc-meta">{{item.gender}} · {{item.birthDate}}</text>
+            </view>
+            <view class="pc-check" wx:if="{{activeProfileId === item.id}}">✓</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="profile-empty" wx:else bindtap="onAddProfile">
+      <text class="profile-empty-icon">+</text>
+      <text class="profile-empty-text">添加人物档案，开启命理推演</text>
     </view>
   </view>
 
@@ -56,8 +61,8 @@
     </view>
   </view>
 
-  <!-- Daily Hexagram -->
-  <view class="gua-card">
+  <!-- Daily Hexagram Card -->
+  <view class="gua-card" bindtap="onStartDivination">
     <view class="gua-card-header">
       <text class="gua-card-label">每日一卦</text>
       <text class="gua-card-date">{{dailyGua.date}}</text>
@@ -71,6 +76,7 @@
       </view>
       <view class="gua-reading-area">
         <text class="gua-reading-text">{{dailyGua.reading}}</text>
+        <text class="gua-tap-hint">点击摇铜钱起卦 ›</text>
       </view>
     </view>
   </view>
@@ -95,4 +101,76 @@
   </view>
 
   <view class="page-disclaimer">仅供娱乐参考，不作为人生决策依据</view>
+
+  <!-- ===== Coin Divination Modal ===== -->
+  <view class="coin-modal" wx:if="{{showCoinModal}}">
+    <view class="coin-modal-mask" bindtap="onCloseDivination"></view>
+    <view class="coin-modal-body">
+      <view class="coin-modal-header">
+        <text class="coin-modal-title">铜钱起卦</text>
+        <text class="coin-modal-close" bindtap="onCloseDivination">✕</text>
+      </view>
+
+      <!-- Method Info -->
+      <view class="coin-method-info">
+        <text class="coin-method-text">三枚铜钱，字为阳(3)背为阴(2)，掷六次成一卦</text>
+      </view>
+
+      <!-- Progress -->
+      <view class="coin-progress" wx:if="{{!hexagramResult}}">
+        <text class="coin-progress-text">第 {{coinRound < 6 ? coinRound + 1 : 6}} / 6 次掷卦</text>
+        <view class="coin-progress-dots">
+          <view class="coin-dot {{index < coinRound ? 'done' : ''}}" wx:for="{{6}}" wx:key="*this"></view>
+        </view>
+      </view>
+
+      <!-- Coin Tossing Area -->
+      <view class="coin-area" wx:if="{{!hexagramResult}}">
+        <view class="coins-row">
+          <view class="coin {{isFlipping ? 'coin-flip' : ''}} {{coins[index] === 3 ? 'coin-heads' : coins[index] === 2 ? 'coin-tails' : ''}}"
+                wx:for="{{[0,1,2]}}" wx:key="*this">
+            <text class="coin-text" wx:if="{{coins[item] === 3}}">字</text>
+            <text class="coin-text" wx:elif="{{coins[item] === 2}}">背</text>
+            <text class="coin-text coin-unknown" wx:else>?</text>
+            <view class="coin-hole"></view>
+          </view>
+        </view>
+
+        <view class="coin-toss-btn {{isFlipping ? 'disabled' : ''}}" bindtap="onTossCoins">
+          <text>{{isFlipping ? '摇卦中...' : '摇  卦'}}</text>
+        </view>
+
+        <!-- Lines built so far -->
+        <view class="coin-lines-built" wx:if="{{coinLines.length > 0}}">
+          <view class="coin-built-line" wx:for="{{coinLines}}" wx:key="position">
+            <text class="coin-built-symbol {{item.isMoving ? 'moving' : ''}}">{{item.lineSymbol}}</text>
+            <text class="coin-built-label">{{item.lineType}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- Hexagram Result -->
+      <view class="coin-result" wx:if="{{hexagramResult}}">
+        <view class="coin-result-header">
+          <text class="coin-result-gua">{{hexagramResult.name}}卦</text>
+        </view>
+        <view class="coin-result-lines">
+          <view class="coin-result-line" wx:for="{{hexagramResult.lines}}" wx:key="position">
+            <text class="coin-result-line-num">{{item.position}}</text>
+            <text class="coin-result-line-sym {{item.isMoving ? 'moving' : ''}}">{{item.lineSymbol}}</text>
+            <text class="coin-result-line-type" wx:if="{{item.isMoving}}">{{item.lineType}} ●</text>
+            <text class="coin-result-line-type dim" wx:else>{{item.lineType}}</text>
+          </view>
+        </view>
+        <view class="coin-result-moving" wx:if="{{hexagramResult.movingLines.length > 0}}">
+          <text class="coin-moving-text">动爻：{{hexagramResult.movingLines.join('、')}}</text>
+        </view>
+        <text class="coin-result-reading">{{hexagramResult.reading}}</text>
+        <view class="coin-result-btns">
+          <view class="coin-retry-btn" bindtap="onResetDivination"><text>重新起卦</text></view>
+          <view class="coin-close-btn" bindtap="onCloseDivination"><text>关闭</text></view>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>

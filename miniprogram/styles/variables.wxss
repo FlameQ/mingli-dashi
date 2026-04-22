@@ -1,42 +1,35 @@
 /* ========================================
-   命理大师 - 茶禅暖调主题
-   Ivory & Champagne Gold Theme
+   命理大师 - 雅致主题（无渐变）
+   Elegant Flat Theme
    ======================================== */
 
 page {
-  --bg-page: #F7F2E7;
-  --bg-card: #FDFAF2;
-  --bg-card-alt: #F5ECD7;
-  --bg-input: #F5ECD7;
-  --bg-surface: #FAF7F0;
+  --bg-page: #F0ECE5;
+  --bg-card: #FFFFFF;
+  --bg-card-alt: #F7F4EF;
+  --bg-input: #F5F2ED;
+  --bg-surface: #FAFAF8;
 
-  --color-primary: #C9A96E;
-  --color-primary-light: #D4B87A;
+  --color-primary: #8C7A63;
+  --color-primary-light: #A08E78;
   --color-secondary: #B8860B;
   --color-secondary-light: #CCAA44;
 
-  --text-primary: #3E2723;
-  --text-secondary: #7D6B5D;
-  --text-placeholder: #A89888;
+  --text-primary: #1C1917;
+  --text-secondary: #7D7568;
+  --text-placeholder: #A09888;
 
-  --color-accent: #C9A96E;
+  --color-accent: #C4A265;
   --color-warning: #C4965A;
-  --color-success: #3D6B5E;
-  --color-border: #E8E0D0;
-  --color-border-dark: #D4C4A8;
-
-  --gradient-warm: linear-gradient(135deg, #F7F2E7 0%, #FDFAF2 50%, #F5ECD7 100%);
-  --gradient-card: linear-gradient(135deg, #FDFAF2 0%, #FAF7F0 100%);
-  --gradient-hero: linear-gradient(180deg, #F0E6D3 0%, #F7F2E7 100%);
-  --gradient-primary: linear-gradient(135deg, #C9A96E 0%, #B8860B 100%);
-  --gradient-secondary: linear-gradient(135deg, #B8860B 0%, #9A7D22 100%);
+  --color-success: #5A7A6E;
+  --color-border: #E3DDD5;
+  --color-border-dark: #D4CFC6;
 
   --radius-sm: 8rpx; --radius-md: 16rpx; --radius-lg: 24rpx; --radius-xl: 32rpx;
   --space-xs: 8rpx; --space-sm: 16rpx; --space-md: 24rpx; --space-lg: 32rpx; --space-xl: 48rpx;
   --font-xs: 22rpx; --font-sm: 26rpx; --font-md: 30rpx; --font-lg: 34rpx; --font-xl: 40rpx; --font-xxl: 48rpx;
 
-  --shadow-sm: 0 2rpx 8rpx rgba(62, 39, 35, 0.04);
-  --shadow-md: 0 4rpx 16rpx rgba(62, 39, 35, 0.06);
-  --shadow-lg: 0 8rpx 32rpx rgba(62, 39, 35, 0.08);
-  --shadow-glow: 0 0 20rpx rgba(201, 169, 110, 0.1);
+  --shadow-sm: 0 1rpx 4rpx rgba(28, 25, 23, 0.05);
+  --shadow-md: 0 2rpx 12rpx rgba(28, 25, 23, 0.06);
+  --shadow-lg: 0 4rpx 24rpx rgba(28, 25, 23, 0.08);
 }
