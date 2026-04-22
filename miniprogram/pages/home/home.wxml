@@ -126,7 +126,7 @@
   <!-- ===== Coin Divination Modal ===== -->
   <view class="coin-modal" wx:if="{{showCoinModal}}">
     <view class="coin-modal-mask" bindtap="onCloseDivination"></view>
-    <scroll-view class="coin-modal-body" scroll-y enhanced show-scrollbar="{{false}}">
+    <view class="coin-modal-body">
       <view class="coin-modal-header">
         <text class="coin-modal-title">铜钱起卦</text>
         <text class="coin-modal-close" bindtap="onCloseDivination">✕</text>
@@ -189,7 +189,7 @@
                   <view class="yin-right"></view>
                 </block>
               </view>
-              <text class="yao-marker" wx:if="{{item.isMoving}}">{{item.yang ? '○' : '×'}}</text>
+              <view class="yao-marker" wx:if="{{item.isMoving}}"></view>
             </view>
             <text class="coin-built-type {{item.isMoving ? 'moving-type' : ''}}">{{item.lineType}}</text>
           </view>
@@ -231,7 +231,7 @@
                   <view class="yin-right"></view>
                 </block>
               </view>
-              <text class="yao-marker" wx:if="{{item.isMoving}}">{{item.yang ? '○' : '×'}}</text>
+              <view class="yao-marker" wx:if="{{item.isMoving}}"></view>
             </view>
             <text class="coin-result-line-type {{item.isMoving ? 'moving-type' : 'dim-type'}}">{{item.lineType}}</text>
           </view>
@@ -279,8 +279,6 @@
         </view>
       </view>
 
-      <!-- Bottom safe spacer -->
-      <view class="coin-modal-spacer"></view>
-    </scroll-view>
+    </view>
   </view>
 </view>

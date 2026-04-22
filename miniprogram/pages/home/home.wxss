@@ -254,21 +254,20 @@
 /* ===== Coin Divination Modal ===== */
 .coin-modal {
   position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 2000; display: flex; align-items: flex-end;
+  z-index: 2000;
 }
 .coin-modal-mask {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(26, 23, 20, 0.55);
 }
 .coin-modal-body {
-  position: relative; width: 100%;
+  position: absolute; bottom: 0; left: 0; right: 0;
   background: #FFFFFF; border-radius: 24rpx 24rpx 0 0;
   padding: 32rpx 32rpx 0;
-  height: 80vh;
-}
-.coin-modal-spacer {
-  height: calc(40rpx + env(safe-area-inset-bottom));
-  flex-shrink: 0;
+  max-height: 80vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: calc(32rpx + env(safe-area-inset-bottom));
 }
 .coin-modal-header {
   display: flex; justify-content: space-between; align-items: center;
@@ -402,8 +401,8 @@
   width: 12rpx;
 }
 .yao-marker {
-  font-size: 20rpx; font-weight: bold; color: #4A3728;
-  width: 28rpx; text-align: center; flex-shrink: 0;
+  width: 12rpx; height: 12rpx; border-radius: 50%;
+  background: #4A3728; flex-shrink: 0;
 }
 .result-yao .yang-line {
   width: 240rpx; height: 14rpx;
