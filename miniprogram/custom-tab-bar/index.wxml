@@ -3,7 +3,10 @@
         wx:for="{{list}}" wx:key="index"
         data-index="{{index}}" data-path="{{item.pagePath}}"
         bindtap="switchTab">
-    <text class="tab-icon">{{item.icon}}</text>
+    <view class="tab-icon-wrap">
+      <text class="tab-icon">{{item.icon}}</text>
+      <view class="tab-indicator" wx:if="{{selected === index}}"></view>
+    </view>
     <text class="tab-text">{{item.text}}</text>
   </view>
 </view>

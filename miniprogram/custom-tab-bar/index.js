@@ -2,10 +2,10 @@ Component({
   data: {
     selected: 0,
     list: [
-      { pagePath: '/pages/home/home', text: '首页', icon: '首' },
-      { pagePath: '/pages/category/category', text: '分类', icon: '类' },
-      { pagePath: '/pages/history/history', text: '记录', icon: '录' },
-      { pagePath: '/pages/profile/profile', text: '我的', icon: '我' }
+      { pagePath: '/pages/home/home', text: '首页', icon: '⌂' },
+      { pagePath: '/pages/category/category', text: '分类', icon: '⊞' },
+      { pagePath: '/pages/history/history', text: '记录', icon: '▥' },
+      { pagePath: '/pages/profile/profile', text: '我的', icon: '◎' }
     ]
   },
 

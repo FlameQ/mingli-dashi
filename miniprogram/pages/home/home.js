@@ -1,19 +1,107 @@
 const app = getApp()
 const dateUtil = require('../../utils/date-util')
 
+const GUA_NAMES = ['乾','坤','屯','蒙','需','讼','师','比','小畜','履','泰','否','同人','大有','谦','豫','随','蛊','临','观','噬嗑','贲','剥','复','无妄','大畜','颐','大过','坎','离','咸','恒','遁','大壮','晋','明夷','家人','睽','蹇','解','损','益','夬','姤','萃','升','困','井','革','鼎','震','艮','渐','归妹','丰','旅','巽','兑','涣','节','中孚','小过','既济','未济']
+
+const GUA_FORTUNES = {
+  '乾': '天行健，君子以自强不息。今日宜积极进取，把握机遇。',
+  '坤': '地势坤，君子以厚德载物。今日宜沉稳守成，以柔克刚。',
+  '屯': '万事起头难，但生机已现。今日宜耐心等待，不宜冒进。',
+  '蒙': '蒙以养正，圣功也。今日宜虚心学习，求教于人。',
+  '需': '守正待时，耐心等待。今日宜从容不迫，厚积薄发。',
+  '讼': '争端之象，宜退不宜进。今日宜以和为贵，避免争执。',
+  '师': '众志成城，团队之力。今日宜借助他人之力，共谋大事。',
+  '比': '亲比相辅，贵在真诚。今日宜与人合作，广结善缘。',
+  '小畜': '积小成大，蓄势待发。今日宜量入为出，积少成多。',
+  '履': '如履薄冰，小心行事。今日宜谨慎低调，步步为营。',
+  '泰': '天地交泰，万物通达。今日大吉，宜大胆行动。',
+  '否': '天地不交，闭塞之象。今日宜韬光养晦，静待转机。',
+  '同人': '志同道合，众擎易举。今日宜社交合作，广纳良言。',
+  '大有': '大有丰收，光明在前。今日宜分享成果，广施恩惠。',
+  '谦': '谦逊有礼，谦受益。今日宜低调做人，必有贵人。',
+  '豫': '愉悦安乐，顺其自然。今日宜放松心情，享受当下。',
+  '随': '随机应变，顺势而为。今日宜灵活调整计划。',
+  '蛊': '整治积弊，拨乱反正。今日宜解决问题，化解隐患。',
+  '临': '居高临下，亲临指导。今日宜亲力亲为，身先士卒。',
+  '观': '观天察地，审时度势。今日宜冷静观察，三思后行。',
+  '噬嗑': '明辨是非，决断果敢。今日宜果断处理棘手之事。',
+  '贲': '文饰之美，修饰得当。今日宜注重形象，以美服人。',
+  '剥': '剥落之象，不宜冒进。今日宜守成为上，蛰伏等待。',
+  '复': '否极泰来，生机重现。今日宜重整旗鼓，从头再来。',
+  '无妄': '无妄之行，顺其自然。今日宜脚踏实地，不可妄动。',
+  '大畜': '蓄养贤能，厚积薄发。今日宜学习积累，提升自我。',
+  '颐': '颐养身心，注意调养。今日宜注重健康，休养生息。',
+  '大过': '大过之变，非常之时。今日宜果断抉择，不可犹豫。',
+  '坎': '险阻重重，行路艰难。今日宜小心谨慎，步步为营。',
+  '离': '光明附丽，前途光明。今日宜积极向上，追求理想。',
+  '咸': '感应相通，心心相印。今日宜敞开心扉，真诚沟通。',
+  '恒': '持之以恒，久久为功。今日宜坚持到底，不轻言放弃。',
+  '遁': '退避三舍，韬光养晦。今日宜以退为进，保存实力。',
+  '大壮': '气势如虹，正当壮盛。今日宜勇敢行动，但不可鲁莽。',
+  '晋': '晋升之象，前途似锦。今日宜积极争取，展现才华。',
+  '明夷': '光明受阻，暂时隐忍。今日宜韬光养晦，等待时机。',
+  '家人': '家庭和睦，相亲相爱。今日宜关注家人，享受温情。',
+  '睽': '背离之象，各执己见。今日宜换位思考，化解分歧。',
+  '蹇': '行路艰难，前有险阻。今日宜迂回而行，另辟蹊径。',
+  '解': '解除困境，雨过天晴。今日宜抓紧时机，化解积难。',
+  '损': '有舍有得，先损后益。今日宜舍小取大，着眼长远。',
+  '益': '增益进取，顺风顺水。今日宜积极行动，大胆开拓。',
+  '夬': '决断果敢，当机立断。今日宜果断决策，不可拖延。',
+  '姤': '偶遇之缘，不期而遇。今日宜随缘而遇，珍惜当下。',
+  '萃': '汇聚之象，群英荟萃。今日宜广纳人才，凝聚力量。',
+  '升': '步步高升，前途无量。今日宜稳扎稳打，逐步攀升。',
+  '困': '困境之中，守正待时。今日宜忍耐坚持，必有转机。',
+  '井': '源源不断，利济众人。今日宜无私奉献，广种善因。',
+  '革': '变革之象，除旧布新。今日宜大胆革新，打破常规。',
+  '鼎': '鼎新之象，吉祥如意。今日宜开创新局，施展抱负。',
+  '震': '雷声震动，警醒自省。今日宜居安思危，未雨绸缪。',
+  '艮': '止而不动，静待其变。今日宜修身养性，静心等待。',
+  '渐': '循序渐进，稳步前行。今日宜按部就班，不可急躁。',
+  '归妹': '归妹之象，宜慎抉择。今日宜三思而行，不可冲动。',
+  '丰': '丰盛之极，满载而归。今日宜把握丰收，分享喜悦。',
+  '旅': '旅途在外，小心谨慎。今日宜低调行事，注意安全。',
+  '巽': '柔顺谦逊，随风而行。今日宜灵活应变，借势而为。',
+  '兑': '喜悦之象，和乐融融。今日宜与人分享，广结善缘。',
+  '涣': '涣散之象，宜聚不宜散。今日宜凝心聚力，共克时艰。',
+  '节': '节制有度，适可而止。今日宜量力而行，不可过度。',
+  '中孚': '诚信为本，以诚待人。今日宜真诚守信，必有回报。',
+  '小过': '小有过越，宜小不宜大。今日宜做小事，积小胜为大胜。',
+  '既济': '万事已成，功成告捷。今日宜巩固成果，防微杜渐。',
+  '未济': '事尚未成，仍需努力。今日宜总结反思，为下一步蓄力。'
+}
+
 Page({
   data: {
-    modules: [
-      { id: 'bazi', icon: '☯', title: '八字排盘', desc: '四柱八字 · 命理推演', url: '/package-bazi/pages/input/input' },
-      { id: 'qimen', icon: '✦', title: '奇门遁甲', desc: '时家转盘 · 预测吉凶', url: '/package-qimen/pages/input/input' },
-      { id: 'ziwei', icon: '★', title: '紫微斗数', desc: '命宫星曜 · 人生格局', url: '/package-ziwei/pages/input/input' },
-      { id: 'yinyuan', icon: '♡', title: '月老姻缘', desc: '红线牵引 · 缘分天定', url: '/package-yinyuan/pages/input/input' },
-      { id: 'tarot', icon: '◆', title: '塔罗占卜', desc: '心灵之镜 · 洞见未来', url: '/package-tarot/pages/select/select' },
-      { id: 'liuyao', icon: '☰', title: '六爻占卦', desc: '铜钱起卦 · 周易断事', url: '/package-liuyao/pages/input/input' },
-      { id: 'fengshui', icon: '≈', title: '易经风水', desc: '阳宅布局 · 趋吉避凶', url: '/package-fengshui/pages/input/input' },
-      { id: 'buddhism', icon: '☸', title: '佛学大师', desc: '高僧开示 · 智慧人生', url: '/package-buddhism/pages/chat/chat' }
+    moduleGroups: [
+      {
+        id: 'mingli',
+        title: '命理推演',
+        modules: [
+          { id: 'bazi', icon: '☯', title: '八字排盘', url: '/package-bazi/pages/input/input' },
+          { id: 'ziwei', icon: '★', title: '紫微斗数', url: '/package-ziwei/pages/input/input' }
+        ]
+      },
+      {
+        id: 'zhanbu',
+        title: '占卜问卦',
+        modules: [
+          { id: 'qimen', icon: '☲', title: '奇门遁甲', url: '/package-qimen/pages/input/input' },
+          { id: 'liuyao', icon: '☰', title: '六爻占卦', url: '/package-liuyao/pages/input/input' },
+          { id: 'tarot', icon: '◆', title: '塔罗占卜', url: '/package-tarot/pages/select/select' }
+        ]
+      },
+      {
+        id: 'yunshi',
+        title: '生活运势',
+        modules: [
+          { id: 'yinyuan', icon: '♡', title: '月老姻缘', url: '/package-yinyuan/pages/input/input' },
+          { id: 'fengshui', icon: '≈', title: '易经风水', url: '/package-fengshui/pages/input/input' },
+          { id: 'buddhism', icon: '☸', title: '佛学大师', url: '/package-buddhism/pages/chat/chat' }
+        ]
+      }
     ],
     dailyInfo: {},
+    dailyGua: {},
     greeting: '',
     profiles: [],
     activeProfileId: '',
@@ -23,6 +111,7 @@ Page({
 
   onLoad() {
     this.generateDailyInfo()
+    this.generateDailyGua()
     this.setGreeting()
   },
 
@@ -76,11 +165,18 @@ Page({
     const yiItems = ['祭祀', '祈福', '求嗣', '出行', '嫁娶', '纳采', '开市', '交易', '入宅', '安葬']
     const jiItems = ['动土', '破土', '修造', '开仓', '掘井', '开渠', '安床', '造桥', '乘船', '远行']
 
-    const yiCount = 3 + Math.floor(Math.random() * 3)
-    const jiCount = 2 + Math.floor(Math.random() * 3)
-
-    const shuffledYi = yiItems.sort(() => Math.random() - 0.5).slice(0, yiCount)
-    const shuffledJi = jiItems.sort(() => Math.random() - 0.5).slice(0, jiCount)
+    // Use date as seed for deterministic results
+    const seed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate()
+    const shuffle = (arr, s) => {
+      const a = [...arr]
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = ((s * (i + 1) + i * 31) % (i + 1) + (i + 1)) % (i + 1)
+        ;[a[i], a[j]] = [a[j], a[i]]
+      }
+      return a
+    }
+    const yiCount = 3 + (seed % 3)
+    const jiCount = 2 + (seed % 3)
 
     this.setData({
       dailyInfo: {
@@ -88,8 +184,32 @@ Page({
         yearGz,
         zodiac,
         shichen,
-        yi: shuffledYi,
-        ji: shuffledJi
+        yi: shuffle(yiItems, seed).slice(0, yiCount),
+        ji: shuffle(jiItems, seed + 1).slice(0, jiCount)
+      }
+    })
+  },
+
+  generateDailyGua() {
+    const now = new Date()
+    const seed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate()
+    const index = seed % 64
+    const guaName = GUA_NAMES[index]
+    const reading = GUA_FORTUNES[guaName] || '今日卦象，宜静心观变，顺时而动。'
+
+    // Generate 6 yao lines deterministically
+    const yaos = []
+    for (let i = 0; i < 6; i++) {
+      const lineSeed = (seed * (i + 1) + i * 7) % 100
+      yaos.push({ line: lineSeed >= 50 ? '━━━━━' : '━ ━ ━' })
+    }
+
+    this.setData({
+      dailyGua: {
+        name: guaName,
+        reading,
+        yaos,
+        date: `${now.getMonth() + 1}月${now.getDate()}日`
       }
     })
   },
@@ -111,12 +231,32 @@ Page({
       return
     }
 
-    const { url } = e.currentTarget.dataset
-    wx.navigateTo({ url })
+    // Auto-navigate with profile data for ziwei
+    if (id === 'ziwei' && profile && profile.birthDate) {
+      const params = encodeURIComponent(JSON.stringify({
+        name: profile.name,
+        gender: profile.gender,
+        birthDate: profile.birthDate,
+        birthHourIndex: profile.birthHourIndex != null ? profile.birthHourIndex : 6
+      }))
+      wx.navigateTo({ url: `/package-ziwei/pages/result/result?data=${params}` })
+      return
+    }
+
+    // Find URL from module groups
+    let url = e.currentTarget.dataset.url
+    if (!url) {
+      for (const group of this.data.moduleGroups) {
+        const mod = group.modules.find(m => m.id === id)
+        if (mod) { url = mod.url; break }
+      }
+    }
+    if (url) wx.navigateTo({ url })
   },
 
   onPullDownRefresh() {
     this.generateDailyInfo()
+    this.generateDailyGua()
     this.loadProfiles()
     wx.stopPullDownRefresh()
   }

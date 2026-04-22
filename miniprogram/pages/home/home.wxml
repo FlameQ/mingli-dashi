@@ -1,46 +1,36 @@
 <view class="page">
-  <!-- Top Profile Bar -->
-  <view class="top-bar">
-    <scroll-view class="profile-scroll" scroll-x enhanced show-scrollbar="{{false}}" wx:if="{{hasProfiles}}">
-      <view class="profile-list">
-        <view class="profile-chip {{activeProfileId === item.id ? 'active' : ''}}"
+  <!-- Profile Cards -->
+  <view class="profile-section" wx:if="{{hasProfiles}}">
+    <scroll-view class="profile-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="profile-card-list">
+        <view class="profile-card-item {{activeProfileId === item.id ? 'active' : ''}}"
               wx:for="{{profiles}}" wx:key="id"
-              data-id="{{item.id}}" bindtap="onProfileTap">
-          <view class="chip-avatar"><text class="chip-initial">{{item.name[0]}}</text></view>
-          <text class="chip-name">{{item.name}}</text>
-          <view class="chip-dot" wx:if="{{activeProfileId === item.id}}"></view>
+              data-id="{{item.id}}" bindtap="onProfileTap"
+              hover-class="profile-card-hover">
+          <view class="pc-avatar"><text class="pc-avatar-char">{{item.name[0]}}</text></view>
+          <view class="pc-info">
+            <text class="pc-name">{{item.name}}</text>
+            <text class="pc-meta">{{item.gender}} · {{item.birthDate}}</text>
+          </view>
+          <view class="pc-active-dot" wx:if="{{activeProfileId === item.id}}"></view>
         </view>
-        <view class="profile-chip chip-add" bindtap="onAddProfile">
-          <text class="chip-plus">+</text>
+        <view class="profile-card-item card-add" bindtap="onAddProfile">
+          <view class="pc-add-icon"><text class="pc-add-plus">+</text></view>
+          <text class="pc-add-text">添加档案</text>
         </view>
       </view>
     </scroll-view>
-    <view class="add-prompt" wx:else bindtap="onAddProfile">
-      <text class="add-prompt-text">+ 添加人物档案</text>
+  </view>
+  <view class="add-prompt-card" wx:else bindtap="onAddProfile">
+    <view class="add-prompt-inner">
+      <view class="add-prompt-icon-wrap"><text class="add-prompt-icon">+</text></view>
+      <text class="add-prompt-label">添加人物档案，开启命理推演</text>
     </view>
   </view>
 
   <!-- Greeting -->
   <view class="greeting-bar">
     <text class="greeting-text">{{greeting}}，一触即达千年智慧</text>
-  </view>
-
-  <!-- Module Grid: 3 columns -->
-  <view class="section-header">
-    <view class="section-line"></view>
-    <text class="section-title">占卜方式</text>
-    <view class="section-line"></view>
-  </view>
-
-  <view class="module-grid">
-    <view class="module-card" wx:for="{{modules}}" wx:key="id"
-          data-url="{{item.url}}" data-id="{{item.id}}" bindtap="onModuleTap"
-          hover-class="module-card-hover">
-      <view class="icon-circle icon-bg-{{item.id}}">
-        <text class="icon-symbol icon-color-{{item.id}}">{{item.icon}}</text>
-      </view>
-      <text class="card-title">{{item.title}}</text>
-    </view>
   </view>
 
   <!-- Daily Almanac -->
@@ -62,6 +52,44 @@
       <view class="yiji-group">
         <text class="yiji-badge ji">忌</text>
         <text class="yiji-text">{{dailyInfo.ji}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Daily Hexagram -->
+  <view class="gua-card">
+    <view class="gua-card-header">
+      <text class="gua-card-label">每日一卦</text>
+      <text class="gua-card-date">{{dailyGua.date}}</text>
+    </view>
+    <view class="gua-card-body">
+      <view class="gua-symbol-area">
+        <text class="gua-big-name">{{dailyGua.name}}</text>
+        <view class="gua-yao-display">
+          <text class="gua-yao-line" wx:for="{{dailyGua.yaos}}" wx:key="index">{{item.line}}</text>
+        </view>
+      </view>
+      <view class="gua-reading-area">
+        <text class="gua-reading-text">{{dailyGua.reading}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Module Groups -->
+  <view class="module-section" wx:for="{{moduleGroups}}" wx:key="id">
+    <view class="group-header">
+      <view class="group-line"></view>
+      <text class="group-title">{{item.title}}</text>
+      <view class="group-line"></view>
+    </view>
+    <view class="module-grid">
+      <view class="module-card" wx:for="{{item.modules}}" wx:key="id"
+            data-url="{{item.url}}" data-id="{{item.id}}" bindtap="onModuleTap"
+            hover-class="module-card-hover">
+        <view class="icon-circle icon-bg-{{item.id}}">
+          <text class="icon-symbol icon-color-{{item.id}}">{{item.icon}}</text>
+        </view>
+        <text class="card-title">{{item.title}}</text>
       </view>
     </view>
   </view>
