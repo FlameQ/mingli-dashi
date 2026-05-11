@@ -1,13 +1,187 @@
-<view class="page">
-  <view class="gua-header"><text class="gua-symbol">☰</text><text class="gua-name">{{guaName}}卦</text></view>
-  <view class="yao-list">
-    <view class="yao-item {{item.isMoving?'moving':''}}" wx:for="{{yaos}}" wx:key="position">
-      <text class="yao-label">{{item.label}}</text>
-      <text class="yao-line">{{item.line}}</text>
-      <text class="yao-type">{{item.type}}{{item.isMoving?' ○动':''}}</text>
+<view class="page" wx:if="{{analysis}}">
+  <!-- 卦名头部 -->
+  <view class="gua-header">
+    <view class="gua-palace-tag">{{analysis.palace.palace}}{{analysis.palace.element}}宫 · {{analysis.palacePosName}}</view>
+    <text class="gua-name">{{analysis.guaName}}卦</text>
+    <text class="gua-num">第{{analysis.kingWenNum}}卦</text>
+    <text class="gua-desc">「{{analysis.guaDesc}}」</text>
+  </view>
+
+  <!-- 上下卦信息 -->
+  <view class="trigram-row">
+    <view class="trigram-card">
+      <text class="tri-label">上卦</text>
+      <text class="tri-name">{{analysis.upperTrigram.name}}</text>
+      <text class="tri-nature">{{analysis.upperTrigram.nature}}</text>
+      <text class="tri-element">{{analysis.upperTrigram.element}}</text>
+    </view>
+    <view class="tri-rel">
+      <text>{{analysis.elementRel}}</text>
+    </view>
+    <view class="trigram-card">
+      <text class="tri-label">下卦</text>
+      <text class="tri-name">{{analysis.lowerTrigram.name}}</text>
+      <text class="tri-nature">{{analysis.lowerTrigram.nature}}</text>
+      <text class="tri-element">{{analysis.lowerTrigram.element}}</text>
     </view>
   </view>
-  <view class="card section"><text class="section-title">卦象解读</text><text class="reading-text">{{reading}}</text></view>
-  <view class="action-row"><view class="btn-save" bindtap="onSave"><text>{{saved?'已保存':'保存记录'}}</text></view><view class="btn-retry" bindtap="onRetry"><text>重新起卦</text></view></view>
+
+  <!-- Tab切换 -->
+  <view class="tab-bar">
+    <view class="tab-item {{activeTab === index ? 'active' : ''}}"
+          wx:for="{{tabs}}" wx:key="*this"
+          data-idx="{{index}}" bindtap="onTabChange">
+      <text>{{item}}</text>
+    </view>
+  </view>
+
+  <!-- Tab 0: 卦象总览 -->
+  <block wx:if="{{activeTab === 0}}">
+    <!-- 六爻图 -->
+    <view class="yao-card">
+      <view class="yao-row {{item.isMoving ? 'yao-moving' : ''}}"
+            wx:for="{{analysis.lines}}" wx:key="position">
+        <text class="yao-pos">{{item.position}}</text>
+        <view class="yao-line-area">
+          <view class="yao-bar-inner {{item.yang ? 'yang' : 'yin'}} {{item.isMoving ? 'moving' : ''}}">
+            <view wx:if="{{item.yang}}" class="yang-bar"></view>
+            <block wx:else>
+              <view class="yin-seg"></view>
+              <view class="yin-gap"></view>
+              <view class="yin-seg"></view>
+            </block>
+          </view>
+          <view class="yao-dot {{item.isMoving ? 'dot-active' : ''}}"></view>
+        </view>
+        <text class="yao-type">{{item.lineType}}</text>
+        <text class="yao-tag" wx:if="{{item.isWorld}}">世</text>
+        <text class="yao-tag yao-tag-res" wx:elif="{{item.isResponse}}">应</text>
+      </view>
+    </view>
+
+    <!-- 动爻 & 变卦 -->
+    <view class="info-card" wx:if="{{analysis.changedName}}">
+      <view class="info-label">变卦</view>
+      <view class="changed-flow">
+        <text class="changed-from">{{analysis.guaName}}卦</text>
+        <text class="changed-arrow">→</text>
+        <text class="changed-to">{{analysis.changedName}}卦</text>
+      </view>
+      <text class="info-text" wx:if="{{analysis.changedDetail}}">{{analysis.changedDetail.judgment}}</text>
+    </view>
+
+    <!-- 互卦 -->
+    <view class="info-card info-card-sub">
+      <view class="info-label">互卦（暗中趋势）</view>
+      <text class="info-name">{{analysis.mutualName}}卦</text>
+      <text class="info-text" wx:if="{{analysis.mutualDetail}}">{{analysis.mutualDetail.judgment}}</text>
+    </view>
+
+    <!-- 卦辞 -->
+    <view class="reading-card">
+      <text class="reading-label">卦辞</text>
+      <text class="reading-text">{{analysis.guaJudgment}}</text>
+    </view>
+  </block>
+
+  <!-- Tab 1: 六爻详解 -->
+  <block wx:if="{{activeTab === 1}}">
+    <view class="detail-list">
+      <view class="detail-item" wx:for="{{analysis.lines}}" wx:key="position">
+        <view class="detail-header">
+          <view class="detail-pos-wrap">
+            <text class="detail-pos">第{{item.position}}爻</text>
+            <text class="detail-tag" wx:if="{{item.isWorld}}">世</text>
+            <text class="detail-tag detail-tag-res" wx:elif="{{item.isResponse}}">应</text>
+            <text class="detail-moving" wx:if="{{item.isMoving}}">动</text>
+          </view>
+          <view class="detail-badges">
+            <text class="badge badge-liuqin">{{item.liuqin}}</text>
+            <text class="badge badge-zhi">{{item.ganZhi}}</text>
+            <text class="badge badge-element">{{item.zhiElement}}</text>
+          </view>
+        </view>
+        <view class="detail-body">
+          <view class="detail-row">
+            <text class="detail-key">爻性</text>
+            <text class="detail-val">{{item.lineType}}{{item.isMoving ? '（动爻）' : ''}}</text>
+          </view>
+          <view class="detail-row">
+            <text class="detail-key">六亲</text>
+            <text class="detail-val">{{item.liuqin}}</text>
+          </view>
+          <view class="detail-row">
+            <text class="detail-key">纳甲</text>
+            <text class="detail-val">{{item.ganZhi}}（{{item.zhiElement}}）</text>
+          </view>
+          <view class="detail-row">
+            <text class="detail-key">六神</text>
+            <text class="detail-val">{{item.liushen}} · {{item.liushenMeaning}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- Tab 2: 断卦分析 -->
+  <block wx:if="{{activeTab === 2}}">
+    <!-- 问题分类 -->
+    <view class="analysis-card">
+      <view class="analysis-title">问事类型</view>
+      <text class="analysis-category">{{analysis.categoryLabel}}</text>
+      <text class="analysis-question">「{{params.question}}」</text>
+    </view>
+
+    <!-- 世应分析 -->
+    <view class="analysis-card">
+      <view class="analysis-title">世应关系</view>
+      <text class="analysis-text">{{analysis.worldAnalysis}}</text>
+    </view>
+
+    <!-- 动爻分析 -->
+    <view class="analysis-card">
+      <view class="analysis-title">动爻判断</view>
+      <text class="analysis-text">{{analysis.movingAdvice}}</text>
+    </view>
+
+    <!-- 问题分类分析 -->
+    <view class="analysis-card analysis-card-highlight">
+      <view class="analysis-title">{{analysis.categoryLabel}}专断</view>
+      <text class="analysis-text">{{analysis.categoryAdvice}}</text>
+    </view>
+
+    <!-- 分类建议 -->
+    <view class="advice-grid">
+      <view class="advice-item" wx:if="{{analysis.careerAdvice}}">
+        <text class="advice-label">事业</text>
+        <text class="advice-text">{{analysis.careerAdvice}}</text>
+      </view>
+      <view class="advice-item" wx:if="{{analysis.wealthAdvice}}">
+        <text class="advice-label">财运</text>
+        <text class="advice-text">{{analysis.wealthAdvice}}</text>
+      </view>
+      <view class="advice-item" wx:if="{{analysis.loveAdvice}}">
+        <text class="advice-label">感情</text>
+        <text class="advice-text">{{analysis.loveAdvice}}</text>
+      </view>
+    </view>
+
+    <!-- 综合建议 -->
+    <view class="analysis-card">
+      <view class="analysis-title">综合判断</view>
+      <text class="analysis-text">{{analysis.guaJudgment}}</text>
+    </view>
+  </block>
+
+  <!-- 操作按钮 -->
+  <view class="action-row">
+    <view class="btn-save" bindtap="onSave">
+      <text>{{saved ? '已保存' : '保存记录'}}</text>
+    </view>
+    <view class="btn-retry" bindtap="onRetry">
+      <text>重新起卦</text>
+    </view>
+  </view>
+
   <view class="disclaimer">仅供娱乐参考，不作为人生决策依据</view>
 </view>

@@ -1,4 +1,6 @@
 const baziCalc = require('../../../utils/bazi-calculator')
+const lunarUtil = require('../../../utils/lunar-util')
+const dateUtil = require('../../../utils/date-util')
 const app = getApp()
 
 Page({
@@ -20,7 +22,16 @@ Page({
     luckyElements: {},
     dayunList: [],
     reading: {},
-    saved: false
+    saved: false,
+    shishenDetail: {},
+    dizhiRelations: [],
+    shensha: [],
+    nayingDetail: [],
+    changsheng: {},
+    liunian: {},
+    solarDateStr: '',
+    lunarDateStr: '',
+    lunarGanzhi: ''
   },
 
   onLoad(options) {
@@ -34,10 +45,58 @@ Page({
     const hourMap = [23, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21]
     const hour = hourMap[params.birthHourIndex] || 12
     const result = baziCalc.calculateBazi(y, m, d, hour, params.gender)
+
+    // 计算阳历和农历日期字符串
+    const solarDateStr = dateUtil.formatSolarDate ? `${y}年${m}月${d}日` : params.birthDate
+    let lunarDateStr = ''
+    let lunarGanzhi = ''
+    try {
+      const lunar = lunarUtil.solarToLunar(y, m, d)
+      lunarDateStr = lunarUtil.formatLunarDate(lunar.lunarY, lunar.lunarM, lunar.lunarD, lunar.isLeapMonth)
+      lunarGanzhi = lunarUtil.getLunarYearGanZhi(lunar.lunarY)
+    } catch (e) {
+      lunarDateStr = '计算失败'
+    }
+    // 如果用户输入了农历日期，优先使用
+    if (params.calendarType === 'lunar' && params.lunarDateStr) {
+      lunarDateStr = params.lunarDateStr
+    }
+
+    // 转换十神统计为可遍历数组
+    const shishenCountArr = result.shishenDetail && result.shishenDetail.count
+      ? Object.entries(result.shishenDetail.count).map(([key, value]) => ({ key, value }))
+      : []
+
     this.setData({
       loaded: true,
       name: params.name || '',
-      ...result,
+      pillars: result.pillars,
+      dayMaster: result.dayMaster,
+      dayMasterWx: result.dayMasterWx,
+      strength: result.strength,
+      wuxingCount: result.wuxingCount,
+      fullShishen: result.fullShishen,
+      naying: result.naying,
+      zodiac: result.zodiac,
+      xiyong: result.xiyong,
+      geju: result.geju,
+      personality: result.personality,
+      lifeDomains: result.lifeDomains,
+      luckyElements: result.luckyElements,
+      dayunList: result.dayunList,
+      reading: result.reading,
+      shishenDetail: {
+        details: result.shishenDetail ? result.shishenDetail.details : [],
+        count: shishenCountArr
+      },
+      dizhiRelations: result.dizhiRelations || [],
+      shensha: result.shensha || [],
+      nayingDetail: result.nayingDetail || [],
+      changsheng: result.changsheng || {},
+      liunian: result.liunian || {},
+      solarDateStr,
+      lunarDateStr,
+      lunarGanzhi,
       params
     })
   },

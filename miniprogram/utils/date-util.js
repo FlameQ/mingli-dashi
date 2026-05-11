@@ -1,5 +1,6 @@
 /**
  * 命理大师 - 农历与日期工具
+ * V2: 修复立春分界、夜子时处理
  */
 
 const TIANGAN = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸']
@@ -41,6 +42,49 @@ const NAYING_TABLE = {
   '庚申': '石榴木', '辛酉': '石榴木', '壬戌': '大海水', '癸亥': '大海水'
 }
 
+// 立春日期近似表（月/日），每年立春约在2月3-5日
+// 精确到天的近似值，对于小程序娱乐用途足够
+function getLichunDate(year) {
+  // 立春日期规律：约在2月3-5日，用简化公式
+  // 2000年立春为2月4日
+  const offset = ((year - 2000) % 4 === 0) ? 4 : ((year - 2000) % 4 === 1) ? 3 : ((year - 2000) % 4 === 2) ? 4 : 5
+  return { month: 2, day: offset }
+}
+
+function isBeforeLichun(month, day, year) {
+  if (month > 2) return false
+  if (month < 2) return true
+  const lc = getLichunDate(year)
+  return day < lc.day
+}
+
+/**
+ * 根据阳历月日确定八字月份（节气月）
+ * 使用12个节气近似日期分界
+ * @returns {number} 八字月 1-12 (1=寅月, 12=丑月)
+ */
+function getBaziMonth(solarMonth, solarDay, year) {
+  // 12个节气分界近似日（每个八字月的起始节气）
+  // 格式: [阳历月, 节气日, 八字月号]
+  if (solarMonth === 2) {
+    // 立春使用更精确的年计算
+    const lc = getLichunDate(year)
+    return solarDay < lc.day ? 12 : 1
+  }
+  if (solarMonth === 1) return solarDay < 6 ? 11 : 12   // 小寒~Jan6
+  if (solarMonth === 3) return solarDay < 6 ? 1 : 2     // 惊蛰~Mar6
+  if (solarMonth === 4) return solarDay < 5 ? 2 : 3     // 清明~Apr5
+  if (solarMonth === 5) return solarDay < 6 ? 3 : 4     // 立夏~May6
+  if (solarMonth === 6) return solarDay < 6 ? 4 : 5     // 芒种~Jun6
+  if (solarMonth === 7) return solarDay < 7 ? 5 : 6     // 小暑~Jul7
+  if (solarMonth === 8) return solarDay < 8 ? 6 : 7     // 立秋~Aug8
+  if (solarMonth === 9) return solarDay < 8 ? 7 : 8     // 白露~Sep8
+  if (solarMonth === 10) return solarDay < 8 ? 8 : 9    // 寒露~Oct8
+  if (solarMonth === 11) return solarDay < 7 ? 9 : 10   // 立冬~Nov7
+  if (solarMonth === 12) return solarDay < 7 ? 10 : 11  // 大雪~Dec7
+  return 1
+}
+
 function getShichenIndex(hour) {
   if (hour === 23 || hour === 0) return 0
   return Math.floor((hour + 1) / 2)
@@ -65,7 +109,8 @@ function getYearGanZhi(year) {
 }
 
 function getMonthGanZhi(yearGan, month) {
-  const ganStartMap = { '甲': 2, '乙': 4, '丙': 6, '丁': 8, '戊': 2, '己': 4, '庚': 6, '辛': 8, '壬': 2, '癸': 4 }
+  // 五虎遁：甲己之年丙作首(2)，乙庚之年戊为头(4)，丙辛之年庚为首(6)，丁壬之年壬为头(8)，戊癸之年甲为头(0)
+  const ganStartMap = { '甲': 2, '乙': 4, '丙': 6, '丁': 8, '戊': 0, '己': 2, '庚': 4, '辛': 6, '壬': 8, '癸': 0 }
   const ganIdx = ganStartMap[yearGan[0]] + (month - 1)
   const zhiIdx = (month + 1) % 12
   return TIANGAN[ganIdx % 10] + DIZHI[zhiIdx]
@@ -89,9 +134,31 @@ function getHourGanZhi(dayGan, hour) {
 }
 
 function getGanZhi(year, month, day, hour) {
-  const yearGZ = getYearGanZhi(year)
-  const monthGZ = getMonthGanZhi(yearGZ, month)
-  const dayGZ = getDayGanZhi(year, month, day)
+  // 确定八字月份（基于节气分界）
+  const baziMonth = getBaziMonth(month, day, year)
+
+  // 年柱：立春前（子月/丑月在阳历1-2月）属上一年
+  let actualYear = year
+  if (baziMonth >= 11 && (month === 1 || month === 2)) {
+    actualYear = year - 1
+  }
+  const yearGZ = getYearGanZhi(actualYear)
+
+  // 月柱：使用八字月份计算
+  const monthGZ = getMonthGanZhi(yearGZ, baziMonth)
+
+  // 日柱：夜子时（23时）归属次日
+  let actualDay = day
+  let actualDayMonth = month
+  let actualDayYear = year
+  if (hour === 23) {
+    const nextDate = new Date(year, month - 1, day + 1)
+    actualDayYear = nextDate.getFullYear()
+    actualDayMonth = nextDate.getMonth() + 1
+    actualDay = nextDate.getDate()
+  }
+  const dayGZ = getDayGanZhi(actualDayYear, actualDayMonth, actualDay)
+
   const hourGZ = getHourGanZhi(dayGZ, hour)
   return {
     yearPillar: yearGZ,
@@ -144,5 +211,6 @@ module.exports = {
   getShichenIndex, getShichen, getShichenName,
   getZodiac, getYearGanZhi, getMonthGanZhi, getDayGanZhi, getHourGanZhi,
   getGanZhi, getNaying, getWuxingFromGanZhi,
-  countWuxing, analyzeWuxingBalance
+  countWuxing, analyzeWuxingBalance,
+  isBeforeLichun, getLichunDate, getBaziMonth
 }

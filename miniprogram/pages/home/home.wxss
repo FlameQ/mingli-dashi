@@ -2,120 +2,127 @@
   min-height: 100vh;
   background: #F3F1ED;
   padding-bottom: 200rpx;
+  box-sizing: border-box;
+}
+.page, .page view, .page text, .page scroll-view {
+  box-sizing: border-box;
 }
 
-/* ===== Profile Section ===== */
-.profile-section {
-  margin: 16rpx 24rpx 0;
-  padding: 24rpx;
+/* ===== Zone A: Greeting Bar ===== */
+.greeting-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 32rpx 8rpx;
+}
+.greeting-left {
+  display: flex; align-items: center;
+}
+.greeting-text {
+  font-size: 26rpx; color: #7A7068;
+}
+.greeting-right {
+  display: flex; align-items: center;
+}
+.greeting-avatar {
+  width: 52rpx; height: 52rpx; border-radius: 50%;
+  background: #4A3728;
+  display: flex; align-items: center; justify-content: center;
+}
+.greeting-avatar-char {
+  font-size: 24rpx; color: #FFFFFF; font-weight: bold;
+}
+.greeting-avatar-empty {
+  background: #DDD7CD; border: 2rpx dashed #B8A890;
+}
+.greeting-avatar-plus {
+  font-size: 28rpx; color: #7A7068;
+}
+
+/* ===== Zone B: Dashboard Card ===== */
+.dashboard-card {
+  margin: 12rpx 24rpx 0;
   background: #FFFFFF;
   border-radius: 20rpx;
   border: 1rpx solid #DDD7CD;
   box-shadow: 0 1rpx 6rpx rgba(30, 25, 20, 0.06);
+  overflow: hidden;
 }
-.profile-header {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 16rpx;
+
+/* Hero Header - dark brown */
+.hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 28rpx;
+  background: #4A3728;
 }
-.profile-header-left {
+.hero-left {
   display: flex; flex-direction: column; gap: 4rpx;
 }
-.profile-header-title {
-  font-size: 30rpx; font-weight: bold; color: #1A1714;
+.hero-date {
+  font-size: 30rpx; font-weight: bold; color: #FFFFFF;
 }
-.profile-header-hint {
-  font-size: 20rpx; color: #9A9088;
+.hero-meta {
+  font-size: 20rpx; color: #C9B99A;
 }
-.profile-header-add {
-  padding: 8rpx 20rpx;
-  background: #F7F5F2; border-radius: 20rpx;
-  border: 1rpx solid #DDD7CD;
+.hero-right {
+  display: flex; align-items: center; gap: 12rpx;
 }
-.profile-add-text { font-size: 22rpx; color: #4A3728; }
+.hero-gua-circle {
+  width: 60rpx; height: 60rpx; border-radius: 50%;
+  border: 2rpx solid #C9A96E;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(201, 169, 110, 0.1);
+}
+.hero-gua-name {
+  font-size: 28rpx; font-weight: bold; color: #C9A96E;
+}
+.hero-gua-cta {
+  font-size: 22rpx; color: #C9B99A;
+}
 
-.profile-scroll { white-space: nowrap; }
-.profile-card-list {
-  display: inline-flex; align-items: stretch; gap: 16rpx;
+/* Dashboard Tabs */
+.dash-tabs {
+  display: flex;
+  border-bottom: 1rpx solid #F0EDE8;
 }
-.profile-card-item {
-  display: inline-flex; align-items: center; gap: 14rpx;
-  padding: 16rpx 20rpx;
-  background: #F7F5F2; border-radius: 14rpx;
-  border: 2rpx solid transparent;
+.dash-tab {
+  flex: 1; text-align: center;
+  padding: 18rpx 0;
+  font-size: 26rpx; color: #9A9088;
   position: relative;
   transition: all 0.2s;
 }
-.profile-card-item.active {
-  border-color: #4A3728;
-  background: #EFEAE4;
+.dash-tab.active {
+  color: #4A3728; font-weight: bold;
 }
-.profile-card-hover { transform: scale(0.97); }
+.dash-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 48rpx; height: 4rpx;
+  background: #4A3728;
+  border-radius: 2rpx;
+}
 
-.pc-avatar {
-  width: 56rpx; height: 56rpx; border-radius: 50%;
-  background: #DDD7CD;
+/* Dashboard Content */
+.dash-content {
+  padding: 20rpx 28rpx;
+  min-height: 200rpx;
+}
+.dash-empty {
   display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
+  padding: 40rpx 0;
 }
-.active .pc-avatar { background: #4A3728; }
-.pc-avatar-char { font-size: 24rpx; color: #4A3728; font-weight: bold; }
-.active .pc-avatar-char { color: #FFFFFF; }
-
-.pc-info {
-  display: flex; flex-direction: column; gap: 2rpx; overflow: hidden;
-}
-.pc-name {
-  font-size: 26rpx; font-weight: bold; color: #1A1714;
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-.pc-meta { font-size: 20rpx; color: #9A9088; }
-
-.pc-check {
-  font-size: 20rpx; color: #4A3728; font-weight: bold;
-  margin-left: 4rpx;
-}
-
-.profile-empty {
-  display: flex; align-items: center; justify-content: center; gap: 12rpx;
-  padding: 24rpx;
-  border: 2rpx dashed #C9C1B5; border-radius: 14rpx;
-  background: #F7F5F2;
-}
-.profile-empty-icon {
-  width: 40rpx; height: 40rpx; border-radius: 50%;
-  background: #DDD7CD;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 28rpx; color: #4A3728;
-}
-.profile-empty-text { font-size: 24rpx; color: #4A3728; }
-
-/* ===== Daily Card ===== */
-.daily-card {
-  margin: 16rpx 24rpx 0; padding: 24rpx 28rpx;
-  background: #FFFFFF; border-radius: 20rpx;
-  border: 1rpx solid #DDD7CD;
-  box-shadow: 0 1rpx 6rpx rgba(30, 25, 20, 0.06);
-}
-.daily-header {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 12rpx;
-}
-.daily-label { font-size: 28rpx; font-weight: bold; color: #1A1714; }
-.daily-date { font-size: 22rpx; color: #9A9088; }
-.daily-tags {
-  display: flex; gap: 12rpx; margin-bottom: 16rpx; flex-wrap: wrap;
-}
-.daily-tag {
-  font-size: 22rpx; color: #4A3728; background: #F7F5F2;
-  padding: 4rpx 14rpx; border-radius: 12rpx;
+.dash-empty-text {
+  font-size: 24rpx; color: #C9A96E;
 }
 
 /* Yi/Ji rows */
-.daily-yiji {
-  display: flex; flex-direction: column; gap: 12rpx;
-}
 .yiji-row {
   display: flex; align-items: flex-start; gap: 10rpx;
+  margin-bottom: 12rpx;
 }
 .yiji-badge {
   font-size: 22rpx; font-weight: bold;
@@ -132,9 +139,7 @@
   padding: 4rpx 14rpx; border-radius: 10rpx;
 }
 
-/* ===== Personal Fortune ===== */
-.personal-fortune { margin-top: 16rpx; }
-.pf-divider { height: 1rpx; background: #DDD7CD; margin-bottom: 16rpx; }
+/* Personal Fortune */
 .pf-header {
   display: flex; justify-content: space-between; align-items: center;
   margin-bottom: 8rpx;
@@ -152,93 +157,110 @@
 .pf-detail-label { font-size: 20rpx; color: #9A9088; }
 .pf-detail-value { font-size: 22rpx; color: #4A3728; font-weight: 500; }
 
-/* ===== Daily Hexagram Card ===== */
-.gua-card {
-  margin: 12rpx 24rpx 0; padding: 20rpx 24rpx;
-  background: #FFFFFF; border-radius: 20rpx;
-  border: 1rpx solid #DDD7CD;
-  box-shadow: 0 1rpx 6rpx rgba(30, 25, 20, 0.06);
+/* Dress (within tab) */
+.dress-day-tabs { display: flex; gap: 8rpx; margin-bottom: 16rpx; }
+.dress-day-tab {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 6rpx 20rpx; border-radius: 16rpx;
+  background: #F7F5F2; border: 1rpx solid #DDD7CD;
 }
-.gua-card-row {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 10rpx;
+.dress-day-tab.active { background: #4A3728; border-color: #4A3728; }
+.dress-tab-label { font-size: 22rpx; color: #9A9088; }
+.dress-tab-date { font-size: 16rpx; color: #B8A890; margin-top: 2rpx; }
+.dress-day-tab.active .dress-tab-label,
+.dress-day-tab.active .dress-tab-date { color: #FFFFFF; }
+
+.dress-personal { margin-bottom: 16rpx; }
+.dress-profile-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10rpx; }
+.dress-profile-info { display: flex; align-items: center; gap: 8rpx; flex-wrap: wrap; }
+.dress-profile-name { font-size: 26rpx; font-weight: bold; color: #1A1714; }
+.dress-profile-tag { font-size: 18rpx; color: #7A7068; background: #F7F5F2; padding: 4rpx 12rpx; border-radius: 10rpx; }
+.dress-tag-xi { background: #EFEAE4; color: #4A3728; font-weight: bold; }
+.dress-strategy-badge { font-size: 20rpx; font-weight: bold; padding: 6rpx 16rpx; border-radius: 16rpx; }
+.dress-strategy-desc { font-size: 24rpx; color: #7A7068; line-height: 1.6; margin-bottom: 16rpx; }
+
+.dress-outfit-card {
+  background: #F7F5F2; border-radius: 14rpx;
+  padding: 16rpx 20rpx; margin-bottom: 14rpx;
+  border-left: 4rpx solid #C9A96E;
 }
-.gua-left { display: flex; flex-direction: column; gap: 4rpx; }
-.gua-card-label { font-size: 26rpx; font-weight: bold; color: #1A1714; }
-.gua-card-date { font-size: 20rpx; color: #9A9088; }
-.gua-symbol-mini {
-  width: 64rpx; height: 64rpx; border-radius: 50%;
-  background: #F7F5F2; display: flex; align-items: center; justify-content: center;
+.dress-outfit-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8rpx; }
+.dress-outfit-title { font-size: 22rpx; font-weight: bold; color: #4A3728; }
+.dress-outfit-swatches { display: flex; gap: 6rpx; }
+.dress-swatch-lg { width: 32rpx; height: 32rpx; border-radius: 50%; border: 2rpx solid #DDD7CD; }
+.dress-outfit-text { font-size: 24rpx; color: #3E2723; line-height: 1.6; display: block; margin-bottom: 6rpx; }
+.dress-outfit-detail { font-size: 22rpx; color: #7A7068; display: block; }
+
+.dress-accessory { display: flex; align-items: center; gap: 8rpx; margin-bottom: 12rpx; }
+.dress-accessory-label { font-size: 20rpx; color: #9A9088; flex-shrink: 0; }
+.dress-accessory-text { font-size: 20rpx; color: #7A7068; }
+
+.dress-divider { height: 1rpx; background: #E8E3DC; margin: 12rpx 0; }
+.dress-section-title { font-size: 22rpx; color: #9A9088; margin-bottom: 10rpx; }
+
+.dress-row { display: flex; gap: 12rpx; margin-bottom: 10rpx; }
+.dress-row:last-child { margin-bottom: 0; }
+.dress-item {
+  flex: 1; background: #F7F5F2; border-radius: 14rpx; padding: 14rpx 16rpx;
+  display: flex; flex-direction: column; align-items: center; gap: 6rpx;
+}
+.dress-item.dress-daji { border-left: 4rpx solid #4CAF50; }
+.dress-level { font-size: 20rpx; font-weight: bold; color: #4A3728; }
+.dress-colors { display: flex; gap: 6rpx; }
+.dress-swatch {
+  width: 28rpx; height: 28rpx; border-radius: 50%;
   border: 2rpx solid #DDD7CD;
 }
-.gua-name-mini { font-size: 32rpx; font-weight: bold; color: #4A3728; }
-.gua-reading-mini {
-  font-size: 22rpx; color: #7A7068; line-height: 1.5;
-  overflow: hidden; text-overflow: ellipsis;
-  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-  margin-bottom: 12rpx;
-}
-.gua-cta {
-  display: flex; align-items: center; justify-content: center;
-  gap: 6rpx; padding: 10rpx 0;
-  background: #4A3728; border-radius: 32rpx;
-}
-.gua-cta-text { font-size: 24rpx; color: #FFFFFF; font-weight: bold; }
-.gua-cta-arrow { font-size: 28rpx; color: #C49A6C; }
+.dress-names { font-size: 18rpx; color: #7A7068; }
+.dress-empty-hint { text-align: center; margin-top: 12rpx; }
+.dress-empty-hint text { font-size: 20rpx; color: #C9A96E; }
 
-/* ===== Module Section Groups ===== */
-.module-section { margin-top: 8rpx; }
-.group-header {
-  display: flex; align-items: center; gap: 20rpx;
-  padding: 20rpx 28rpx 8rpx;
-}
-.group-title {
-  font-size: 22rpx; font-weight: bold; color: #9A9088;
-  letter-spacing: 4rpx; white-space: nowrap;
-}
-.group-line { flex: 1; height: 1rpx; background: #DDD7CD; }
-
-/* ===== Module Grid ===== */
-.module-grid {
-  display: flex; flex-wrap: wrap; padding: 4rpx 20rpx;
-}
-.module-card {
-  width: calc(33.33% - 16rpx); margin: 8rpx;
-  display: flex; flex-direction: column; align-items: center;
-  padding: 28rpx 8rpx 24rpx;
-  background: #FFFFFF; border-radius: 16rpx;
+/* ===== Zone C: Tools Grid ===== */
+.tools-card {
+  margin: 16rpx 24rpx 0;
+  background: #FFFFFF;
+  border-radius: 20rpx;
   border: 1rpx solid #DDD7CD;
   box-shadow: 0 1rpx 6rpx rgba(30, 25, 20, 0.06);
-  transition: transform 0.2s ease;
+  padding: 24rpx 16rpx;
 }
-.module-card-hover { transform: scale(0.95); background: #F7F5F2; }
+.tools-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+.tool-cell {
+  width: 25%;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 16rpx 0;
+}
+.tool-cell-hover { opacity: 0.7; }
 
-/* ===== Icon Circles ===== */
-.icon-circle {
-  width: 72rpx; height: 72rpx; border-radius: 50%;
+.tool-icon-circle {
+  width: 64rpx; height: 64rpx; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 12rpx;
+  margin-bottom: 10rpx;
 }
-.icon-symbol { font-size: 32rpx; font-weight: bold; }
+.tool-icon { font-size: 28rpx; font-weight: bold; }
+.tool-label { font-size: 22rpx; color: #3E2723; text-align: center; }
 
+/* Icon Colors */
 .icon-bg-bazi { background: #E8EFEF; }
 .icon-color-bazi { color: #3D6B5E; }
-.icon-bg-qimen { background: #E6EAF0; }
-.icon-color-qimen { color: #3A5A7A; }
 .icon-bg-ziwei { background: #EBE6F0; }
 .icon-color-ziwei { color: #5A3A8A; }
-.icon-bg-yinyuan { background: #F0ECE6; }
-.icon-color-yinyuan { color: #4A3728; }
-.icon-bg-tarot { background: #F0EAE4; }
-.icon-color-tarot { color: #B8860B; }
+.icon-bg-qimen { background: #E6EAF0; }
+.icon-color-qimen { color: #3A5A7A; }
 .icon-bg-liuyao { background: #E6ECE9; }
 .icon-color-liuyao { color: #3D6B5E; }
+.icon-bg-tarot { background: #F0EAE4; }
+.icon-color-tarot { color: #B8860B; }
+.icon-bg-yinyuan { background: #F0ECE6; }
+.icon-color-yinyuan { color: #4A3728; }
 .icon-bg-fengshui { background: #E4EAF0; }
 .icon-color-fengshui { color: #2A5A7A; }
 .icon-bg-buddhism { background: #F0ECE6; }
 .icon-color-buddhism { color: #4A3728; }
 
-.card-title { font-size: 24rpx; font-weight: 500; color: #1A1714; text-align: center; }
 .page-disclaimer { text-align: center; color: #9A9088; font-size: 22rpx; padding: 32rpx 24rpx 20rpx; }
 
 /* ===== Coin Divination Modal ===== */
@@ -276,7 +298,6 @@
 }
 .coin-method-text { font-size: 22rpx; color: #7A7068; line-height: 1.5; }
 
-/* Progress */
 .coin-progress {
   display: flex; justify-content: space-between; align-items: center;
   margin-bottom: 24rpx;
@@ -289,7 +310,6 @@
 }
 .coin-dot.done { background: #4A3728; }
 
-/* Coins */
 .coin-area { display: flex; flex-direction: column; align-items: center; }
 .coins-row { display: flex; gap: 40rpx; margin-bottom: 28rpx; justify-content: center; }
 .coin-wrap { display: flex; flex-direction: column; align-items: center; gap: 4rpx; }
@@ -315,7 +335,6 @@
 }
 .coin-flip { animation: coinFlip 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 
-/* Toss Button */
 .coin-toss-btn {
   width: 300rpx; padding: 20rpx 0; text-align: center;
   background: #4A3728; color: #FFFFFF;
@@ -325,35 +344,36 @@
 .coin-toss-btn.disabled { background: #C9C1B5; box-shadow: none; }
 .coin-toss-btn:active { transform: scale(0.95); }
 
-/* Lines built so far */
 .coin-lines-built {
   margin-top: 28rpx; width: 100%;
   background: #F7F5F2; border-radius: 12rpx; padding: 20rpx 24rpx;
+  overflow: hidden;
 }
 .coin-built-title { font-size: 22rpx; color: #9A9088; margin-bottom: 12rpx; font-weight: 500; }
-.coin-built-line { display: flex; align-items: center; gap: 16rpx; padding: 8rpx 0; }
-.coin-built-num { font-size: 22rpx; color: #9A9088; width: 32rpx; text-align: center; }
-.coin-built-type { font-size: 20rpx; color: #9A9088; margin-left: auto; flex-shrink: 0; }
+.coin-built-line { display: flex; align-items: center; gap: 12rpx; padding: 8rpx 0; overflow: hidden; }
+.coin-built-num { font-size: 22rpx; color: #9A9088; width: 32rpx; text-align: center; flex-shrink: 0; }
+.coin-built-type { font-size: 20rpx; color: #9A9088; margin-left: auto; flex-shrink: 0; white-space: nowrap; }
 .coin-built-type.moving-type { color: #4A3728; font-weight: bold; }
 
-/* ===== Visual Yao Bars ===== */
-.yao-bar { display: flex; align-items: center; flex: 1; gap: 10rpx; justify-content: center; }
-.yao-bar-inner { display: flex; align-items: center; justify-content: center; height: 16rpx; min-width: 200rpx; }
-.yao-bar-inner.yin { justify-content: center; gap: 12rpx; }
-.yang-line { width: 200rpx; height: 12rpx; background: #7A7068; border-radius: 2rpx; }
+/* Visual Yao Bars */
+.yao-bar { display: flex; align-items: center; flex: 1; gap: 8rpx; justify-content: center; overflow: hidden; min-width: 0; }
+.yao-bar-inner { display: flex; align-items: center; justify-content: center; height: 16rpx; }
+.yao-bar-inner.yin { justify-content: center; gap: 10rpx; }
+.yang-line { width: 160rpx; height: 12rpx; background: #7A7068; border-radius: 2rpx; flex-shrink: 0; }
 .yao-bar-inner.moving .yang-line { background: #4A3728; height: 14rpx; }
-.yin-left, .yin-right { width: 88rpx; height: 12rpx; background: #7A7068; border-radius: 2rpx; }
+.yin-left, .yin-right { width: 72rpx; height: 12rpx; background: #7A7068; border-radius: 2rpx; flex-shrink: 0; }
 .yao-bar-inner.moving .yin-left,
 .yao-bar-inner.moving .yin-right { background: #4A3728; height: 14rpx; }
-.yin-gap { width: 12rpx; }
-.yao-marker { width: 12rpx; height: 12rpx; border-radius: 50%; background: #4A3728; flex-shrink: 0; }
-.result-yao .yang-line { width: 240rpx; height: 14rpx; }
-.result-yao .yin-left, .result-yao .yin-right { width: 106rpx; height: 14rpx; }
+.yin-gap { width: 10rpx; }
+.yao-marker { width: 16rpx; height: 16rpx; border-radius: 50%; flex-shrink: 0; background: transparent; }
+.yao-marker.marker-active { background: #4A3728; }
+.result-yao .yang-line { width: 200rpx; height: 14rpx; }
+.result-yao .yin-left, .result-yao .yin-right { width: 90rpx; height: 14rpx; }
 .result-yao .yao-bar-inner.moving .yang-line { height: 16rpx; }
 .result-yao .yao-bar-inner.moving .yin-left,
 .result-yao .yao-bar-inner.moving .yin-right { height: 16rpx; }
 
-/* ===== Hexagram Result ===== */
+/* Hexagram Result */
 .coin-result { display: flex; flex-direction: column; align-items: center; }
 .coin-result-header { display: flex; align-items: baseline; gap: 16rpx; margin-bottom: 20rpx; }
 .coin-result-gua { font-size: 56rpx; font-weight: bold; color: #4A3728; letter-spacing: 8rpx; }
@@ -371,8 +391,8 @@
 .trigram-element { font-size: 20rpx; color: #7A7068; background: #EFEAE4; padding: 2rpx 12rpx; border-radius: 8rpx; }
 .trigram-rel { font-size: 22rpx; color: #C49A6C; font-weight: bold; background: #F5F2ED; padding: 4rpx 16rpx; border-radius: 16rpx; }
 
-.coin-result-lines { background: #F7F5F2; border-radius: 16rpx; padding: 20rpx 24rpx; width: 100%; margin-bottom: 16rpx; }
-.coin-result-line { display: flex; align-items: center; gap: 12rpx; padding: 8rpx 0; }
+.coin-result-lines { background: #F7F5F2; border-radius: 16rpx; padding: 20rpx 24rpx; width: 100%; margin-bottom: 16rpx; overflow: hidden; }
+.coin-result-line { display: flex; align-items: center; gap: 12rpx; padding: 8rpx 0; overflow: hidden; }
 .coin-result-line-num { font-size: 22rpx; color: #9A9088; width: 32rpx; text-align: right; flex-shrink: 0; }
 .coin-result-line-type { font-size: 20rpx; color: #C9C1B5; margin-left: auto; flex-shrink: 0; }
 .coin-result-line-type.moving-type { color: #4A3728; font-weight: bold; }
@@ -400,16 +420,3 @@
 .coin-result-detail { width: 100%; background: #EFEAE4; border-radius: 12rpx; padding: 16rpx 20rpx; margin-bottom: 24rpx; }
 .detail-label { font-size: 22rpx; color: #4A3728; font-weight: bold; display: block; margin-bottom: 8rpx; }
 .detail-text { font-size: 24rpx; color: #7A7068; line-height: 1.7; }
-
-.coin-result-btns { display: flex; gap: 20rpx; width: 100%; }
-.coin-retry-btn {
-  flex: 1; padding: 22rpx 0; text-align: center;
-  background: #4A3728; color: #FFFFFF;
-  border-radius: 48rpx; font-size: 28rpx; font-weight: bold;
-}
-.coin-close-btn {
-  flex: 1; padding: 22rpx 0; text-align: center;
-  background: #F7F5F2; color: #4A3728;
-  border-radius: 48rpx; font-size: 28rpx;
-  border: 1rpx solid #DDD7CD;
-}

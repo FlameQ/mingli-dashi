@@ -1,50 +1,50 @@
 <view class="page">
-  <!-- Profile Section -->
-  <view class="profile-section">
-    <view class="profile-header">
-      <view class="profile-header-left">
-        <text class="profile-header-title">我的档案</text>
-        <text class="profile-header-hint">{{greeting}} · 所有数据依据档案自动分析</text>
-      </view>
-      <view class="profile-header-add" wx:if="{{hasProfiles}}" bindtap="onAddProfile">
-        <text class="profile-add-text">+ 新建</text>
-      </view>
+  <!-- Zone A: Greeting Bar -->
+  <view class="greeting-bar">
+    <view class="greeting-left">
+      <text class="greeting-text">{{greeting}}{{activeProfile ? ' · ' + activeProfile.name : ''}}</text>
     </view>
-    <view wx:if="{{hasProfiles}}">
-      <scroll-view class="profile-scroll" scroll-x enhanced show-scrollbar="{{false}}">
-        <view class="profile-card-list">
-          <view class="profile-card-item {{activeProfileId === item.id ? 'active' : ''}}"
-                wx:for="{{profiles}}" wx:key="id"
-                data-id="{{item.id}}" bindtap="onProfileTap"
-                hover-class="profile-card-hover">
-            <view class="pc-avatar"><text class="pc-avatar-char">{{item.name[0]}}</text></view>
-            <view class="pc-info">
-              <text class="pc-name">{{item.name}}</text>
-              <text class="pc-meta">{{item.gender}} · {{item.birthDate}}</text>
-            </view>
-            <view class="pc-check" wx:if="{{activeProfileId === item.id}}">✓</view>
-          </view>
-        </view>
-      </scroll-view>
-    </view>
-    <view class="profile-empty" wx:else bindtap="onAddProfile">
-      <text class="profile-empty-icon">+</text>
-      <text class="profile-empty-text">添加人物档案，开启命理推演</text>
+    <view class="greeting-right" bindtap="onProfileBadgeTap">
+      <view class="greeting-avatar" wx:if="{{activeProfile}}">
+        <text class="greeting-avatar-char">{{activeProfile.name[0]}}</text>
+      </view>
+      <view class="greeting-avatar greeting-avatar-empty" wx:else>
+        <text class="greeting-avatar-plus">+</text>
+      </view>
     </view>
   </view>
 
-  <!-- Daily Almanac -->
-  <view class="daily-card">
-    <view class="daily-header">
-      <text class="daily-label">今日黄历</text>
-      <text class="daily-date">{{dailyInfo.date}}</text>
+  <!-- Zone B: Today's Fortune Dashboard -->
+  <view class="dashboard-card">
+    <!-- Hero Header -->
+    <view class="hero-header">
+      <view class="hero-left">
+        <text class="hero-date">{{dailyInfo.date}}</text>
+        <text class="hero-meta">{{dailyInfo.yearGz}}年 属{{dailyInfo.zodiac}} {{dailyInfo.shichen}}</text>
+      </view>
+      <view class="hero-right" bindtap="onStartDivination">
+        <view class="hero-gua-circle">
+          <text class="hero-gua-name">{{dailyGua.name}}</text>
+        </view>
+        <text class="hero-gua-cta">摇卦▸</text>
+      </view>
     </view>
-    <view class="daily-tags">
-      <text class="daily-tag">{{dailyInfo.yearGz}}年</text>
-      <text class="daily-tag">属{{dailyInfo.zodiac}}</text>
-      <text class="daily-tag">{{dailyInfo.shichen}}</text>
+
+    <!-- Tab Bar -->
+    <view class="dash-tabs">
+      <view class="dash-tab {{dailyTab === 'huangli' ? 'active' : ''}}" data-tab="huangli" bindtap="onDailyTabTap">
+        <text>黄历</text>
+      </view>
+      <view class="dash-tab {{dailyTab === 'yunshi' ? 'active' : ''}}" data-tab="yunshi" bindtap="onDailyTabTap">
+        <text>运势</text>
+      </view>
+      <view class="dash-tab {{dailyTab === 'chuanyi' ? 'active' : ''}}" data-tab="chuanyi" bindtap="onDailyTabTap">
+        <text>穿衣</text>
+      </view>
     </view>
-    <view class="daily-yiji">
+
+    <!-- Tab: 黄历 -->
+    <view class="dash-content" wx:if="{{dailyTab === 'huangli'}}">
       <view class="yiji-row">
         <text class="yiji-badge yi">宜</text>
         <view class="yiji-tag-list">
@@ -59,64 +59,121 @@
       </view>
     </view>
 
-    <!-- Personal Fortune -->
-    <view class="personal-fortune" wx:if="{{personalFortune}}">
-      <view class="pf-divider"></view>
-      <view class="pf-header">
-        <text class="pf-title">{{personalFortune.name}} · 今日运势</text>
-        <text class="pf-level {{personalFortune.fortuneLevel === '大吉' || personalFortune.fortuneLevel === '吉' ? 'pf-level-good' : personalFortune.fortuneLevel === '凶' || personalFortune.fortuneLevel === '小凶' ? 'pf-level-bad' : ''}}">{{personalFortune.fortuneLevel}}</text>
+    <!-- Tab: 运势 -->
+    <view class="dash-content" wx:if="{{dailyTab === 'yunshi'}}">
+      <view wx:if="{{personalFortune}}">
+        <view class="pf-header">
+          <text class="pf-title">{{personalFortune.name}} · 今日运势</text>
+          <text class="pf-level {{personalFortune.fortuneLevel === '大吉' || personalFortune.fortuneLevel === '吉' ? 'pf-level-good' : personalFortune.fortuneLevel === '凶' || personalFortune.fortuneLevel === '小凶' ? 'pf-level-bad' : ''}}">{{personalFortune.fortuneLevel}}</text>
+        </view>
+        <text class="pf-advice">{{personalFortune.advice}}</text>
+        <view class="pf-details">
+          <view class="pf-detail-item">
+            <text class="pf-detail-label">吉星</text>
+            <text class="pf-detail-value">{{personalFortune.luckyStars[0]}} · {{personalFortune.luckyStars[1]}}</text>
+          </view>
+          <view class="pf-detail-item">
+            <text class="pf-detail-label">方位</text>
+            <text class="pf-detail-value">{{personalFortune.direction}}</text>
+          </view>
+          <view class="pf-detail-item">
+            <text class="pf-detail-label">幸运</text>
+            <text class="pf-detail-value">{{personalFortune.luckyNum}} · {{personalFortune.luckyColor}}色</text>
+          </view>
+        </view>
       </view>
-      <text class="pf-advice">{{personalFortune.advice}}</text>
-      <view class="pf-details">
-        <view class="pf-detail-item">
-          <text class="pf-detail-label">吉星</text>
-          <text class="pf-detail-value">{{personalFortune.luckyStars[0]}} · {{personalFortune.luckyStars[1]}}</text>
+      <view wx:else class="dash-empty">
+        <text class="dash-empty-text">添加档案后查看个人运势</text>
+      </view>
+    </view>
+
+    <!-- Tab: 穿衣 -->
+    <view class="dash-content" wx:if="{{dailyTab === 'chuanyi'}}">
+      <view wx:if="{{dressData}}">
+        <!-- Day Toggle -->
+        <view class="dress-day-tabs">
+          <view class="dress-day-tab {{dressDayOffset === 0 ? 'active' : ''}}" data-offset="0" bindtap="onDressDayToggle">
+            <text class="dress-tab-label">今天</text>
+            <text class="dress-tab-date" wx:if="{{dressToday}}">{{dressToday.dayGanZhi}} {{dressToday.dayElement}}日</text>
+          </view>
+          <view class="dress-day-tab {{dressDayOffset === 1 ? 'active' : ''}}" data-offset="1" bindtap="onDressDayToggle">
+            <text class="dress-tab-label">明天</text>
+            <text class="dress-tab-date" wx:if="{{dressTomorrow}}">{{dressTomorrow.dayGanZhi}} {{dressTomorrow.dayElement}}日</text>
+          </view>
         </view>
-        <view class="pf-detail-item">
-          <text class="pf-detail-label">方位</text>
-          <text class="pf-detail-value">{{personalFortune.direction}}</text>
+
+        <!-- Personal Outfit -->
+        <view class="dress-personal" wx:if="{{dressData.personal}}">
+          <view class="dress-profile-row">
+            <view class="dress-profile-info">
+              <text class="dress-profile-name">{{dressData.personal.name}}</text>
+              <text class="dress-profile-tag">日主{{dressData.personal.dayMasterLabel}}</text>
+              <text class="dress-profile-tag dress-tag-xi">喜用{{dressData.personal.xiYongShen}}</text>
+            </view>
+            <view class="dress-strategy-badge" style="background:{{dressData.personal.strategy.color}}20;color:{{dressData.personal.strategy.color}}">
+              <text>{{dressData.personal.strategy.icon}} {{dressData.personal.strategy.type}}</text>
+            </view>
+          </view>
+          <text class="dress-strategy-desc">{{dressData.personal.strategy.desc}}</text>
+
+          <view class="dress-outfit-card">
+            <view class="dress-outfit-header">
+              <text class="dress-outfit-title">{{dressData.personal.outfit.coordDesc}}</text>
+              <view class="dress-outfit-swatches">
+                <view class="dress-swatch-lg" style="background:{{item}}" wx:for="{{dressData.personal.outfit.colors}}" wx:key="*this"></view>
+              </view>
+            </view>
+            <text class="dress-outfit-text">{{dressData.personal.outfit.outfitText}}</text>
+            <text class="dress-outfit-detail">{{dressData.personal.outfit.outfitDetail}}</text>
+          </view>
+
+          <view class="dress-accessory">
+            <text class="dress-accessory-label">饰品</text>
+            <text class="dress-accessory-text">{{dressData.personal.accessoryTip}}</text>
+          </view>
+          <view class="dress-divider"></view>
         </view>
-        <view class="pf-detail-item">
-          <text class="pf-detail-label">幸运</text>
-          <text class="pf-detail-value">{{personalFortune.luckyNum}} · {{personalFortune.luckyColor}}色</text>
+
+        <!-- Universal Tiers -->
+        <view class="dress-section-title">
+          <text>{{dressData.personal ? '五行参考' : '五行穿衣指南'}}</text>
+        </view>
+        <view class="dress-row">
+          <view class="dress-item dress-daji" wx:for="{{[dressData.tiers[0], dressData.tiers[1]]}}" wx:key="key">
+            <text class="dress-level">{{item.desc}}</text>
+            <view class="dress-colors">
+              <view class="dress-swatch" style="background:{{c}}" wx:for="{{item.colors}}" wx:for-item="c" wx:key="*this"></view>
+            </view>
+            <text class="dress-names">{{item.names.join(' · ')}}</text>
+          </view>
+        </view>
+        <view class="dress-row">
+          <view class="dress-item" wx:for="{{[dressData.tiers[2], dressData.tiers[4]]}}" wx:key="key">
+            <text class="dress-level">{{item.desc}}</text>
+            <view class="dress-colors">
+              <view class="dress-swatch" style="background:{{c}}" wx:for="{{item.colors}}" wx:for-item="c" wx:key="*this"></view>
+            </view>
+            <text class="dress-names">{{item.names.join(' · ')}}</text>
+          </view>
+        </view>
+
+        <view class="dress-empty-hint" wx:if="{{!dressData.personal && !hasProfiles}}">
+          <text>添加档案 → 解锁个人命理穿衣</text>
         </view>
       </view>
     </view>
   </view>
 
-  <!-- Daily Hexagram Card -->
-  <view class="gua-card" bindtap="onStartDivination">
-    <view class="gua-card-row">
-      <view class="gua-left">
-        <text class="gua-card-label">每日一卦</text>
-        <text class="gua-card-date">{{dailyGua.date}}</text>
-      </view>
-      <view class="gua-symbol-mini">
-        <text class="gua-name-mini">{{dailyGua.name}}</text>
-      </view>
-    </view>
-    <text class="gua-reading-mini">{{dailyGua.reading}}</text>
-    <view class="gua-cta">
-      <text class="gua-cta-text">摇铜钱起卦</text>
-      <text class="gua-cta-arrow">›</text>
-    </view>
-  </view>
-
-  <!-- Module Groups -->
-  <view class="module-section" wx:for="{{moduleGroups}}" wx:key="id">
-    <view class="group-header">
-      <view class="group-line"></view>
-      <text class="group-title">{{item.title}}</text>
-      <view class="group-line"></view>
-    </view>
-    <view class="module-grid">
-      <view class="module-card" wx:for="{{item.modules}}" wx:key="id"
+  <!-- Zone C: Tools Grid -->
+  <view class="tools-card">
+    <view class="tools-grid">
+      <view class="tool-cell" wx:for="{{allModules}}" wx:key="id"
             data-url="{{item.url}}" data-id="{{item.id}}" bindtap="onModuleTap"
-            hover-class="module-card-hover">
-        <view class="icon-circle icon-bg-{{item.id}}">
-          <text class="icon-symbol icon-color-{{item.id}}">{{item.icon}}</text>
+            hover-class="tool-cell-hover">
+        <view class="tool-icon-circle icon-bg-{{item.id}}">
+          <text class="tool-icon icon-color-{{item.id}}">{{item.icon}}</text>
         </view>
-        <text class="card-title">{{item.title}}</text>
+        <text class="tool-label">{{item.title}}</text>
       </view>
     </view>
   </view>
@@ -127,28 +184,20 @@
   <view class="coin-modal" wx:if="{{showCoinModal}}">
     <view class="coin-modal-mask" bindtap="onCloseDivination"></view>
     <view class="coin-modal-body">
-      <!-- Fixed Header -->
       <view class="coin-modal-header">
         <text class="coin-modal-title">铜钱起卦</text>
         <text class="coin-modal-close" bindtap="onCloseDivination">✕</text>
       </view>
-
-      <!-- Scrollable Content -->
       <scroll-view class="coin-modal-scroll" scroll-y enhanced show-scrollbar="{{false}}">
-        <!-- Method Info -->
         <view class="coin-method-info">
           <text class="coin-method-text">三枚铜钱，字为阳(3)背为阴(2)，掷六次成一卦</text>
         </view>
-
-        <!-- Progress -->
         <view class="coin-progress" wx:if="{{!hexagramResult}}">
           <text class="coin-progress-text">第 {{coinRound < 6 ? coinRound + 1 : 6}} / 6 次掷卦</text>
           <view class="coin-progress-dots">
             <view class="coin-dot {{index < coinRound ? 'done' : ''}}" wx:for="{{6}}" wx:key="*this"></view>
           </view>
         </view>
-
-        <!-- Coin Tossing Area -->
         <view class="coin-area" wx:if="{{!hexagramResult}}">
           <view class="coins-row">
             <view class="coin-wrap">
@@ -173,12 +222,9 @@
               </view>
             </view>
           </view>
-
           <view class="coin-toss-btn {{isFlipping ? 'disabled' : ''}}" bindtap="onTossCoins">
             <text>{{isFlipping ? '摇卦中...' : '摇  卦'}}</text>
           </view>
-
-          <!-- Lines built so far -->
           <view class="coin-lines-built" wx:if="{{coinLines.length > 0}}">
             <view class="coin-built-title">已成爻</view>
             <view class="coin-built-line" wx:for="{{coinLines}}" wx:key="position">
@@ -192,20 +238,18 @@
                     <view class="yin-right"></view>
                   </block>
                 </view>
-                <view class="yao-marker" wx:if="{{item.isMoving}}"></view>
+                <view class="yao-marker {{item.isMoving ? 'marker-active' : 'marker-hidden'}}"></view>
               </view>
               <text class="coin-built-type {{item.isMoving ? 'moving-type' : ''}}">{{item.lineType}}</text>
             </view>
           </view>
         </view>
-
         <!-- Hexagram Result -->
         <view class="coin-result" wx:if="{{hexagramResult}}">
           <view class="coin-result-header">
             <text class="coin-result-gua">{{hexagramResult.name}}卦</text>
             <text class="coin-result-num">第{{hexagramResult.kingWenNum}}卦</text>
           </view>
-
           <view class="coin-result-trigrams">
             <view class="trigram-info">
               <text class="trigram-label">上卦</text>
@@ -219,7 +263,6 @@
               <text class="trigram-element">{{hexagramResult.lowerElement}}</text>
             </view>
           </view>
-
           <view class="coin-result-lines">
             <view class="coin-result-line" wx:for="{{hexagramResult.lines}}" wx:key="position">
               <text class="coin-result-line-num">{{item.position}}</text>
@@ -232,16 +275,14 @@
                     <view class="yin-right"></view>
                   </block>
                 </view>
-                <view class="yao-marker" wx:if="{{item.isMoving}}"></view>
+                <view class="yao-marker {{item.isMoving ? 'marker-active' : 'marker-hidden'}}"></view>
               </view>
               <text class="coin-result-line-type {{item.isMoving ? 'moving-type' : 'dim-type'}}">{{item.lineType}}</text>
             </view>
           </view>
-
           <view class="coin-result-moving" wx:if="{{hexagramResult.movingLines.length > 0}}">
             <text class="coin-moving-text">动爻：{{hexagramResult.movingLines.join('、')}}</text>
           </view>
-
           <view class="coin-result-changed" wx:if="{{hexagramResult.hasChanged}}">
             <view class="changed-header">
               <text class="changed-label">变卦</text>
@@ -250,7 +291,6 @@
             </view>
             <text class="changed-reading">{{hexagramResult.changedReading}}</text>
           </view>
-
           <view class="coin-result-mutual">
             <view class="mutual-header">
               <text class="mutual-label">互卦</text>
@@ -258,19 +298,15 @@
             </view>
             <text class="mutual-reading">{{hexagramResult.mutualReading}}</text>
           </view>
-
           <view class="coin-result-main-reading">
             <text class="main-reading-label">卦辞</text>
             <text class="coin-result-reading">{{hexagramResult.reading}}</text>
           </view>
-
           <view class="coin-result-detail">
             <text class="detail-label">断卦分析</text>
             <text class="detail-text">{{hexagramResult.detailAdvice}}</text>
           </view>
         </view>
-
-        <!-- Bottom safe area spacer inside scroll -->
         <view style="height: 180rpx;"></view>
       </scroll-view>
     </view>

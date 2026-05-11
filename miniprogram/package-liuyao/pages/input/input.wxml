@@ -1,16 +1,111 @@
-<view class="page container">
-  <view class="form-section">
-    <view class="form-item"><text class="form-label">起卦方式</text><picker range="{{methods}}" value="{{selectedMethod}}" bindchange="onMethodChange"><view class="picker-field">{{methods[selectedMethod]}} ›</view></picker></view>
-    <view class="form-item"><text class="form-label">心中的疑问</text><textarea class="textarea-field" placeholder="请输入您想占问的事情..." value="{{question}}" bindinput="onQuestionInput" maxlength="200"/></view>
-    <view wx:if="{{selectedMethod===1}}">
-      <text class="form-label">请输入三个数字(1-999)</text>
-      <view class="number-row"><input class="num-input" type="number" placeholder="数1" data-idx="0" bindinput="onNumberInput"/><input class="num-input" type="number" placeholder="数2" data-idx="1" bindinput="onNumberInput"/><input class="num-input" type="number" placeholder="数3" data-idx="2" bindinput="onNumberInput"/></view>
-    </view>
-    <view wx:if="{{selectedMethod===2}}" class="coin-section">
-      <text class="coin-info">已投掷 {{coinResults.length}}/6 次</text>
-      <view class="coin-btn" bindtap="onCoinFlip" wx:if="{{coinResults.length<6}}"><text>掷铜钱</text></view>
-      <view class="coin-history"><text wx:for="{{coinResults}}" wx:key="step">第{{item.step}}次：{{item.results.join('')}}（{{item.value}}正）</text></view>
+<view class="page">
+  <!-- 方法选择 -->
+  <view class="method-grid">
+    <view class="method-card {{selectedMethod === index ? 'active' : ''}}"
+          wx:for="{{methods}}" wx:key="id"
+          data-idx="{{index}}" bindtap="onSelectMethod">
+      <text class="method-icon">{{item.icon}}</text>
+      <text class="method-name">{{item.name}}</text>
+      <text class="method-desc">{{item.desc}}</text>
     </view>
   </view>
-  <view class="submit-btn" bindtap="onSubmit"><text>起卦</text></view>
+
+  <!-- 问题输入 -->
+  <view class="form-section">
+    <text class="form-title">心中的疑问</text>
+    <textarea class="textarea-field" placeholder="请输入您想占问的事情（如工作、感情、财运…）"
+              value="{{question}}" bindinput="onQuestionInput" maxlength="200" />
+    <text class="char-count">{{question.length}}/200</text>
+  </view>
+
+  <!-- 铜钱起卦区域 -->
+  <view class="coin-section" wx:if="{{selectedMethod === 0}}">
+    <!-- 进度 -->
+    <view class="coin-progress">
+      <text class="coin-progress-text">{{coinStep < 6 ? '第' + (coinStep + 1) + '/6 次掷卦' : '掷卦完成'}}</text>
+      <view class="coin-progress-dots">
+        <view class="coin-dot {{index < coinStep ? 'done' : ''}}" wx:for="{{6}}" wx:key="*this"></view>
+      </view>
+    </view>
+
+    <!-- 铜钱 -->
+    <view class="coin-area" wx:if="{{coinStep < 6}}">
+      <view class="coins-row">
+        <view class="coin-wrap">
+          <view class="coin {{isFlipping ? 'coin-flip' : ''}} {{coins[0] === 3 ? 'coin-heads' : coins[0] === 2 ? 'coin-tails' : ''}}">
+            <text class="coin-text" wx:if="{{coins[0] === 3}}">字</text>
+            <text class="coin-text" wx:elif="{{coins[0] === 2}}">背</text>
+            <text class="coin-text coin-unknown" wx:else>?</text>
+          </view>
+        </view>
+        <view class="coin-wrap">
+          <view class="coin {{isFlipping ? 'coin-flip' : ''}} {{coins[1] === 3 ? 'coin-heads' : coins[1] === 2 ? 'coin-tails' : ''}}">
+            <text class="coin-text" wx:if="{{coins[1] === 3}}">字</text>
+            <text class="coin-text" wx:elif="{{coins[1] === 2}}">背</text>
+            <text class="coin-text coin-unknown" wx:else>?</text>
+          </view>
+        </view>
+        <view class="coin-wrap">
+          <view class="coin {{isFlipping ? 'coin-flip' : ''}} {{coins[2] === 3 ? 'coin-heads' : coins[2] === 2 ? 'coin-tails' : ''}}">
+            <text class="coin-text" wx:if="{{coins[2] === 3}}">字</text>
+            <text class="coin-text" wx:elif="{{coins[2] === 2}}">背</text>
+            <text class="coin-text coin-unknown" wx:else>?</text>
+          </view>
+        </view>
+      </view>
+      <text class="coin-hint">字为阳(3) 背为阴(2)，三枚之和定爻</text>
+      <view class="coin-toss-btn {{isFlipping ? 'disabled' : ''}}" bindtap="onTossCoin">
+        <text>{{isFlipping ? '摇卦中…' : '摇 卦'}}</text>
+      </view>
+    </view>
+
+    <!-- 已成爻 -->
+    <view class="coin-lines-built" wx:if="{{coinResults.length > 0}}">
+      <view class="coin-built-line" wx:for="{{coinResults}}" wx:key="step">
+        <text class="coin-built-num">{{item.step}}</text>
+        <view class="yao-bar">
+          <view class="yao-bar-inner {{item.yang ? 'yang' : 'yin'}} {{item.isMoving ? 'moving' : ''}}">
+            <view wx:if="{{item.yang}}" class="yang-line"></view>
+            <block wx:else>
+              <view class="yin-left"></view>
+              <view class="yin-gap"></view>
+              <view class="yin-right"></view>
+            </block>
+          </view>
+          <view class="yao-marker {{item.isMoving ? 'marker-active' : 'marker-hidden'}}"></view>
+        </view>
+        <text class="coin-built-type {{item.isMoving ? 'moving-type' : ''}}">{{item.lineType}}</text>
+      </view>
+    </view>
+    <view class="coin-reset" wx:if="{{coinStep > 0 && coinStep < 6}}" bindtap="onResetCoins">
+      <text>重新摇卦</text>
+    </view>
+  </view>
+
+  <!-- 时间起卦提示 -->
+  <view class="time-section" wx:if="{{selectedMethod === 1}}">
+    <view class="time-info-card">
+      <text class="time-icon">◷</text>
+      <text class="time-text">{{timeInfo}}</text>
+      <text class="time-hint">系统将根据此时辰自动起卦</text>
+    </view>
+  </view>
+
+  <!-- 数字起卦 -->
+  <view class="number-section" wx:if="{{selectedMethod === 2}}">
+    <text class="form-label">请输入三个数字（1-999）</text>
+    <view class="number-row">
+      <input class="num-input" type="number" placeholder="数一" data-idx="0" bindinput="onNumberInput"/>
+      <input class="num-input" type="number" placeholder="数二" data-idx="1" bindinput="onNumberInput"/>
+      <input class="num-input" type="number" placeholder="数三" data-idx="2" bindinput="onNumberInput"/>
+    </view>
+    <text class="error-text" wx:if="{{numberError}}">{{numberError}}</text>
+  </view>
+
+  <!-- 提交 -->
+  <view class="submit-btn" bindtap="onSubmit">
+    <text>起 卦</text>
+  </view>
+
+  <view class="disclaimer">仅供娱乐参考，不作为人生决策依据</view>
 </view>

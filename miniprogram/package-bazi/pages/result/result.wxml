@@ -3,6 +3,11 @@
   <view class="header-card">
     <text class="header-name">{{name || '八字排盘'}}</text>
     <text class="header-info">{{zodiac}} · {{dayMaster}}（{{dayMasterWx}}）· {{geju.name}}</text>
+    <view class="header-date" wx:if="{{solarDateStr || lunarDateStr}}">
+      <text class="header-solar" wx:if="{{solarDateStr}}">阳历：{{solarDateStr}}</text>
+      <text class="header-lunar" wx:if="{{lunarDateStr}}">农历：{{lunarDateStr}}</text>
+      <text class="header-lunar-gz" wx:if="{{lunarGanzhi}}">（{{lunarGanzhi}}年）</text>
+    </view>
     <view class="header-tags">
       <text class="tag">{{strength.level}}</text>
       <text class="tag">喜{{xiyong.xi}}</text>
@@ -20,6 +25,21 @@
         <view class="pillar-divider"></view>
         <text class="pillar-zhi">{{item[1]}}</text>
         <text class="pillar-naying">{{[naying.year, naying.month, naying.day, naying.hour][index]}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 纳音五行详析 -->
+  <view class="card" wx:if="{{nayingDetail.length > 0}}">
+    <view class="card-title">纳音五行</view>
+    <view class="naying-list">
+      <view class="naying-item" wx:for="{{nayingDetail}}" wx:key="position">
+        <view class="naying-header">
+          <text class="naying-pos">{{item.position}}</text>
+          <text class="naying-gz">{{item.ganzhi}}</text>
+          <text class="naying-name">{{item.naying}}</text>
+        </view>
+        <text class="naying-meaning">{{item.meaning}}</text>
       </view>
     </view>
   </view>
@@ -64,6 +84,97 @@
   <view class="card">
     <view class="card-title">喜用神分析</view>
     <text class="card-text">{{xiyong.description}}</text>
+  </view>
+
+  <!-- 十神详批 -->
+  <view class="card" wx:if="{{shishenDetail.details.length > 0}}">
+    <view class="card-title">十神详批</view>
+    <!-- 十神统计 -->
+    <view class="ss-count-row" wx:if="{{shishenDetail.count}}">
+      <view class="ss-count-item" wx:for="{{shishenDetail.count}}" wx:key="index">
+        <text class="ss-count-name">{{item.key}}</text>
+        <text class="ss-count-num">{{item.value}}</text>
+      </view>
+    </view>
+    <!-- 逐柱详解 -->
+    <view class="ss-detail-list">
+      <view class="ss-detail-item" wx:for="{{shishenDetail.details}}" wx:key="index">
+        <view class="ss-detail-header">
+          <text class="ss-detail-pos">{{item.position}}</text>
+          <text class="ss-detail-type">{{item.type}}</text>
+          <text class="ss-detail-gz">{{item.ganzhi}}</text>
+          <text class="ss-detail-name">{{item.shishen}}</text>
+        </view>
+        <text class="ss-detail-desc">{{item.desc}}</text>
+        <view class="ss-detail-tags">
+          <text class="ss-tag">事业：{{item.career}}</text>
+          <text class="ss-tag">关系：{{item.relation}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 地支关系 -->
+  <view class="card" wx:if="{{dizhiRelations.length > 0}}">
+    <view class="card-title">地支关系</view>
+    <view class="dz-relation-list">
+      <view class="dz-relation-item {{item.level}}" wx:for="{{dizhiRelations}}" wx:key="index">
+        <view class="dz-relation-header">
+          <text class="dz-relation-type">{{item.type}}</text>
+          <text class="dz-relation-desc">{{item.desc}}</text>
+        </view>
+        <text class="dz-relation-meaning">{{item.meaning}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 神煞系统 -->
+  <view class="card" wx:if="{{shensha.length > 0}}">
+    <view class="card-title">神煞</view>
+    <view class="shensha-list">
+      <view class="shensha-item {{item.type}}" wx:for="{{shensha}}" wx:key="name">
+        <view class="shensha-header">
+          <text class="shensha-icon">{{item.icon}}</text>
+          <text class="shensha-name">{{item.name}}</text>
+          <text class="shensha-type-badge">{{item.typeLabel}}</text>
+        </view>
+        <text class="shensha-desc">{{item.desc}}</text>
+        <text class="shensha-meaning">{{item.meaning}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 十二长生 -->
+  <view class="card" wx:if="{{changsheng.stages.length > 0}}">
+    <view class="card-title">十二长生</view>
+    <text class="card-subtitle">日支{{pillars.dayPillar[1]}}处于「{{changsheng.dayZhiStage}}」—— {{changsheng.dayZhiMeaning}}</text>
+    <view class="cs-grid">
+      <view class="cs-item {{item.isGood ? 'cs-good' : 'cs-normal'}} {{item.zhi === pillars.dayPillar[1] ? 'cs-current' : ''}}" wx:for="{{changsheng.stages}}" wx:key="stage">
+        <text class="cs-stage">{{item.stage}}</text>
+        <text class="cs-zhi">{{item.zhi}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 流年运势 -->
+  <view class="card" wx:if="{{liunian.year}}">
+    <view class="card-title">{{liunian.year}}年流年运势</view>
+    <view class="liunian-header">
+      <text class="liunian-gz">{{liunian.ganzhi}}</text>
+      <text class="liunian-ss">十神：{{liunian.shishen}}</text>
+      <text class="liunian-ts">太岁：{{liunian.taiSui}}</text>
+    </view>
+    <text class="card-text">{{liunian.reading}}</text>
+
+    <!-- 逐月运势 -->
+    <view class="card-title" style="margin-top: 20rpx;">逐月运势</view>
+    <view class="month-grid">
+      <view class="month-item {{item.level === '吉' ? 'month-good' : item.level === '注意' ? 'month-warn' : 'month-normal'}}" wx:for="{{liunian.monthFortune}}" wx:key="month">
+        <text class="month-name">{{item.month}}</text>
+        <text class="month-gz">{{item.ganzhi}}</text>
+        <text class="month-level">{{item.level}}</text>
+      </view>
+    </view>
   </view>
 
   <!-- Life Domains -->

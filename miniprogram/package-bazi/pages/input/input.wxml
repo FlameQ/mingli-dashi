@@ -12,11 +12,47 @@
       </radio-group>
     </view>
     <view class="form-item">
-      <text class="form-label">出生日期</text>
+      <text class="form-label">日期类型</text>
+      <radio-group class="radio-group" bindchange="onCalendarTypeChange">
+        <label class="radio-label"><radio value="solar" checked="{{calendarType==='solar'}}" color="#88ADA6"/> 阳历</label>
+        <label class="radio-label"><radio value="lunar" checked="{{calendarType==='lunar'}}" color="#88ADA6"/> 农历</label>
+      </radio-group>
+    </view>
+    <!-- 阳历输入 -->
+    <view class="form-item" wx:if="{{calendarType==='solar'}}">
+      <text class="form-label">出生日期（阳历）</text>
       <picker mode="date" value="{{birthDate}}" bindchange="onDateChange">
         <view class="picker-field">{{birthDate}} ›</view>
       </picker>
     </view>
+    <!-- 农历输入 -->
+    <block wx:if="{{calendarType==='lunar'}}">
+      <view class="form-item">
+        <text class="form-label">出生年份（农历）</text>
+        <picker range="{{lunarYearRange}}" value="{{lunarYearIndex}}" bindchange="onLunarYearChange">
+          <view class="picker-field">{{lunarYearRange[lunarYearIndex]}}年 ›</view>
+        </picker>
+      </view>
+      <view class="form-item">
+        <text class="form-label">出生月份（农历）</text>
+        <picker range="{{lunarMonthOptions}}" value="{{lunarMonthIndex}}" bindchange="onLunarMonthChange">
+          <view class="picker-field">{{lunarMonthOptions[lunarMonthIndex]}} ›</view>
+        </picker>
+      </view>
+      <view class="form-item">
+        <text class="form-label">出生日期（农历）</text>
+        <picker range="{{lunarDayOptions}}" value="{{lunarDayIndex}}" bindchange="onLunarDayChange">
+          <view class="picker-field">{{lunarDayOptions[lunarDayIndex]}} ›</view>
+        </picker>
+      </view>
+      <view class="form-item" wx:if="{{hasLeapMonth}}">
+        <text class="form-label">闰月标记</text>
+        <radio-group class="radio-group" bindchange="onLeapMonthChange">
+          <label class="radio-label"><radio value="false" checked="{{!isLeapMonth}}" color="#88ADA6"/> 常规月</label>
+          <label class="radio-label"><radio value="true" checked="{{isLeapMonth}}" color="#88ADA6"/> 闰月</label>
+        </radio-group>
+      </view>
+    </block>
     <view class="form-item">
       <text class="form-label">出生时辰</text>
       <picker range="{{shichenOptions}}" value="{{birthHourIndex}}" bindchange="onHourChange">

@@ -1,7 +1,7 @@
 <view class="page container">
   <text class="page-title">选择牌阵</text>
   <view class="spread-grid">
-    <view class="spread-card {{selectedSpread===item.id?'active':''}}" wx:for="{{spreads}}" wx:key="id" data-id="{{item.id}" bindtap="onSelectSpread">
+    <view class="spread-card {{selectedSpread === item.id ? 'active' : ''}}" wx:for="{{spreads}}" wx:key="id" data-id="{{item.id}}" bindtap="onSelectSpread">
       <text class="spread-name">{{item.name}}</text>
       <text class="spread-count">{{item.count}}张牌</text>
       <text class="spread-desc">{{item.desc}}</text>
@@ -9,7 +9,7 @@
   </view>
   <view class="form-section">
     <text class="form-label">心中的疑问</text>
-    <textarea class="textarea-field" placeholder="闭上眼睛，想清楚你想要探索的问题..." value="{{question}}" bindinput="onQuestionInput" maxlength="200"/>
+    <textarea class="textarea-field" placeholder="闭上眼睛，想清楚你想要探索的问题..." value="{{question}}" bindinput="onQuestionInput" maxlength="200"></textarea>
   </view>
   <view class="submit-btn" bindtap="onSubmit"><text>开始抽牌</text></view>
 </view>

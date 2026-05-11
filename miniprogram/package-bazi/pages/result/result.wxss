@@ -1,7 +1,11 @@
 .page{min-height:100vh;background:#F7F2E7;padding:24rpx;padding-bottom:120rpx;}
 .header-card{background:linear-gradient(135deg,#FDFAF2,#F5F0E8);border-radius:24rpx;padding:36rpx 28rpx;margin-bottom:24rpx;text-align:center;border:1rpx solid #E8E0D0;}
 .header-name{display:block;font-size:36rpx;font-weight:bold;color:#3E2723;letter-spacing:4rpx;margin-bottom:8rpx;}
-.header-info{display:block;font-size:26rpx;color:#7D6B5D;margin-bottom:16rpx;}
+.header-info{display:block;font-size:26rpx;color:#7D6B5D;margin-bottom:12rpx;}
+.header-date{display:flex;flex-wrap:wrap;align-items:center;gap:8rpx;margin-bottom:12rpx;}
+.header-solar{font-size:24rpx;color:#7D6B5D;}
+.header-lunar{font-size:24rpx;color:#C9A96E;}
+.header-lunar-gz{font-size:22rpx;color:#A89888;}
 .header-tags{display:flex;justify-content:center;gap:12rpx;}
 .tag{font-size:22rpx;padding:4rpx 16rpx;border-radius:20rpx;background:rgba(201,169,110,0.08);color:#C9A96E;}
 .card{background:#FDFAF2;border-radius:20rpx;padding:28rpx;margin-bottom:20rpx;border:1rpx solid #E8E0D0;box-shadow:0 2rpx 8rpx rgba(62,39,35,0.04);}
@@ -58,3 +62,89 @@
 .btn-save{flex:1;background:#C9A96E;color:#FFFFFF;text-align:center;padding:22rpx;border-radius:48rpx;font-size:28rpx;font-weight:bold;}
 .btn-retry{flex:1;background:#FDFAF2;border:1rpx solid #E8E0D0;color:#7D6B5D;text-align:center;padding:22rpx;border-radius:48rpx;font-size:28rpx;}
 .disclaimer{text-align:center;color:#A89888;font-size:20rpx;margin-top:24rpx;}
+
+/* ===== V2 新增样式 ===== */
+
+/* 纳音五行 */
+.naying-list{display:flex;flex-direction:column;gap:12rpx;}
+.naying-item{padding:12rpx 16rpx;background:#F5ECD7;border-radius:12rpx;}
+.naying-header{display:flex;align-items:center;gap:12rpx;margin-bottom:6rpx;}
+.naying-pos{font-size:24rpx;font-weight:bold;color:#3E2723;}
+.naying-gz{font-size:24rpx;color:#C9A96E;}
+.naying-name{font-size:22rpx;padding:2rpx 12rpx;border-radius:10rpx;background:rgba(201,169,110,0.1);color:#C9A96E;}
+.naying-meaning{font-size:22rpx;color:#7D6B5D;line-height:1.5;}
+
+/* 十神详批 */
+.ss-count-row{display:flex;flex-wrap:wrap;gap:12rpx;margin-bottom:20rpx;padding-bottom:16rpx;border-bottom:1rpx solid #E8E0D0;}
+.ss-count-item{display:flex;align-items:center;gap:6rpx;padding:4rpx 14rpx;background:#F5ECD7;border-radius:12rpx;}
+.ss-count-name{font-size:22rpx;color:#3E2723;font-weight:500;}
+.ss-count-num{font-size:22rpx;color:#C9A96E;font-weight:bold;}
+.ss-detail-list{display:flex;flex-direction:column;gap:16rpx;}
+.ss-detail-item{padding:16rpx;background:#F5ECD7;border-radius:12rpx;border-left:4rpx solid #C9A96E;}
+.ss-detail-header{display:flex;align-items:center;gap:10rpx;margin-bottom:8rpx;}
+.ss-detail-pos{font-size:24rpx;font-weight:bold;color:#3E2723;}
+.ss-detail-type{font-size:20rpx;padding:2rpx 10rpx;border-radius:8rpx;background:rgba(201,169,110,0.1);color:#A89888;}
+.ss-detail-gz{font-size:24rpx;color:#C9A96E;}
+.ss-detail-name{font-size:24rpx;font-weight:bold;color:#C9A96E;margin-left:auto;}
+.ss-detail-desc{font-size:24rpx;color:#7D6B5D;line-height:1.7;display:block;margin-bottom:8rpx;}
+.ss-detail-tags{display:flex;flex-direction:column;gap:4rpx;}
+.ss-tag{font-size:20rpx;color:#A89888;}
+
+/* 地支关系 */
+.dz-relation-list{display:flex;flex-direction:column;gap:12rpx;}
+.dz-relation-item{padding:14rpx 16rpx;border-radius:12rpx;background:#F5ECD7;}
+.dz-relation-item.important{border-left:4rpx solid #B8860B;}
+.dz-relation-item.warn{border-left:4rpx solid #C9694E;}
+.dz-relation-item.normal{border-left:4rpx solid #C9A96E;}
+.dz-relation-header{display:flex;align-items:center;gap:10rpx;margin-bottom:6rpx;}
+.dz-relation-type{font-size:24rpx;font-weight:bold;color:#3E2723;}
+.dz-relation-desc{font-size:24rpx;color:#C9A96E;font-weight:500;}
+.dz-relation-meaning{font-size:22rpx;color:#7D6B5D;line-height:1.6;}
+
+/* 神煞 */
+.shensha-list{display:flex;flex-direction:column;gap:12rpx;}
+.shensha-item{padding:14rpx 16rpx;border-radius:12rpx;background:#F5ECD7;}
+.shensha-item.type-lucky{border-left:4rpx solid #C9A96E;}
+.shensha-item.type-bad{border-left:4rpx solid #C9694E;}
+.shensha-item.type-mid{border-left:4rpx solid #A89888;}
+.shensha-item.type-neutral{border-left:4rpx solid #C9C1B5;}
+.shensha-header{display:flex;align-items:center;gap:10rpx;margin-bottom:6rpx;}
+.shensha-icon{font-size:28rpx;color:#C9A96E;font-weight:bold;}
+.shensha-name{font-size:26rpx;font-weight:bold;color:#3E2723;}
+.shensha-type-badge{font-size:18rpx;padding:2rpx 10rpx;border-radius:8rpx;margin-left:auto;}
+.shensha-item.type-lucky .shensha-type-badge{background:rgba(201,169,110,0.1);color:#C9A96E;}
+.shensha-item.type-bad .shensha-type-badge{background:rgba(201,105,78,0.1);color:#C9694E;}
+.shensha-item.type-mid .shensha-type-badge{background:rgba(168,152,136,0.1);color:#7D6B5D;}
+.shensha-item.type-neutral .shensha-type-badge{background:rgba(201,193,181,0.1);color:#A89888;}
+.shensha-desc{font-size:22rpx;color:#C9A96E;display:block;margin-bottom:4rpx;}
+.shensha-meaning{font-size:22rpx;color:#7D6B5D;line-height:1.6;}
+
+/* 十二长生 */
+.card-subtitle{font-size:24rpx;color:#7D6B5D;line-height:1.6;margin-bottom:16rpx;}
+.cs-grid{display:flex;flex-wrap:wrap;gap:8rpx;}
+.cs-item{width:calc(25% - 8rpx);padding:12rpx 8rpx;text-align:center;border-radius:10rpx;background:#F5ECD7;}
+.cs-item.cs-good{border:1rpx solid rgba(201,169,110,0.3);}
+.cs-item.cs-normal{border:1rpx solid #E8E0D0;opacity:0.7;}
+.cs-item.cs-current{background:rgba(201,169,110,0.15);border:2rpx solid #C9A96E;}
+.cs-stage{display:block;font-size:22rpx;font-weight:bold;color:#3E2723;margin-bottom:2rpx;}
+.cs-item.cs-current .cs-stage{color:#C9A96E;}
+.cs-zhi{display:block;font-size:20rpx;color:#A89888;}
+
+/* 流年运势 */
+.liunian-header{display:flex;flex-wrap:wrap;align-items:center;gap:12rpx;margin-bottom:16rpx;}
+.liunian-gz{font-size:36rpx;font-weight:bold;color:#C9A96E;}
+.liunian-ss{font-size:24rpx;padding:4rpx 14rpx;border-radius:12rpx;background:rgba(201,169,110,0.1);color:#3E2723;}
+.liunian-ts{font-size:22rpx;padding:4rpx 14rpx;border-radius:12rpx;background:#F5ECD7;color:#7D6B5D;}
+
+/* 逐月运势 */
+.month-grid{display:flex;flex-wrap:wrap;gap:8rpx;}
+.month-item{width:calc(25% - 8rpx);padding:10rpx 6rpx;text-align:center;border-radius:10rpx;}
+.month-item.month-good{background:rgba(201,169,110,0.1);border:1rpx solid rgba(201,169,110,0.2);}
+.month-item.month-warn{background:rgba(201,105,78,0.06);border:1rpx solid rgba(201,105,78,0.15);}
+.month-item.month-normal{background:#F5ECD7;border:1rpx solid #E8E0D0;}
+.month-name{display:block;font-size:22rpx;font-weight:bold;color:#3E2723;}
+.month-gz{display:block;font-size:20rpx;color:#C9A96E;margin:2rpx 0;}
+.month-level{display:block;font-size:18rpx;}
+.month-good .month-level{color:#C9A96E;}
+.month-warn .month-level{color:#C9694E;}
+.month-normal .month-level{color:#A89888;}

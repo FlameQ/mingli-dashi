@@ -1,5 +1,6 @@
 const app = getApp()
 const dateUtil = require('../../utils/date-util')
+const dailyDress = require('../../utils/daily-dress')
 
 // ===== 64 Hexagram Data =====
 const GUA_NAMES = ['乾','坤','屯','蒙','需','讼','师','比','小畜','履','泰','否','同人','大有','谦','豫','随','蛊','临','观','噬嗑','贲','剥','复','无妄','大畜','颐','大过','坎','离','咸','恒','遁','大壮','晋','明夷','家人','睽','蹇','解','损','益','夬','姤','萃','升','困','井','革','鼎','震','艮','渐','归妹','丰','旅','巽','兑','涣','节','中孚','小过','既济','未济']
@@ -112,36 +113,24 @@ const FORTUNE_ADVICE = {
 
 Page({
   data: {
-    moduleGroups: [
-      {
-        id: 'mingli',
-        title: '命理推演',
-        modules: [
-          { id: 'bazi', icon: '☯', title: '八字排盘', url: '/package-bazi/pages/input/input' },
-          { id: 'ziwei', icon: '★', title: '紫微斗数', url: '/package-ziwei/pages/input/input' }
-        ]
-      },
-      {
-        id: 'zhanbu',
-        title: '占卜问卦',
-        modules: [
-          { id: 'qimen', icon: '☲', title: '奇门遁甲', url: '/package-qimen/pages/input/input' },
-          { id: 'liuyao', icon: '☰', title: '六爻占卦', url: '/package-liuyao/pages/input/input' },
-          { id: 'tarot', icon: '◆', title: '塔罗占卜', url: '/package-tarot/pages/select/select' }
-        ]
-      },
-      {
-        id: 'yunshi',
-        title: '生活运势',
-        modules: [
-          { id: 'yinyuan', icon: '♡', title: '月老姻缘', url: '/package-yinyuan/pages/input/input' },
-          { id: 'fengshui', icon: '≈', title: '易经风水', url: '/package-fengshui/pages/input/input' },
-          { id: 'buddhism', icon: '☸', title: '佛学大师', url: '/package-buddhism/pages/chat/chat' }
-        ]
-      }
+    // Flat module list for 4x2 grid
+    allModules: [
+      { id: 'bazi', icon: '☯', title: '八字排盘', url: '/package-bazi/pages/input/input' },
+      { id: 'ziwei', icon: '★', title: '紫微斗数', url: '/package-ziwei/pages/input/input' },
+      { id: 'qimen', icon: '☲', title: '奇门遁甲', url: '/package-qimen/pages/input/input' },
+      { id: 'liuyao', icon: '☰', title: '六爻占卦', url: '/package-liuyao/pages/input/input' },
+      { id: 'tarot', icon: '◆', title: '塔罗占卜', url: '/package-tarot/pages/select/select' },
+      { id: 'yinyuan', icon: '♡', title: '月老姻缘', url: '/package-yinyuan/pages/input/input' },
+      { id: 'fengshui', icon: '≈', title: '易经风水', url: '/package-fengshui/pages/input/input' },
+      { id: 'buddhism', icon: '☸', title: '佛学大师', url: '/package-buddhism/pages/chat/chat' }
     ],
     dailyInfo: {},
     dailyGua: {},
+    dailyTab: 'huangli',
+    dressData: null,
+    dressDayOffset: 0,
+    dressToday: null,
+    dressTomorrow: null,
     greeting: '',
     profiles: [],
     activeProfileId: '',
@@ -181,6 +170,7 @@ Page({
       activeProfile
     })
     this.generatePersonalFortune(activeProfile)
+    this.generateDressData(activeProfile)
   },
 
   onProfileTap(e) {
@@ -274,6 +264,39 @@ Page({
     })
   },
 
+  generateDressData(profile) {
+    // 预计算今天和明天两份数据
+    let dressToday, dressTomorrow
+    if (profile && profile.birthDate) {
+      const args = [profile.birthDate, profile.birthHourIndex != null ? profile.birthHourIndex : 6, profile.name]
+      dressToday = dailyDress.getPersonalizedDress(...args, 0)
+      dressTomorrow = dailyDress.getPersonalizedDress(...args, 1)
+    } else {
+      dressToday = dailyDress.getUniversalDress(0)
+      dressTomorrow = dailyDress.getUniversalDress(1)
+    }
+    const dressData = this.data.dressDayOffset === 1 ? dressTomorrow : dressToday
+    this.setData({ dressToday, dressTomorrow, dressData })
+  },
+
+  onDressDayToggle(e) {
+    const offset = Number(e.currentTarget.dataset.offset)
+    const dressData = offset === 1 ? this.data.dressTomorrow : this.data.dressToday
+    this.setData({ dressDayOffset: offset, dressData })
+  },
+
+  onDailyTabTap(e) {
+    this.setData({ dailyTab: e.currentTarget.dataset.tab })
+  },
+
+  onProfileBadgeTap() {
+    if (this.data.hasProfiles) {
+      wx.navigateTo({ url: '/pages/profile-edit/profile-edit' })
+    } else {
+      wx.navigateTo({ url: '/pages/profile-edit/profile-edit' })
+    }
+  },
+
   generateDailyGua() {
     const now = new Date()
     const seed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate()
@@ -319,10 +342,8 @@ Page({
 
     let url = e.currentTarget.dataset.url
     if (!url) {
-      for (const group of this.data.moduleGroups) {
-        const mod = group.modules.find(m => m.id === id)
-        if (mod) { url = mod.url; break }
-      }
+      const mod = this.data.allModules.find(m => m.id === id)
+      if (mod) url = mod.url
     }
     if (url) wx.navigateTo({ url })
   },
