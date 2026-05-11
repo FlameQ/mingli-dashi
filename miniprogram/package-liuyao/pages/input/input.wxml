@@ -13,16 +13,16 @@
   <!-- 问题输入 -->
   <view class="form-section">
     <text class="form-title">心中的疑问</text>
-    <textarea class="textarea-field" placeholder="请输入您想占问的事情（如工作、感情、财运…）"
+    <textarea class="textarea-field" placeholder="请输入您想研习的方向（如工作、感情、学业…）"
               value="{{question}}" bindinput="onQuestionInput" maxlength="200" />
     <text class="char-count">{{question.length}}/200</text>
   </view>
 
-  <!-- 铜钱起卦区域 -->
+  <!-- 铜钱演卦区域 -->
   <view class="coin-section" wx:if="{{selectedMethod === 0}}">
     <!-- 进度 -->
     <view class="coin-progress">
-      <text class="coin-progress-text">{{coinStep < 6 ? '第' + (coinStep + 1) + '/6 次掷卦' : '掷卦完成'}}</text>
+      <text class="coin-progress-text">{{coinStep < 6 ? '第' + (coinStep + 1) + '/6 爻' : '演卦完成'}}</text>
       <view class="coin-progress-dots">
         <view class="coin-dot {{index < coinStep ? 'done' : ''}}" wx:for="{{6}}" wx:key="*this"></view>
       </view>
@@ -55,7 +55,7 @@
       </view>
       <text class="coin-hint">字为阳(3) 背为阴(2)，三枚之和定爻</text>
       <view class="coin-toss-btn {{isFlipping ? 'disabled' : ''}}" bindtap="onTossCoin">
-        <text>{{isFlipping ? '摇卦中…' : '摇 卦'}}</text>
+        <text>{{isFlipping ? '演卦中…' : '演 卦'}}</text>
       </view>
     </view>
 
@@ -78,20 +78,20 @@
       </view>
     </view>
     <view class="coin-reset" wx:if="{{coinStep > 0 && coinStep < 6}}" bindtap="onResetCoins">
-      <text>重新摇卦</text>
+      <text>重新演卦</text>
     </view>
   </view>
 
-  <!-- 时间起卦提示 -->
+  <!-- 时间演卦提示 -->
   <view class="time-section" wx:if="{{selectedMethod === 1}}">
     <view class="time-info-card">
       <text class="time-icon">◷</text>
       <text class="time-text">{{timeInfo}}</text>
-      <text class="time-hint">系统将根据此时辰自动起卦</text>
+      <text class="time-hint">系统将根据此时辰自动演卦</text>
     </view>
   </view>
 
-  <!-- 数字起卦 -->
+  <!-- 数字演卦 -->
   <view class="number-section" wx:if="{{selectedMethod === 2}}">
     <text class="form-label">请输入三个数字（1-999）</text>
     <view class="number-row">
@@ -104,8 +104,8 @@
 
   <!-- 提交 -->
   <view class="submit-btn" bindtap="onSubmit">
-    <text>起 卦</text>
+    <text>演 卦</text>
   </view>
 
-  <view class="disclaimer">仅供娱乐参考，不作为人生决策依据</view>
+  <view class="disclaimer">传统文化学习工具 · 弘扬国学经典智慧</view>
 </view>

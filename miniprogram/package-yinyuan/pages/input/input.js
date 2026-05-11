@@ -5,7 +5,7 @@ Page({
     modes: [
       {name:'八字合婚',icon:'💕',desc:'双方八字配对分析'},
       {name:'生肖配对',icon:'🧧',desc:'十二生肖缘分测试'},
-      {name:'桃花运势',icon:'🌸',desc:'近期桃花运预测'},
+      {name:'桃花文化',icon:'🌸',desc:'了解传统桃花文化'},
       {name:'红线测算',icon:'❤️',desc:'缘分指数测算'}
     ],
     selectedMode: '',

@@ -17,7 +17,7 @@ Page({
   onQuestionInput(e) { this.setData({ question: e.detail.value }) },
   onSubmit() {
     const { selectedMaster, question } = this.data
-    if (!selectedMaster) { wx.showToast({ title: '请选择一位大师', icon: 'none' }); return }
+    if (!selectedMaster) { wx.showToast({ title: '请选择一位禅师', icon: 'none' }); return }
     if (!question.trim()) { wx.showToast({ title: '请输入您的问题', icon: 'none' }); return }
     const params = encodeURIComponent(JSON.stringify({ masterId: selectedMaster, question }))
     wx.navigateTo({ url: `/package-buddhism/pages/result/result?data=${params}` })

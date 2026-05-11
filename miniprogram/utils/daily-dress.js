@@ -168,7 +168,7 @@ function coordinateOutfit(xiYong, todayElement, strategy) {
       subElement: null,
       style: 'monochromatic',
       coordDesc: '喜用神与今日五行共振',
-      outfitText: `运势极佳日！全身${xiColor.names[0]}系，怎么穿怎么旺`,
+      outfitText: `五行和谐日！全身${xiColor.names[0]}系，怎么穿怎么旺`,
       outfitDetail: xiColor.outfit,
       colors: xiColor.colors
     }
@@ -272,7 +272,7 @@ function analyzeXiYongShen(bazi, dayMasterElement) {
 // ========== 策略计算 ==========
 function calculateStrategy(xiYong, todayElement) {
   if (xiYong === todayElement) {
-    return { type: '同气', icon: '★', desc: '今日五行与喜用神完全相同，能量共振，运势极佳', level: 'best', color: '#4CAF50' }
+    return { type: '同气', icon: '★', desc: '今日五行与喜用神完全相同，能量共振，五行和谐', level: 'best', color: '#4CAF50' }
   }
   if (GENERATE[todayElement] === xiYong) {
     return { type: '相生', icon: '▲', desc: '今日五行生旺您的喜用神，贵人运强，诸事顺利', level: 'great', color: '#4A90D9' }

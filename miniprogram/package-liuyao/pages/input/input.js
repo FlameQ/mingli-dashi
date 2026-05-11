@@ -4,21 +4,21 @@ Page({
   data: {
     selectedMethod: 0,
     methods: [
-      { id: 'coin', name: '铜钱起卦', icon: '◉', desc: '三铜钱摇六次' },
-      { id: 'time', name: '时间起卦', icon: '◷', desc: '依当前时辰起卦' },
-      { id: 'number', name: '数字起卦', icon: '#', desc: '输入三个数字' }
+      { id: 'coin', name: '铜钱演卦', icon: '◉', desc: '三铜钱演六爻' },
+      { id: 'time', name: '时间演卦', icon: '◷', desc: '依此时辰演卦' },
+      { id: 'number', name: '数字演卦', icon: '#', desc: '输入三个数字' }
     ],
     question: '',
     numbers: [0, 0, 0],
-    // 铜钱起卦
+    // 铜钱演卦
     coinStep: 0,
     coinResults: [],
     coins: [0, 0, 0],
     isFlipping: false,
     showCoinArea: false,
-    // 时间起卦
+    // 时间演卦
     timeInfo: '',
-    // 数字起卦
+    // 数字演卦
     numberError: ''
   },
 
@@ -44,7 +44,7 @@ Page({
     this.setData({ numbers: nums, numberError: '' })
   },
 
-  // ===== 铜钱起卦 =====
+  // ===== 铜钱演卦 =====
   onTossCoin() {
     if (this.data.isFlipping || this.data.coinStep >= 6) return
     this.setData({ isFlipping: true })
@@ -85,7 +85,7 @@ Page({
     this.setData({ coinStep: 0, coinResults: [], coins: [0, 0, 0], isFlipping: false })
   },
 
-  // ===== 提交起卦 =====
+  // ===== 提交演卦 =====
   onSubmit() {
     const { selectedMethod, question, numbers, coinResults, methods } = this.data
     if (!question.trim()) {
@@ -96,17 +96,17 @@ Page({
     let params = { method: methods[selectedMethod].name, question }
 
     if (selectedMethod === 0) {
-      // 铜钱起卦
+      // 铜钱演卦
       if (coinResults.length < 6) {
         wx.showToast({ title: '请完成6次掷卦', icon: 'none' })
         return
       }
       params.coinResults = coinResults
     } else if (selectedMethod === 1) {
-      // 时间起卦 - 自动生成6爻
+      // 时间演卦 - 自动生成6爻
       params.coinResults = this.generateTimeLines()
     } else if (selectedMethod === 2) {
-      // 数字起卦
+      // 数字演卦
       if (numbers.some(n => n <= 0 || n > 999)) {
         this.setData({ numberError: '请输入1-999之间的数字' })
         return

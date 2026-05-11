@@ -7,7 +7,7 @@
     </view>
   </view>
   <view class="card section">
-    <text class="section-title">八宅吉凶</text>
+    <text class="section-title">八宅方位</text>
     <view class="dir-row"><text class="dir-label good">吉方</text><text wx:for="{{luckyDirs}}" wx:key="name" class="dir-tag good">{{item.name}}·{{item.direction}}</text></view>
     <view class="dir-row"><text class="dir-label bad">凶方</text><text wx:for="{{unluckyDirs}}" wx:key="name" class="dir-tag bad">{{item.name}}·{{item.direction}}</text></view>
   </view>
@@ -21,5 +21,5 @@
   </view>
   <view class="card section"><text class="section-title">布局建议</text><text class="reading-text">{{advice}}</text></view>
   <view class="action-row"><view class="btn-save" bindtap="onSave"><text>{{saved?'已保存':'保存记录'}}</text></view><view class="btn-retry" bindtap="onRetry"><text>重新分析</text></view></view>
-  <view class="disclaimer">仅供娱乐参考，不作为人生决策依据</view>
+  <view class="disclaimer">传统文化学习工具 · 弘扬国学经典智慧</view>
 </view>

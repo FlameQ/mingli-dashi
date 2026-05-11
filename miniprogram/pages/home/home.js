@@ -100,29 +100,29 @@ const ZODIAC_DAILY = {
   '猪': { lucky: ['紫微', '龙德'], direction: '西南' }
 }
 
-const FORTUNE_LEVELS = ['大吉', '吉', '中吉', '小吉', '平', '小凶', '凶']
+const FORTUNE_LEVELS = ['宜进取', '宜行动', '宜稳进', '宜积蓄', '宜守成', '宜修身', '宜静思']
 const FORTUNE_ADVICE = {
-  '大吉': '今日运势极佳，诸事皆宜，可大胆行事。',
-  '吉': '今日运势良好，适合推进计划，把握机遇。',
-  '中吉': '今日运势不错，稳中求进，可有收获。',
-  '小吉': '今日运势平稳偏吉，宜做小事，积小胜为大胜。',
-  '平': '今日运势平平，宜守不宜攻，韬光养晦。',
-  '小凶': '今日运势略低，宜谨慎行事，避免冲动。',
-  '凶': '今日运势不佳，宜静不宜动，小心为上。'
+  '宜进取': '今日阳气充盈，宜积极学习，开拓视野。',
+  '宜行动': '今日五行调和，适合实践计划，知行合一。',
+  '宜稳进': '今日气韵平和，稳中求进，温故知新。',
+  '宜积蓄': '今日宜沉淀积累，厚积薄发，修身养性。',
+  '宜守成': '今日宜守不宜攻，韬光养晦，静心读书。',
+  '宜修身': '今日宜内省修身，养德修业，反思感悟。',
+  '宜静思': '今日宜静心冥想，参悟经典，明心见性。'
 }
 
 Page({
   data: {
     // Flat module list for 4x2 grid
     allModules: [
-      { id: 'bazi', icon: '☯', title: '八字排盘', url: '/package-bazi/pages/input/input' },
-      { id: 'ziwei', icon: '★', title: '紫微斗数', url: '/package-ziwei/pages/input/input' },
-      { id: 'qimen', icon: '☲', title: '奇门遁甲', url: '/package-qimen/pages/input/input' },
-      { id: 'liuyao', icon: '☰', title: '六爻占卦', url: '/package-liuyao/pages/input/input' },
-      { id: 'tarot', icon: '◆', title: '塔罗占卜', url: '/package-tarot/pages/select/select' },
-      { id: 'yinyuan', icon: '♡', title: '月老姻缘', url: '/package-yinyuan/pages/input/input' },
-      { id: 'fengshui', icon: '≈', title: '易经风水', url: '/package-fengshui/pages/input/input' },
-      { id: 'buddhism', icon: '☸', title: '佛学大师', url: '/package-buddhism/pages/chat/chat' }
+      { id: 'bazi', icon: '☯', title: '四柱八字', url: '/package-bazi/pages/input/input' },
+      { id: 'ziwei', icon: '★', title: '紫微星象', url: '/package-ziwei/pages/input/input' },
+      { id: 'qimen', icon: '☲', title: '奇门探秘', url: '/package-qimen/pages/input/input' },
+      { id: 'liuyao', icon: '☰', title: '周易六爻', url: '/package-liuyao/pages/input/input' },
+      { id: 'tarot', icon: '◆', title: '塔罗牌义', url: '/package-tarot/pages/select/select' },
+      { id: 'yinyuan', icon: '♡', title: '传统婚俗', url: '/package-yinyuan/pages/input/input' },
+      { id: 'fengshui', icon: '≈', title: '易经智慧', url: '/package-fengshui/pages/input/input' },
+      { id: 'buddhism', icon: '☸', title: '禅修心语', url: '/package-buddhism/pages/chat/chat' }
     ],
     dailyInfo: {},
     dailyGua: {},
@@ -207,15 +207,11 @@ Page({
     const zodiac = dateUtil.getZodiac(profile.birthDate.split('-')[0] || now.getFullYear())
     const zodiacInfo = ZODIAC_DAILY[zodiac] || ZODIAC_DAILY['鼠']
 
-    // Deterministic fortune level based on profile + date
+    // Deterministic daily tip based on profile + date
     const nameSeed = profile.name.split('').reduce((s, c) => s + c.charCodeAt(0), 0)
     const fortuneIdx = (seed + nameSeed) % FORTUNE_LEVELS.length
     const fortuneLevel = FORTUNE_LEVELS[fortuneIdx]
     const advice = FORTUNE_ADVICE[fortuneLevel]
-
-    // Lucky numbers
-    const luckyNum = ((seed * nameSeed) % 9) + 1
-    const luckyColor = ['赤', '橙', '黄', '绿', '青', '蓝', '紫', '金', '白'][(seed + nameSeed) % 9]
 
     this.setData({
       personalFortune: {
@@ -223,10 +219,8 @@ Page({
         zodiac,
         fortuneLevel,
         advice,
-        luckyStars: zodiacInfo.lucky,
-        direction: zodiacInfo.direction,
-        luckyNum,
-        luckyColor
+        cultureAspect: zodiacInfo.lucky,
+        direction: zodiacInfo.direction
       }
     })
   },
@@ -348,7 +342,7 @@ Page({
     if (url) wx.navigateTo({ url })
   },
 
-  // ===== Coin Divination (铜钱起卦法) =====
+  // ===== Coin Simulation (周易演卦) =====
   onStartDivination() {
     this.setData({
       showCoinModal: true,

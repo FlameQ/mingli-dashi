@@ -42,7 +42,7 @@ Page({
     if (this.data.saved) return
     const a = this.data.analysis
     app.addToHistory({
-      type: '六爻占卦',
+      type: '周易六爻',
       summary: `${a.guaName}卦 · ${this.data.params.method}`,
       url: '/package-liuyao/pages/input/input'
     })

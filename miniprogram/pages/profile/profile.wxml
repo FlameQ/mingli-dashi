@@ -41,7 +41,7 @@
   <view class="stats-card">
     <view class="stat-item">
       <text class="stat-num">{{historyCount}}</text>
-      <text class="stat-label">占卜次数</text>
+      <text class="stat-label">学习次数</text>
     </view>
     <view class="stat-divider"></view>
     <view class="stat-item">
@@ -68,6 +68,6 @@
   </view>
 
   <view class="footer-text">
-    <text>命理大师 v1.0.0</text>
+    <text>国学智慧 v1.0.0</text>
   </view>
 </view>

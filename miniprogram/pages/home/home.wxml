@@ -26,7 +26,7 @@
         <view class="hero-gua-circle">
           <text class="hero-gua-name">{{dailyGua.name}}</text>
         </view>
-        <text class="hero-gua-cta">摇卦▸</text>
+        <text class="hero-gua-cta">演卦▸</text>
       </view>
     </view>
 
@@ -36,10 +36,10 @@
         <text>黄历</text>
       </view>
       <view class="dash-tab {{dailyTab === 'yunshi' ? 'active' : ''}}" data-tab="yunshi" bindtap="onDailyTabTap">
-        <text>运势</text>
+        <text>养生</text>
       </view>
       <view class="dash-tab {{dailyTab === 'chuanyi' ? 'active' : ''}}" data-tab="chuanyi" bindtap="onDailyTabTap">
-        <text>穿衣</text>
+        <text>配色</text>
       </view>
     </view>
 
@@ -59,31 +59,27 @@
       </view>
     </view>
 
-    <!-- Tab: 运势 -->
+    <!-- Tab: 养生 -->
     <view class="dash-content" wx:if="{{dailyTab === 'yunshi'}}">
       <view wx:if="{{personalFortune}}">
         <view class="pf-header">
-          <text class="pf-title">{{personalFortune.name}} · 今日运势</text>
-          <text class="pf-level {{personalFortune.fortuneLevel === '大吉' || personalFortune.fortuneLevel === '吉' ? 'pf-level-good' : personalFortune.fortuneLevel === '凶' || personalFortune.fortuneLevel === '小凶' ? 'pf-level-bad' : ''}}">{{personalFortune.fortuneLevel}}</text>
+          <text class="pf-title">{{personalFortune.name}} · 今日提示</text>
+          <text class="pf-level pf-level-good">{{personalFortune.fortuneLevel}}</text>
         </view>
         <text class="pf-advice">{{personalFortune.advice}}</text>
         <view class="pf-details">
           <view class="pf-detail-item">
-            <text class="pf-detail-label">吉星</text>
-            <text class="pf-detail-value">{{personalFortune.luckyStars[0]}} · {{personalFortune.luckyStars[1]}}</text>
+            <text class="pf-detail-label">文化</text>
+            <text class="pf-detail-value">{{personalFortune.cultureAspect[0]}} · {{personalFortune.cultureAspect[1]}}</text>
           </view>
           <view class="pf-detail-item">
             <text class="pf-detail-label">方位</text>
             <text class="pf-detail-value">{{personalFortune.direction}}</text>
           </view>
-          <view class="pf-detail-item">
-            <text class="pf-detail-label">幸运</text>
-            <text class="pf-detail-value">{{personalFortune.luckyNum}} · {{personalFortune.luckyColor}}色</text>
-          </view>
         </view>
       </view>
       <view wx:else class="dash-empty">
-        <text class="dash-empty-text">添加档案后查看个人运势</text>
+        <text class="dash-empty-text">添加档案后查看个人提示</text>
       </view>
     </view>
 
@@ -158,7 +154,7 @@
         </view>
 
         <view class="dress-empty-hint" wx:if="{{!dressData.personal && !hasProfiles}}">
-          <text>添加档案 → 解锁个人命理穿衣</text>
+          <text>添加档案 → 解锁个人配色方案</text>
         </view>
       </view>
     </view>
@@ -178,22 +174,22 @@
     </view>
   </view>
 
-  <view class="page-disclaimer">仅供娱乐参考，不作为人生决策依据</view>
+  <view class="page-disclaimer">传统文化学习工具 · 弘扬国学经典智慧</view>
 
   <!-- ===== Coin Divination Modal ===== -->
   <view class="coin-modal" wx:if="{{showCoinModal}}">
     <view class="coin-modal-mask" bindtap="onCloseDivination"></view>
     <view class="coin-modal-body">
       <view class="coin-modal-header">
-        <text class="coin-modal-title">铜钱起卦</text>
+        <text class="coin-modal-title">周易演卦</text>
         <text class="coin-modal-close" bindtap="onCloseDivination">✕</text>
       </view>
       <scroll-view class="coin-modal-scroll" scroll-y enhanced show-scrollbar="{{false}}">
         <view class="coin-method-info">
-          <text class="coin-method-text">三枚铜钱，字为阳(3)背为阴(2)，掷六次成一卦</text>
+          <text class="coin-method-text">三枚铜钱，字为阳(3)背为阴(2)，模拟演卦学习周易</text>
         </view>
         <view class="coin-progress" wx:if="{{!hexagramResult}}">
-          <text class="coin-progress-text">第 {{coinRound < 6 ? coinRound + 1 : 6}} / 6 次掷卦</text>
+          <text class="coin-progress-text">第 {{coinRound < 6 ? coinRound + 1 : 6}} / 6 爻</text>
           <view class="coin-progress-dots">
             <view class="coin-dot {{index < coinRound ? 'done' : ''}}" wx:for="{{6}}" wx:key="*this"></view>
           </view>
@@ -223,7 +219,7 @@
             </view>
           </view>
           <view class="coin-toss-btn {{isFlipping ? 'disabled' : ''}}" bindtap="onTossCoins">
-            <text>{{isFlipping ? '摇卦中...' : '摇  卦'}}</text>
+            <text>{{isFlipping ? '演卦中...' : '演  卦'}}</text>
           </view>
           <view class="coin-lines-built" wx:if="{{coinLines.length > 0}}">
             <view class="coin-built-title">已成爻</view>

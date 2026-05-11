@@ -8,6 +8,6 @@
     <slot></slot>
   </view>
   <view class="scroll-footer">
-    <text class="disclaimer">仅供娱乐参考，不作为人生决策依据</text>
+    <text class="disclaimer">传统文化学习工具 · 弘扬国学经典智慧</text>
   </view>
 </view>

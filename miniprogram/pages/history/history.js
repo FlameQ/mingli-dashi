@@ -50,7 +50,7 @@ Page({
     if (this.data.isEmpty) return
     wx.showModal({
       title: '清空记录',
-      content: '确定要清空所有占卜记录吗？此操作不可恢复。',
+      content: '确定要清空所有学习记录吗？此操作不可恢复。',
       confirmColor: '#88ADA6',
       success: (res) => {
         if (res.confirm) {

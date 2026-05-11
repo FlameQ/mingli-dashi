@@ -21,7 +21,7 @@ Page({
   },
   onSave() {
     if (this.data.saved) return
-    app.addToHistory({ type: '佛学大师', summary: `${this.data.master.name}开示`, url: '/package-buddhism/pages/chat/chat' })
+    app.addToHistory({ type: '禅修心语', summary: `${this.data.master.name}禅语`, url: '/package-buddhism/pages/chat/chat' })
     this.setData({ saved: true })
     wx.showToast({ title: '已保存', icon: 'success' })
   },

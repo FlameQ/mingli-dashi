@@ -8,5 +8,5 @@
   </view>
   <view class="card section"><text class="section-title">综合解读</text><text class="reading-text">{{reading}}</text></view>
   <view class="action-row"><view class="btn-save" bindtap="onSave"><text>{{saved?'已保存':'保存记录'}}</text></view><view class="btn-retry" bindtap="onRetry"><text>重新抽牌</text></view></view>
-  <view class="disclaimer">仅供娱乐参考，不作为人生决策依据</view>
+  <view class="disclaimer">传统文化学习工具 · 弘扬国学经典智慧</view>
 </view>

@@ -1,5 +1,5 @@
 <view class="page container">
-  <text class="page-title">选择一位大师请益</text>
+  <text class="page-title">选择一位禅师请益</text>
   <view class="master-grid">
     <view class="master-card {{selectedMaster===item.id?'active':''}}" wx:for="{{masters}}" wx:key="id" data-id="{{item.id}}" bindtap="onSelectMaster">
       <text class="master-icon">{{item.icon}}</text>
@@ -12,5 +12,5 @@
     <text class="form-label">您想请教什么？</text>
     <textarea class="textarea-field" placeholder="请输入您的人生疑惑..." value="{{question}}" bindinput="onQuestionInput" maxlength="300"/>
   </view>
-  <view class="submit-btn" bindtap="onSubmit" wx:if="{{selectedMaster}}"><text>请益大师</text></view>
+  <view class="submit-btn" bindtap="onSubmit" wx:if="{{selectedMaster}}"><text>请益禅师</text></view>
 </view>

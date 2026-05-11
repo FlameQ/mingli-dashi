@@ -23,7 +23,7 @@ Page({
   },
   onSave() {
     if (this.data.saved) return
-    app.addToHistory({ type: '塔罗占卜', summary: this.data.cards.map(c => c.name).join('·'), url: '/package-tarot/pages/select/select' })
+    app.addToHistory({ type: '塔罗牌义', summary: this.data.cards.map(c => c.name).join('·'), url: '/package-tarot/pages/select/select' })
     this.setData({ saved: true })
     wx.showToast({ title: '已保存', icon: 'success' })
   },

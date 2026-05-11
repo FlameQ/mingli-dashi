@@ -7,7 +7,7 @@ Page({
     historyCount: 0,
     menuList: [
       { id: 'feedback', icon: '信', title: '意见反馈', desc: '帮助我们做得更好' },
-      { id: 'about', icon: '识', title: '关于我们', desc: '了解命理大师' },
+      { id: 'about', icon: '识', title: '关于我们', desc: '了解国学智慧' },
       { id: 'cache', icon: '清', title: '清除缓存', desc: '清理本地数据' }
     ]
   },
@@ -68,8 +68,8 @@ Page({
         break
       case 'about':
         wx.showModal({
-          title: '关于命理大师',
-          content: '命理大师 v1.0.0\n\n集成八字排盘、奇门遁甲、紫微斗数、月老姻缘、塔罗占卜、六爻占卦、易经风水、佛学大师八大模块。\n\n仅供娱乐参考，不作为人生决策依据。',
+          title: '关于国学智慧',
+          content: '国学智慧 v1.0.0\n\n集成四柱八字、奇门探秘、紫微星象、传统婚俗、塔罗牌义、周易六爻、易经智慧、禅修心语八大国学模块。\n\n弘扬中华传统文化，传承国学经典智慧。',
           showCancel: false,
           confirmText: '知道了',
           confirmColor: '#88ADA6'

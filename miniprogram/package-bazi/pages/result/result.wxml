@@ -156,9 +156,9 @@
     </view>
   </view>
 
-  <!-- 流年运势 -->
+  <!-- 流年分析 -->
   <view class="card" wx:if="{{liunian.year}}">
-    <view class="card-title">{{liunian.year}}年流年运势</view>
+    <view class="card-title">{{liunian.year}}年流年分析</view>
     <view class="liunian-header">
       <text class="liunian-gz">{{liunian.ganzhi}}</text>
       <text class="liunian-ss">十神：{{liunian.shishen}}</text>
@@ -166,8 +166,8 @@
     </view>
     <text class="card-text">{{liunian.reading}}</text>
 
-    <!-- 逐月运势 -->
-    <view class="card-title" style="margin-top: 20rpx;">逐月运势</view>
+    <!-- 逐月分析 -->
+    <view class="card-title" style="margin-top: 20rpx;">逐月分析</view>
     <view class="month-grid">
       <view class="month-item {{item.level === '吉' ? 'month-good' : item.level === '注意' ? 'month-warn' : 'month-normal'}}" wx:for="{{liunian.monthFortune}}" wx:key="month">
         <text class="month-name">{{item.month}}</text>
@@ -179,7 +179,7 @@
 
   <!-- Life Domains -->
   <view class="card">
-    <view class="card-title">人生运势</view>
+    <view class="card-title">人生格局</view>
     <view class="domain-list">
       <view class="domain-item" wx:for="{{[lifeDomains.career, lifeDomains.wealth, lifeDomains.love, lifeDomains.health]}}" wx:key="title">
         <view class="domain-header">
@@ -234,7 +234,7 @@
 
   <!-- Rich Readings -->
   <view class="card" wx:if="{{reading.sections}}">
-    <view class="card-title">命理详批</view>
+    <view class="card-title">八字详批</view>
     <view class="reading-section" wx:for="{{reading.sections}}" wx:key="title">
       <text class="reading-subtitle">{{item.title}}</text>
       <text class="reading-content">{{item.content}}</text>
@@ -246,5 +246,5 @@
     <view class="btn-save" bindtap="onSave">{{saved ? '已保存' : '保存记录'}}</view>
     <view class="btn-retry" bindtap="onRetry">重新测算</view>
   </view>
-  <view class="disclaimer">仅供娱乐参考，不作为人生决策依据</view>
+  <view class="disclaimer">传统文化学习工具 · 弘扬国学经典智慧</view>
 </view>
