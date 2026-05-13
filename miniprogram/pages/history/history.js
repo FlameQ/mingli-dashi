@@ -2,12 +2,15 @@ const app = getApp()
 
 Page({
   data: {
+    isUnlocked: false,
     history: [],
     isEmpty: false
   },
 
   onShow() {
-    this.loadHistory()
+    const isUnlocked = app.globalData.expertMode || false
+    this.setData({ isUnlocked })
+    if (isUnlocked) this.loadHistory()
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({ selected: 2 })
     }

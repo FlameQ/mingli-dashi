@@ -1,13 +1,13 @@
 <view class="page">
-  <!-- Empty State -->
-  <view class="empty-state" wx:if="{{isEmpty}}">
+  <!-- Locked State -->
+  <view class="empty-state" wx:if="{{!isUnlocked || isEmpty}}">
     <text class="empty-icon-text">典</text>
     <text class="empty-text">暂无学习记录</text>
     <text class="empty-hint">去首页选择一个国学模块学习吧</text>
   </view>
 
   <!-- History List -->
-  <view class="history-list" wx:else>
+  <view class="history-list" wx:elif="{{isUnlocked && !isEmpty}}">
     <view class="list-header">
       <text class="list-count">共 {{history.length}} 条记录</text>
       <text class="clear-btn" bindtap="onClearAll">清空</text>

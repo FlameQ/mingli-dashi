@@ -5,6 +5,8 @@ Page({
     profiles: [],
     activeProfileId: '',
     historyCount: 0,
+    versionTapCount: 0,
+    isUnlocked: false,
     menuList: [
       { id: 'feedback', icon: '信', title: '意见反馈', desc: '帮助我们做得更好' },
       { id: 'about', icon: '识', title: '关于我们', desc: '了解国学智慧' },
@@ -15,7 +17,8 @@ Page({
   onShow() {
     this.loadProfiles()
     const history = app.getHistory()
-    this.setData({ historyCount: history.length })
+    const isUnlocked = app.globalData.expertMode || false
+    this.setData({ historyCount: history.length, isUnlocked })
 
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({ selected: 3 })
@@ -58,6 +61,29 @@ Page({
         }
       }
     })
+  },
+
+  onVersionTap() {
+    const now = Date.now()
+    if (!this._lastTapTime || now - this._lastTapTime > 3000) {
+      this._tapCount = 1
+    } else {
+      this._tapCount = (this._tapCount || 0) + 1
+    }
+    this._lastTapTime = now
+
+    if (this._tapCount >= 5) {
+      this._tapCount = 0
+      const newMode = !app.globalData.expertMode
+      app.globalData.expertMode = newMode
+      wx.setStorageSync('expertMode', newMode)
+      this.setData({ isUnlocked: newMode })
+      wx.showToast({
+        title: newMode ? '专业模式已开启' : '已恢复基础模式',
+        icon: 'none',
+        duration: 1500
+      })
+    }
   },
 
   onMenuTap(e) {

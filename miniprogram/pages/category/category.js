@@ -1,6 +1,38 @@
+const app = getApp()
+
 Page({
   data: {
-    categories: [
+    isUnlocked: false,
+    categories: [],
+    safeCategories: [
+      {
+        name: '国学经典',
+        desc: '品读中华文化瑰宝',
+        modules: [
+          { id: 'shici', icon: '诗', title: '诗词赏析', desc: '唐诗宋词元曲品鉴' },
+          { id: 'shufa', icon: '书', title: '书法鉴赏', desc: '历代名家书法赏析' },
+          { id: 'guqin', icon: '琴', title: '古琴雅韵', desc: '传统古琴音乐欣赏' }
+        ]
+      },
+      {
+        name: '传统艺术',
+        desc: '传承中华艺术之美',
+        modules: [
+          { id: 'guohua', icon: '画', title: '国画艺术', desc: '水墨丹青绘画鉴赏' },
+          { id: 'qidao', icon: '棋', title: '棋道智慧', desc: '围棋象棋策略智慧' },
+          { id: 'hanfu', icon: '服', title: '汉服之美', desc: '传统服饰文化鉴赏' }
+        ]
+      },
+      {
+        name: '养生文化',
+        desc: '中医养生健康之道',
+        modules: [
+          { id: 'chadao', icon: '茶', title: '茶道文化', desc: '传统茶艺茶道学习' },
+          { id: 'zhongyi', icon: '医', title: '中医养生', desc: '传统中医养生知识' }
+        ]
+      }
+    ],
+    expertCategories: [
       {
         name: '传统历法',
         desc: '探索四柱八字奥秘',
@@ -37,6 +69,12 @@ Page({
   },
 
   onShow() {
+    const isUnlocked = app.globalData.expertMode || false
+    this.setData({
+      isUnlocked,
+      categories: isUnlocked ? this.data.expertCategories : this.data.safeCategories
+    })
+
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({ selected: 1 })
     }
@@ -44,6 +82,10 @@ Page({
 
   onModuleTap(e) {
     const { url } = e.currentTarget.dataset
+    if (!url) {
+      wx.showToast({ title: '功能开发中，敬请期待', icon: 'none' })
+      return
+    }
     wx.navigateTo({ url })
   }
 })

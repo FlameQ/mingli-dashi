@@ -3,9 +3,11 @@ App({
     const profiles = wx.getStorageSync('profiles') || []
     const activeProfileId = wx.getStorageSync('activeProfileId') || ''
     const history = wx.getStorageSync('history') || []
+    const expertMode = wx.getStorageSync('expertMode') || false
     this.globalData.profiles = profiles
     this.globalData.activeProfileId = activeProfileId
     this.globalData.history = history
+    this.globalData.expertMode = expertMode
   },
 
   globalData: {
@@ -13,7 +15,8 @@ App({
     profiles: [],
     activeProfileId: '',
     history: [],
-    settings: {}
+    settings: {},
+    expertMode: false
   },
 
   // Profile CRUD

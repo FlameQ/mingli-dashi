@@ -67,7 +67,7 @@
     </view>
   </view>
 
-  <view class="footer-text">
-    <text>国学智慧 v1.0.0</text>
+  <view class="footer-text" bindtap="onVersionTap">
+    <text>国学智慧 v1.0.0{{isUnlocked ? ' ★' : ''}}</text>
   </view>
 </view>

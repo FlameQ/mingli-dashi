@@ -1,3 +1,32 @@
+/* ===== Safe Mode: Daily Quote ===== */
+.quote-card {
+  margin: 16rpx 24rpx 0;
+  padding: 28rpx;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  border: 1rpx solid #DDD7CD;
+  box-shadow: 0 1rpx 6rpx rgba(30, 25, 20, 0.06);
+}
+.quote-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20rpx;
+}
+.quote-label { font-size: 28rpx; font-weight: bold; color: #1A1714; }
+.quote-date { font-size: 22rpx; color: #9A9088; }
+.quote-text {
+  font-size: 32rpx; color: #3E2723; line-height: 1.8;
+  display: block; margin-bottom: 16rpx;
+  font-style: italic;
+}
+.quote-source {
+  font-size: 22rpx; color: #9A9088; display: block;
+  text-align: right;
+}
+
+/* Safe module icon colors */
+.icon-bg-safe { background: #EFEAE4; }
+.icon-color-safe { color: #4A3728; }
+
 .page {
   min-height: 100vh;
   background: #F3F1ED;

@@ -113,7 +113,9 @@ const FORTUNE_ADVICE = {
 
 Page({
   data: {
-    // Flat module list for 4x2 grid
+    // Expert mode
+    isUnlocked: false,
+    // Flat module list for 4x2 grid (expert mode)
     allModules: [
       { id: 'bazi', icon: '☯', title: '四柱八字', url: '/package-bazi/pages/input/input' },
       { id: 'ziwei', icon: '★', title: '紫微星象', url: '/package-ziwei/pages/input/input' },
@@ -124,6 +126,18 @@ Page({
       { id: 'fengshui', icon: '≈', title: '易经智慧', url: '/package-fengshui/pages/input/input' },
       { id: 'buddhism', icon: '☸', title: '禅修心语', url: '/package-buddhism/pages/chat/chat' }
     ],
+    // Safe modules (default mode)
+    safeModules: [
+      { id: 'shici', icon: '诗', title: '诗词赏析' },
+      { id: 'shufa', icon: '书', title: '书法鉴赏' },
+      { id: 'chadao', icon: '茶', title: '茶道文化' },
+      { id: 'zhongyi', icon: '医', title: '中医养生' },
+      { id: 'guohua', icon: '画', title: '国画艺术' },
+      { id: 'qidao', icon: '棋', title: '棋道智慧' },
+      { id: 'guqin', icon: '琴', title: '古琴雅韵' },
+      { id: 'hanfu', icon: '服', title: '汉服之美' }
+    ],
+    dailyQuote: {},
     dailyInfo: {},
     dailyGua: {},
     dailyTab: 'huangli',
@@ -147,8 +161,14 @@ Page({
   },
 
   onLoad() {
-    this.generateDailyInfo()
-    this.generateDailyGua()
+    const isUnlocked = app.globalData.expertMode || false
+    this.setData({ isUnlocked })
+    if (isUnlocked) {
+      this.generateDailyInfo()
+      this.generateDailyGua()
+    } else {
+      this.generateDailyQuote()
+    }
     this.setGreeting()
   },
 
@@ -156,7 +176,17 @@ Page({
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({ selected: 0 })
     }
-    this.loadProfiles()
+    const isUnlocked = app.globalData.expertMode || false
+    if (isUnlocked !== this.data.isUnlocked) {
+      this.setData({ isUnlocked })
+      if (isUnlocked) {
+        this.generateDailyInfo()
+        this.generateDailyGua()
+      } else {
+        this.generateDailyQuote()
+      }
+    }
+    if (isUnlocked) this.loadProfiles()
   },
 
   loadProfiles() {
@@ -281,6 +311,41 @@ Page({
 
   onDailyTabTap(e) {
     this.setData({ dailyTab: e.currentTarget.dataset.tab })
+  },
+
+  generateDailyQuote() {
+    const quotes = [
+      { text: '天行健，君子以自强不息。', source: '《周易·乾卦》', author: '周文王' },
+      { text: '学而时习之，不亦说乎？', source: '《论语·学而》', author: '孔子' },
+      { text: '道可道，非常道。名可名，非常名。', source: '《道德经》', author: '老子' },
+      { text: '大学之道，在明明德，在亲民，在止于至善。', source: '《大学》', author: '曾子' },
+      { text: '中庸之为德也，其至矣乎！', source: '《论语·雍也》', author: '孔子' },
+      { text: '富贵不能淫，贫贱不能移，威武不能屈。', source: '《孟子·滕文公下》', author: '孟子' },
+      { text: '知止而后有定，定而后能静，静而后能安。', source: '《大学》', author: '曾子' },
+      { text: '上善若水，水善利万物而不争。', source: '《道德经》', author: '老子' },
+      { text: '三人行，必有我师焉。', source: '《论语·述而》', author: '孔子' },
+      { text: '博学之，审问之，慎思之，明辨之，笃行之。', source: '《中庸》', author: '子思' },
+      { text: '己所不欲，勿施于人。', source: '《论语·颜渊》', author: '孔子' },
+      { text: '不积跬步，无以至千里；不积小流，无以成江海。', source: '《荀子·劝学》', author: '荀子' },
+      { text: '路漫漫其修远兮，吾将上下而求索。', source: '《离骚》', author: '屈原' },
+      { text: '先天下之忧而忧，后天下之乐而乐。', source: '《岳阳楼记》', author: '范仲淹' },
+      { text: '千磨万击还坚劲，任尔东西南北风。', source: '《竹石》', author: '郑燮' }
+    ]
+    const now = new Date()
+    const seed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate()
+    const quote = quotes[seed % quotes.length]
+    this.setData({
+      dailyQuote: {
+        text: quote.text,
+        source: quote.source,
+        author: quote.author,
+        date: `${now.getMonth() + 1}月${now.getDate()}日`
+      }
+    })
+  },
+
+  onSafeModuleTap() {
+    wx.showToast({ title: '功能开发中，敬请期待', icon: 'none' })
   },
 
   onProfileBadgeTap() {
