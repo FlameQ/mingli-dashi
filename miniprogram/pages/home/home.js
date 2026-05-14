@@ -128,14 +128,14 @@ Page({
     ],
     // Safe modules (default mode)
     safeModules: [
-      { id: 'shici', icon: '诗', title: '诗词赏析' },
-      { id: 'shufa', icon: '书', title: '书法鉴赏' },
-      { id: 'chadao', icon: '茶', title: '茶道文化' },
-      { id: 'zhongyi', icon: '医', title: '中医养生' },
-      { id: 'guohua', icon: '画', title: '国画艺术' },
-      { id: 'qidao', icon: '棋', title: '棋道智慧' },
-      { id: 'guqin', icon: '琴', title: '古琴雅韵' },
-      { id: 'hanfu', icon: '服', title: '汉服之美' }
+      { id: 'shici', icon: '诗', title: '诗词赏析', url: '/pages/culture/culture?id=shici' },
+      { id: 'shufa', icon: '书', title: '书法鉴赏', url: '/pages/culture/culture?id=shufa' },
+      { id: 'chadao', icon: '茶', title: '茶道文化', url: '/pages/culture/culture?id=chadao' },
+      { id: 'zhongyi', icon: '医', title: '中医养生', url: '/pages/culture/culture?id=zhongyi' },
+      { id: 'guohua', icon: '画', title: '国画艺术', url: '/pages/culture/culture?id=guohua' },
+      { id: 'qidao', icon: '棋', title: '棋道智慧', url: '/pages/culture/culture?id=qidao' },
+      { id: 'guqin', icon: '琴', title: '古琴雅韵', url: '/pages/culture/culture?id=guqin' },
+      { id: 'hanfu', icon: '服', title: '汉服之美', url: '/pages/culture/culture?id=hanfu' }
     ],
     dailyQuote: {},
     dailyInfo: {},
@@ -344,8 +344,11 @@ Page({
     })
   },
 
-  onSafeModuleTap() {
-    wx.showToast({ title: '功能开发中，敬请期待', icon: 'none' })
+  onSafeModuleTap(e) {
+    const { url } = e.currentTarget.dataset
+    if (url) {
+      wx.navigateTo({ url })
+    }
   },
 
   onProfileBadgeTap() {

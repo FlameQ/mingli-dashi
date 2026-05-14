@@ -9,26 +9,26 @@ Page({
         name: '国学经典',
         desc: '品读中华文化瑰宝',
         modules: [
-          { id: 'shici', icon: '诗', title: '诗词赏析', desc: '唐诗宋词元曲品鉴' },
-          { id: 'shufa', icon: '书', title: '书法鉴赏', desc: '历代名家书法赏析' },
-          { id: 'guqin', icon: '琴', title: '古琴雅韵', desc: '传统古琴音乐欣赏' }
+          { id: 'shici', icon: '诗', title: '诗词赏析', desc: '唐诗宋词元曲品鉴', url: '/pages/culture/culture?id=shici' },
+          { id: 'shufa', icon: '书', title: '书法鉴赏', desc: '历代名家书法赏析', url: '/pages/culture/culture?id=shufa' },
+          { id: 'guqin', icon: '琴', title: '古琴雅韵', desc: '传统古琴音乐欣赏', url: '/pages/culture/culture?id=guqin' }
         ]
       },
       {
         name: '传统艺术',
         desc: '传承中华艺术之美',
         modules: [
-          { id: 'guohua', icon: '画', title: '国画艺术', desc: '水墨丹青绘画鉴赏' },
-          { id: 'qidao', icon: '棋', title: '棋道智慧', desc: '围棋象棋策略智慧' },
-          { id: 'hanfu', icon: '服', title: '汉服之美', desc: '传统服饰文化鉴赏' }
+          { id: 'guohua', icon: '画', title: '国画艺术', desc: '水墨丹青绘画鉴赏', url: '/pages/culture/culture?id=guohua' },
+          { id: 'qidao', icon: '棋', title: '棋道智慧', desc: '围棋象棋策略智慧', url: '/pages/culture/culture?id=qidao' },
+          { id: 'hanfu', icon: '服', title: '汉服之美', desc: '传统服饰文化鉴赏', url: '/pages/culture/culture?id=hanfu' }
         ]
       },
       {
         name: '养生文化',
         desc: '中医养生健康之道',
         modules: [
-          { id: 'chadao', icon: '茶', title: '茶道文化', desc: '传统茶艺茶道学习' },
-          { id: 'zhongyi', icon: '医', title: '中医养生', desc: '传统中医养生知识' }
+          { id: 'chadao', icon: '茶', title: '茶道文化', desc: '传统茶艺茶道学习', url: '/pages/culture/culture?id=chadao' },
+          { id: 'zhongyi', icon: '医', title: '中医养生', desc: '传统中医养生知识', url: '/pages/culture/culture?id=zhongyi' }
         ]
       }
     ],

@@ -26,6 +26,11 @@
 /* Safe module icon colors */
 .icon-bg-safe { background: #EFEAE4; }
 .icon-color-safe { color: #4A3728; }
+.safe-section-title {
+  font-size: 24rpx; font-weight: bold; color: #9A9088;
+  letter-spacing: 4rpx; padding: 0 8rpx 16rpx;
+  border-bottom: 1rpx solid #E8E3DC; margin-bottom: 12rpx;
+}
 
 .page {
   min-height: 100vh;

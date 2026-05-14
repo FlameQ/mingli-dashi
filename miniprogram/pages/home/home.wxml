@@ -21,9 +21,12 @@
 
     <!-- Safe Module Grid -->
     <view class="tools-card">
+      <view class="safe-section-title">
+        <text>国学精粹</text>
+      </view>
       <view class="tools-grid">
         <view class="tool-cell" wx:for="{{safeModules}}" wx:key="id"
-              bindtap="onSafeModuleTap" hover-class="tool-cell-hover">
+              data-url="{{item.url}}" bindtap="onSafeModuleTap" hover-class="tool-cell-hover">
           <view class="tool-icon-circle icon-bg-safe">
             <text class="tool-icon icon-color-safe">{{item.icon}}</text>
           </view>

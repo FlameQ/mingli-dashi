@@ -1,0 +1,14 @@
+<view class="page">
+  <view class="section-card" wx:for="{{info.sections}}" wx:key="title">
+    <view class="section-header">
+      <text class="section-title">{{item.title}}</text>
+      <text class="section-author">{{item.author}}</text>
+    </view>
+    <text class="section-content">{{item.content}}</text>
+    <view class="analysis-box">
+      <text class="analysis-label">赏析</text>
+      <text class="analysis-text">{{item.analysis}}</text>
+    </view>
+  </view>
+  <view class="footer-note">传统文化学习工具 · 弘扬国学经典智慧</view>
+</view>

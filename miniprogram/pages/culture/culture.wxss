@@ -1,0 +1,11 @@
+.page{min-height:100vh;background:#F3F1ED;padding:24rpx;padding-bottom:80rpx;box-sizing:border-box;}
+.page,.page view,.page text{box-sizing:border-box;}
+.section-card{background:#FFF;border-radius:20rpx;padding:28rpx;margin-bottom:20rpx;border:1rpx solid #DDD7CD;box-shadow:0 1rpx 6rpx rgba(30,25,20,0.06);}
+.section-header{margin-bottom:16rpx;padding-bottom:14rpx;border-bottom:1rpx solid #F0EDE8;}
+.section-title{font-size:34rpx;font-weight:bold;color:#1A1714;display:block;}
+.section-author{font-size:22rpx;color:#9A9088;display:block;margin-top:4rpx;}
+.section-content{font-size:28rpx;color:#3E2723;line-height:2;white-space:pre-line;display:block;}
+.analysis-box{background:#F7F5F2;border-radius:14rpx;padding:20rpx;margin-top:18rpx;border-left:6rpx solid #C9A96E;}
+.analysis-label{font-size:22rpx;color:#C9A96E;font-weight:bold;display:block;margin-bottom:8rpx;}
+.analysis-text{font-size:26rpx;color:#7D6B5D;line-height:1.8;}
+.footer-note{text-align:center;color:#9A9088;font-size:22rpx;padding:24rpx 0;}
